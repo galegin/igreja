@@ -1,0 +1,12 @@
+XAMPP (PHP + MYSQL) - http://www.renatosardinha.com/php/xampp-portable-php-apache-e-mysql-no-pen-drive
+HTML
+JS
+CSS
+NODE.JS
+ANGULARJS
+BOOTSTRAP - http://getbootstrap.com.br
+JQUERY - https://jquery.com/download/
+
+APTANA
+SUBLIME
+NOTEPAD++
