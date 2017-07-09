@@ -4,11 +4,11 @@ require_once("modulo.php");
 
 abstract class Persistencia
 {
-	private $_conexao;
+    private $_conexao;
 
-	public function Pesistencia()
-	{
-	}
+    public function Pesistencia()
+    {
+    }
 
     protected function GetConexao()
     {
@@ -41,7 +41,7 @@ abstract class Persistencia
 
     //--
 
-	abstract protected function GetCmdListar();
+    abstract protected function GetCmdListar();
     abstract protected function GetCmdConsultar();
     abstract protected function GetCmdIncluir();
     abstract protected function GetCmdAlterar();
@@ -51,45 +51,45 @@ abstract class Persistencia
 
     public function Listar()
     {
-    	return $this->GetLista($this->GetCmdListar());
+        return $this->GetLista($this->GetCmdListar());
     }
 
     public function Consultar()
     {
-    	$record = $this->GetConsulta($this->GetCmdConsultar());
-    	
-    	$this->SetRecord($record);
+        $record = $this->GetConsulta($this->GetCmdConsultar());
+        
+        $this->SetRecord($record);
 
-    	return $record;
+        return $record;
     }
 
     //--
 
     public function Incluir()
     {
-    	return $this->ExecComando($this->GetCmdIncluir());
+        return $this->ExecComando($this->GetCmdIncluir());
     }
 
     public function Alterar()
     {
-    	return $this->ExecComando($this->GetCmdAlterar());
+        return $this->ExecComando($this->GetCmdAlterar());
     }
 
     public function Excluir()
     {
-		return $this->ExecComando($this->GetCmdExcluir());
+        return $this->ExecComando($this->GetCmdExcluir());
     }
 
     //--
 
- 	public function Salvar()
+     public function Salvar()
     {
         $record = $this->GetConsulta($this->GetCmdConsultar());
 
-    	if (!isset($record))
-    		return $this->Incluir();
-    	else
-    		return $this->Alterar();
+        if (!isset($record))
+            return $this->Incluir();
+        else
+            return $this->Alterar();
     }
 }
 ?>
