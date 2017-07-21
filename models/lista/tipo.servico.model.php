@@ -29,17 +29,17 @@ class TipoServico extends Persistencia
 
     protected function GetCmdIncluir()
     {
-        return
-            "insert into TipoServico (Codigo,Descricao,Tipo) " + 
+        return 
+            "insert into TipoServico (Codigo,Descricao,Tipo) " .
             "values ($this->Codigo,'$this->Descricao',$this->Tipo)";
     }
 
     protected function GetCmdAlterar()
     {
         return
-            "update TipoServico " +
-            "set Descricao = '$this->Descricao' " +
-            ", Tipo = $this->Tipo " +
+            "update TipoServico " .
+            "set Descricao = '$this->Descricao' " .
+            ", Tipo = $this->Tipo " .
             "where Codigo = $this->Codigo";
     }
 

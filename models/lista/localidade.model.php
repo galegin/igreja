@@ -24,7 +24,7 @@ class Localidade extends Persistencia
     public $Comodatario;
     public $Metragem;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Nome = $record["Nome"];
@@ -47,49 +47,49 @@ class Localidade extends Persistencia
         $Metragem = $record["Metragem"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from Localidade where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into Localidade (Codigo,Nome,Tipo,Anciao,Cooperador,Cooperador_Jovem,Encarregado," +
-                "Dias_Culto,Dias_Culto_Jovem,Tipo_Logradouro,Logradouro,Numero_Logradouro,Bairro,Cidade," + 
-                "Tipo_Imovel,Acomodacao,Comodatario,Metragem) " + 
-            "values ($Codigo,'$Nome',$Tipo,'$Anciao','$Cooperador','$Cooperador_Jovem','$Encarregado'," +
-                "'$Dias_Culto','$Dias_Culto_Jovem','$Tipo_Logradouro','$Logradouro','$Numero_Logradouro','$Bairro','$Cidade'," + 
+            "insert into Localidade (Codigo,Nome,Tipo,Anciao,Cooperador,Cooperador_Jovem,Encarregado," .
+                "Dias_Culto,Dias_Culto_Jovem,Tipo_Logradouro,Logradouro,Numero_Logradouro,Bairro,Cidade," . 
+                "Tipo_Imovel,Acomodacao,Comodatario,Metragem) " . 
+            "values ($Codigo,'$Nome',$Tipo,'$Anciao','$Cooperador','$Cooperador_Jovem','$Encarregado'," .
+                "'$Dias_Culto','$Dias_Culto_Jovem','$Tipo_Logradouro','$Logradouro','$Numero_Logradouro','$Bairro','$Cidade'," . 
                 "$Tipo_Imovel,'$Acomodacao','$Comodatario','$Metragem')";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update Localidade " +
-            "set Nome = '$Nome' " +
-            ", Tipo = $Tipo " +
-            ", Anciao = '$Anciao' " +
-            ", Diacono = '$Diacono' " +
-            ", Cooperador = '$Cooperador' " +
-            ", Cooperador_Jovem = '$Cooperador_Jovem' " +
-            ", Encarregado = '$Encarregado' " +
-            ", Dias_Culto = '$Dias_Culto' " +
-            ", Dias_Culto_Jovem = '$Dias_Culto_Jovem' " +
-            ", Tipo_Logradouro = '$Tipo_Logradouro' " +
-            ", Logradouro = '$Logradouro' " +
-            ", Numero_Logradouro = '$Numero_Logradouro' " +
-            ", Bairro = '$Bairro' " +
-            ", Cidade = '$Cidade' " +
-            ", Tipo_Imovel = $Tipo_Imovel " +
-            ", Acomodacao = '$Acomodacao' " +
-            ", Comodatario = '$Comodatario' " +
-            ", Metragem = '$Metragem' " +
+            "update Localidade " .
+            "set Nome = '$Nome' " .
+            ", Tipo = $Tipo " .
+            ", Anciao = '$Anciao' " .
+            ", Diacono = '$Diacono' " .
+            ", Cooperador = '$Cooperador' " .
+            ", Cooperador_Jovem = '$Cooperador_Jovem' " .
+            ", Encarregado = '$Encarregado' " .
+            ", Dias_Culto = '$Dias_Culto' " .
+            ", Dias_Culto_Jovem = '$Dias_Culto_Jovem' " .
+            ", Tipo_Logradouro = '$Tipo_Logradouro' " .
+            ", Logradouro = '$Logradouro' " .
+            ", Numero_Logradouro = '$Numero_Logradouro' " .
+            ", Bairro = '$Bairro' " .
+            ", Cidade = '$Cidade' " .
+            ", Tipo_Imovel = $Tipo_Imovel " .
+            ", Acomodacao = '$Acomodacao' " .
+            ", Comodatario = '$Comodatario' " .
+            ", Metragem = '$Metragem' " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from Localidade where Codigo = $Codigo";

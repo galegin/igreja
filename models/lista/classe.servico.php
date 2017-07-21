@@ -17,7 +17,7 @@ class Servico extends Persistencia
     public $Qtde_Irmao;
     public $Qtde_Irma;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Codigo_Reuniao = $record["Codigo_Reuniao"];
@@ -33,42 +33,42 @@ class Servico extends Persistencia
         $Qtde_Irma = $record["Qtde_Irma"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from Servico where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into Servico (Codigo,Codigo_Reuniao,Codigo_Tipo_Servico,Codigo_Localidade" + 
-                ",Data_Inicio,Data_Termino,Hora_Inicio,Hora_Termino" + 
-                ",Complemento,Atendente,Qtde_Irmao,Qtde_Irma) " + 
-            "values ($Codigo,$Codigo_Reuniao,$Codigo_Tipo_Servico,$Codigo_Localidade" + 
-                ",'$Data_Inicio','$Data_Termino','$Hora_Inicio','$Hora_Termino'" + 
+            "insert into Servico (Codigo,Codigo_Reuniao,Codigo_Tipo_Servico,Codigo_Localidade" . 
+                ",Data_Inicio,Data_Termino,Hora_Inicio,Hora_Termino" . 
+                ",Complemento,Atendente,Qtde_Irmao,Qtde_Irma) " . 
+            "values ($Codigo,$Codigo_Reuniao,$Codigo_Tipo_Servico,$Codigo_Localidade" . 
+                ",'$Data_Inicio','$Data_Termino','$Hora_Inicio','$Hora_Termino'" . 
                 ",'$Complemento','$Atendente',$Qtde_Irmao,$Qtde_Irma)";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update Servico " +
-            "set Codigo_Reuniao = $Codigo_Reuniao " +
-            ", Codigo_Tipo_Servico = $Codigo_Tipo_Servico " +
-            ", Codigo_Localidade = $Codigo_Localidade " +
-            ", Data_Inicio = '$Data_Inicio' " +
-            ", Data_Termino = '$Data_Termino' " +
-            ", Hora_Inicio = '$Hora_Inicio' " +
-            ", Data_Termino = '$Data_Termino' " +
-            ", Complemento = '$Complemento' " +
-            ", Atendente = '$Atendente' " +
-            ", Qtde_Irmao = $Qtde_Irmao " +
-            ", Qtde_Irma = $Qtde_Irma " +
+            "update Servico " .
+            "set Codigo_Reuniao = $Codigo_Reuniao " .
+            ", Codigo_Tipo_Servico = $Codigo_Tipo_Servico " .
+            ", Codigo_Localidade = $Codigo_Localidade " .
+            ", Data_Inicio = '$Data_Inicio' " .
+            ", Data_Termino = '$Data_Termino' " .
+            ", Hora_Inicio = '$Hora_Inicio' " .
+            ", Data_Termino = '$Data_Termino' " .
+            ", Complemento = '$Complemento' " .
+            ", Atendente = '$Atendente' " .
+            ", Qtde_Irmao = $Qtde_Irmao " .
+            ", Qtde_Irma = $Qtde_Irma " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from Servico where Codigo = $Codigo";

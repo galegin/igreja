@@ -37,15 +37,15 @@ abstract class Persistencia
 
     //--
 
-    abstract protected function SetRecord($record);
+    protected abstract function SetRecord($record);
 
     //--
 
-    abstract protected function GetCmdListar();
-    abstract protected function GetCmdConsultar();
-    abstract protected function GetCmdIncluir();
-    abstract protected function GetCmdAlterar();
-    abstract protected function GetCmdExcluir();
+    protected abstract function GetCmdListar();
+    protected abstract function GetCmdConsultar();
+    protected abstract function GetCmdIncluir();
+    protected abstract function GetCmdAlterar();
+    protected abstract function GetCmdExcluir();
 
     //--
 
@@ -82,11 +82,31 @@ abstract class Persistencia
 
     //--
 
-     public function Salvar()
+    public function Existe($sql)
     {
-        $record = $this->GetConsulta($this->GetCmdConsultar());
+        $existe = 0;
 
-        if (!isset($record))
+        try
+        {
+            $sql = "select count(*) EXISTE from (" . $sql . ") a" ;
+            $record = $this->GetConsulta($sql);
+            $existe = $record["EXISTE"];
+        } 
+        catch (Exception $e)
+        {
+            throw new Exception("Error " . $e->getMessage(), 1);
+        }
+
+        return $existe;
+    }
+
+    //--
+
+    public function Salvar()
+    {
+        $existe = $this->Existe($this->GetCmdConsultar());
+
+        if ($existe == 0)
             return $this->Incluir();
         else
             return $this->Alterar();

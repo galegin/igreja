@@ -11,7 +11,7 @@ class Apresentacao extends Persistencia
     public $Funcao;
     public $Nome;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Codigo_Reuniao = $record["Codigo_Reuniao"];
@@ -21,32 +21,32 @@ class Apresentacao extends Persistencia
         $Nome = $record["Nome"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from Apresentacao where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into Apresentacao (Codigo,Codigo_Reuniao,Codigo_Localidade,Tipo,Funcao,Nome) " + 
+            "insert into Apresentacao (Codigo,Codigo_Reuniao,Codigo_Localidade,Tipo,Funcao,Nome) " . 
             "values ($Codigo,$Codigo_Reuniao,$Codigo_Localidade,$Tipo,'$Funcao','$Nome')";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update Apresentacao " +
-            "set Codigo_Reuniao = $Codigo_Reuniao " +
-            ", Codigo_Localidade = $Codigo_Localidade " +
-            ", Tipo = $Tipo " +
-            ", Funcao = '$Funcao' " +
-            ", Nome = '$Nome' " +
+            "update Apresentacao " .
+            "set Codigo_Reuniao = $Codigo_Reuniao " .
+            ", Codigo_Localidade = $Codigo_Localidade " .
+            ", Tipo = $Tipo " .
+            ", Funcao = '$Funcao' " .
+            ", Nome = '$Nome' " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from Apresentacao where Codigo = $Codigo";

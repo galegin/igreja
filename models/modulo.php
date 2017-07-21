@@ -2,6 +2,11 @@
 
 require_once("conexao.php");
 
+define("HOSTNAME", "localhost");
+define("USERNAME", "root");
+define("PASSWORD", "");
+define("DATABASE", "igreja");
+
 class Modulo
 {
     private static $instance;
@@ -14,17 +19,8 @@ class Modulo
         return self::$instance;
     } 
 
-    public $Hostname;    
-    public $Username;
-    public $Password;
-    public $Database;
-
     private function Modulo()
     {        
-        $Hostname = "localhost";
-        $Username = "root";
-        $Password = "";
-        $Database = "igreja";
     }
 
     private $_list_conexao;
@@ -35,7 +31,7 @@ class Modulo
         
         if (!isset($conexao))
         {
-            $conexao = new ConexaoMySql($this->Hostname, $this->Username, $this->Password, $this->Database);
+            $conexao = new ConexaoMySql(HOSTNAME, USERNAME, PASSWORD, DATABASE);
             $this->_list_conexao[$nome] = $conexao;
         }
 

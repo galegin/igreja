@@ -12,7 +12,7 @@ class Reuniao extends Persistencia
     public $Nome_Atende;
     public $Palavra;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Descricao = $record["Descricao"];
@@ -23,33 +23,33 @@ class Reuniao extends Persistencia
         $Palavra = $record["Palavra"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from Reuniao where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into Reuniao (Codigo,Descricao,Data,Data_Proxima,Hora_Inicio,Nome_Atende,Palavra) " + 
+            "insert into Reuniao (Codigo,Descricao,Data,Data_Proxima,Hora_Inicio,Nome_Atende,Palavra) " . 
             "values ($Codigo,'$Descricao','$Data','$Data_Proxima','$Hora_Inicio','$Nome_Atende','$Palavra')";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update Reuniao " +
-            "set Descricao = '$Descricao' " +
-            ", Data = '$Data' " +
-            ", Data_Proxima = '$Data_Proxima' " +
-            ", Hora_Inicio = '$Hora_Inicio' " +
-            ", Nome_Atende = '$Nome_Atende' " +
-            ", Palavra = '$Palavra' " +
+            "update Reuniao " .
+            "set Descricao = '$Descricao' " .
+            ", Data = '$Data' " .
+            ", Data_Proxima = '$Data_Proxima' " .
+            ", Hora_Inicio = '$Hora_Inicio' " .
+            ", Nome_Atende = '$Nome_Atende' " .
+            ", Palavra = '$Palavra' " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from Reuniao where Codigo = $Codigo";

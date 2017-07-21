@@ -14,7 +14,7 @@ class Atendente extends Persistencia
     public $Telefone_Recado;
     public $Data_Apresentacao;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Nome = $record["Nome"];
@@ -27,37 +27,37 @@ class Atendente extends Persistencia
         $Data_Apresentacao = $record["Data_Apresentacao"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from Atendente where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into Atendente (Codigo,Nome,Ministerio,Administracao,Codigo_Localidade," +
-                "Telefone_Pessoal,Telefone_Trabalho,Telefone_Recado,Data_Apresentacao) " + 
-            "values ($Codigo,'$Nome',$Ministerio,$Administracao,$Codigo_Localidade," +
+            "insert into Atendente (Codigo,Nome,Ministerio,Administracao,Codigo_Localidade," .
+                "Telefone_Pessoal,Telefone_Trabalho,Telefone_Recado,Data_Apresentacao) " . 
+            "values ($Codigo,'$Nome',$Ministerio,$Administracao,$Codigo_Localidade," .
                 "'$Telefone_Pessoal','$Telefone_Trabalho','$Telefone_Recado','$Data_Apresentacao')";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update Atendente " +
-            "set Nome = '$Nome' " +
-            ", Ministerio = $Ministerio " +
-            ", Administracao = $Administracao " +
-            ", Codigo_Localidade = $Codigo_Localidade " +
-            ", Telefone_Pessoal = '$Telefone_Pessoal' " +
-            ", Telefone_Trabalho = '$Telefone_Trabalho' " +
-            ", Telefone_Recado = '$Telefone_Recado' " +
-            ", Data_Apresentacao = '$Data_Apresentacao' " +
+            "update Atendente " .
+            "set Nome = '$Nome' " .
+            ", Ministerio = $Ministerio " .
+            ", Administracao = $Administracao " .
+            ", Codigo_Localidade = $Codigo_Localidade " .
+            ", Telefone_Pessoal = '$Telefone_Pessoal' " .
+            ", Telefone_Trabalho = '$Telefone_Trabalho' " .
+            ", Telefone_Recado = '$Telefone_Recado' " .
+            ", Data_Apresentacao = '$Data_Apresentacao' " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from Atendente where Codigo = $Codigo";

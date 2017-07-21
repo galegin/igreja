@@ -1,4 +1,7 @@
 <?php
+
+require_once("logger.php");
+
 class ConexaoMySql
 {
     public $Hostname;
@@ -20,12 +23,12 @@ class ConexaoMySql
     {
         if (!isset($this->_conexao))
         {
-            $this->_conexao = new PDO("mysql:host=$this->Hostname;dbname=$this->Database;charset=utf8mb4", $this->Username, $this->Password);
+            $this->_conexao = new PDO("mysql:host=$this->Hostname;dbname=$this->Database", $this->Username, $this->Password);
+
+            $this->_conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
             if (!$this->_conexao)
-            {
-                die("Erro ao connectar");
-            }
+                throw new Exception("Erro ao connectar", 1);
         }
 
         return $this->_conexao;
@@ -35,34 +38,30 @@ class ConexaoMySql
 
     private function GetQuery($sql)
     {
+        Logger::Instance()->Info("ConexaoMySql.GetQuery", "sql: " . $sql);
+
         if (is_null($sql))
-        {
-            die("Consulta deve ser informada");
-        }
+            throw new Exception("Consulta deve ser informada", 1);
 
         $query = $this->GetConexao()->query($sql);
 
-        if ($query->numRows() = 0) 
-        {
-            die("Erro ao efetuar consultar");
-        }
+        if (!$query) 
+            throw new Exception("Erro ao efetuar consulta / sql: " . $sql, 1);
 
         return $query;
     }
 
     private function ExecQuery($cmd)
     {
+        Logger::Instance()->Info("ConexaoMySql.ExecQuery", "cmd: " . $cmd);
+
         if (is_null($cmd))
-        {
-            die("Comando deve ser informado");
-        }
+            throw new Exception("Comando deve ser informado", 1);
 
         $query = $this->GetConexao()->exec($cmd);
 
         if (!$query)
-        {
-            die("Erro ao eExecutar comando");
-        }
+            throw new Exception("Erro ao executar comando / cmd: " . $cmd, 1);
 
         return $query;
     }
@@ -82,9 +81,10 @@ class ConexaoMySql
         {
             return $this->GetQuery($sql)->fetchAll();
         }
-        catch (PDOException $ex)
+        catch (Exception $e)
         {
-            return null;
+            Logger::Instance()->Erro("ConexaoMySql.GetLista", $e->getMessage());
+            throw new Exception("Error " . $e->getMessage(), 1);
         }
     }
 
@@ -100,15 +100,16 @@ class ConexaoMySql
         {
             return $this->GetQuery($sql)->fetch();
         }
-        catch (PDOException $ex)
+        catch (Exception $e)
         {
-            return null;
+            Logger::Instance()->Erro("ConexaoMySql.GetConsulta", $e->getMessage());
+            throw new Exception("Error " . $e->getMessage(), 1);
         }
     }    
 
     /*
     $conn = new ConexaoMySql("localhost", "root", "", "igreja");
-    $conn->ExecComando("insert into Pessoa(Codigo, Nome) values ('Codigo', '$Nome')");
+    $conn->ExecComando("insert into Pessoa(Codigo, Nome) values ('$Codigo', '$Nome')");
     */
     public function ExecComando($cmd)
     {
@@ -116,14 +117,15 @@ class ConexaoMySql
         {
             return $this->ExecQuery($cmd);
         }
-        catch (PDOException $ex)
+        catch (Exception $e)
         {
-            return null;
+            Logger::Instance()->Erro("ConexaoMySql.ExecComando", $e->getMessage());
+            throw new Exception("Error " . $e->getMessage(), 1);
         }
 
         //$this->GetConexao()->lastInsertId();
 
-        return true;
+        //return true;
     }
 }
 ?>

@@ -13,7 +13,7 @@ class AgendaServico extends Persistencia
     public $Complemento;
     public $Atendente;
 
-    function SetRecord($record)
+    protected function SetRecord($record)
     {
         $Codigo = $record["Codigo"];
         $Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
@@ -25,36 +25,36 @@ class AgendaServico extends Persistencia
         $Atendente = $record["Atendente"];
     }
 
-    function GetCmdConsultar()
+    protected function GetCmdConsultar()
     {
         return
             "select * from AgendaServico where Codigo = $Codigo";
     }
 
-    function GetCmdIncluir()
+    protected function GetCmdIncluir()
     {
         return
-            "insert into AgendaServico (Codigo,Codigo_Tipo_Servico,Codigo_Localidade," +
-                "Dia_Semana,Semana_Mes,Hora,Complemento,Atendente) " + 
-            "values ($Codigo,$Codigo_Tipo_Servico,$Codigo_Localidade," + 
+            "insert into AgendaServico (Codigo,Codigo_Tipo_Servico,Codigo_Localidade," .
+                "Dia_Semana,Semana_Mes,Hora,Complemento,Atendente) " . 
+            "values ($Codigo,$Codigo_Tipo_Servico,$Codigo_Localidade," . 
                 "$Dia_Semana,$Semana_Mes,'$Hora','$Complemento','$Atendente')";
     }
 
-    function GetCmdAlterar()
+    protected function GetCmdAlterar()
     {
         return
-            "update AgendaServico " +
-            "set Codigo_Tipo_Servico = $Codigo_Tipo_Servico " +
-            ", Codigo_Localidade = $Codigo_Localidade " +
-            ", Dia_Semana = $Dia_Semana " +
-            ", Semana_Mes = $Semana_Mes' " +
-            ", Hora = '$Hora' " +
-            ", Complemento = '$Complemento' " +
-            ", Atendente = '$Atendente' " +
+            "update AgendaServico " .
+            "set Codigo_Tipo_Servico = $Codigo_Tipo_Servico " .
+            ", Codigo_Localidade = $Codigo_Localidade " .
+            ", Dia_Semana = $Dia_Semana " .
+            ", Semana_Mes = $Semana_Mes' " .
+            ", Hora = '$Hora' " .
+            ", Complemento = '$Complemento' " .
+            ", Atendente = '$Atendente' " .
             "where Codigo = $Codigo";
     }
 
-    function GetCmdExcluir()
+    protected function GetCmdExcluir()
     {
         return
             "delete from AgendaServico where Codigo = $Codigo";
