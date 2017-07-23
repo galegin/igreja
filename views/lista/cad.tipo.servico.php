@@ -40,6 +40,7 @@
 </form>
 
 <?php require_once("../../controllers/lista/tipo.servico.controller.js"); ?>
+<?php require_once("../../controllers/cad.controller.js"); ?>
 
 <?php require_once("../rodape.php"); ?>
 

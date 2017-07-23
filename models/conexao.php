@@ -60,9 +60,6 @@ class ConexaoMySql
 
         $query = $this->GetConexao()->exec($cmd);
 
-        if (!$query)
-            throw new Exception("Erro ao executar comando / cmd: " . $cmd, 1);
-
         return $query;
     }
 

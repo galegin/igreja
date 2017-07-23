@@ -104,9 +104,11 @@ abstract class Persistencia
 
     public function Salvar()
     {
-        $existe = $this->Existe($this->GetCmdConsultar());
+        //$existe = $this->Existe($this->GetCmdConsultar());
+        $record = $this->GetConsulta($this->GetCmdConsultar());
 
-        if ($existe == 0)
+        //if ($existe == 0)
+        if ($record["Codigo"] == 0)
             return $this->Incluir();
         else
             return $this->Alterar();

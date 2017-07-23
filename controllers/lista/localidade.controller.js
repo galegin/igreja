@@ -1,7 +1,7 @@
 <script type="text/javascript" language="javascript">
 
-    var url_api = '../../controllers/lista/tipo.servico.controller.php';
-    var name_form = '#frmCadTipoServico';
+    var url_api = '../../controllers/lista/localidade.controller.php';
+    var name_form = '#frmCadLocalidade';
 
     function setValues(dados)
     {

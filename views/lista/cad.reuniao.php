@@ -50,6 +50,9 @@
     </div>
 </form>
 
+<?php require_once("../../controllers/lista/reuniao.controller.js"); ?>
+<?php require_once("../../controllers/cad.controller.js"); ?>
+
 <?php require_once("../rodape.php"); ?>
 
 </body>
