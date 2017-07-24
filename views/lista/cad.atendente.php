@@ -57,6 +57,11 @@
     </div>
 
     <div class="form-group">
+        <label for="">Localidade</label>
+        <input class="form-control" type="text" id="cmbCodigo_Localidade" name="Codigo_Localidade" value="" />
+    </div>    
+
+    <div class="form-group">
         <label for="">Telefone Pessoal</label>
         <input class="form-control" type="text" id="txtTelefone_Pessoal" name="Telefone_Pessoal" value="" />
     </div>

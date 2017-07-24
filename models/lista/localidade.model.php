@@ -1,6 +1,6 @@
 <?php
 
-vrequire_once("../../models/persistencia.php");
+require_once("../../models/persistencia.php");
 
 class Localidade extends Persistencia
 {

@@ -27,8 +27,8 @@
     <div class="form-group">
         <label for="cmbTipo">Tipo</label>
         <select class="form-control" id="cmbTipo" name="Tipo">
-        <option value="I">Igreja</option>
-        <option value="L">Local</option>
+        <option value="1">Igreja</option>
+        <option value="0">Local</option>
         </select>
     </div>
 
