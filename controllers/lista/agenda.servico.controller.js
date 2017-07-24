@@ -1,7 +1,7 @@
 <script type="text/javascript" language="javascript">
 
-    var url_api = '../../controllers/lista/agenda.controller.php';
-    var name_form = '#frmCadAgenda';
+    var url_api = '../../controllers/lista/agenda.servico.controller.php';
+    var name_form = '#frmCadAgendaServico';
 
     function setValues(dados)
     {

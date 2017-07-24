@@ -1,6 +1,6 @@
 <?php
 
-require_once("../persistencia.php");
+require_once("../../models/persistencia.php");
 
 class Apresentacao extends Persistencia
 {
@@ -8,6 +8,7 @@ class Apresentacao extends Persistencia
     public $Codigo_Reuniao;
     public $Codigo_Localidade;
     public $Tipo;
+    public $Codigo_Tipo_Servico;
     public $Funcao;
     public $Nome;
 
@@ -17,39 +18,47 @@ class Apresentacao extends Persistencia
         $Codigo_Reuniao = $record["Codigo_Reuniao"];
         $Codigo_Localidade = $record["Codigo_Localidade"];
         $Tipo = $record["Tipo"];
+        $Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
         $Funcao = $record["Funcao"];
         $Nome = $record["Nome"];
+    }
+
+    protected function GetCmdListar()
+    {
+        return
+            "select * from Apresentacao";
     }
 
     protected function GetCmdConsultar()
     {
         return
-            "select * from Apresentacao where Codigo = $Codigo";
+            "select * from Apresentacao where Codigo = $this->Codigo";
     }
 
     protected function GetCmdIncluir()
     {
         return
-            "insert into Apresentacao (Codigo,Codigo_Reuniao,Codigo_Localidade,Tipo,Funcao,Nome) " . 
-            "values ($Codigo,$Codigo_Reuniao,$Codigo_Localidade,$Tipo,'$Funcao','$Nome')";
+            "insert into Apresentacao (Codigo,Codigo_Reuniao,Codigo_Localidade,Tipo,Codigo_Tipo_Servico,Funcao,Nome) " . 
+            "values ($this->Codigo,$this->Codigo_Reuniao,$this->Codigo_Localidade,$this->Tipo,$this->Codigo_Tipo_Servico,'$this->Funcao','$this->Nome')";
     }
 
     protected function GetCmdAlterar()
     {
         return
             "update Apresentacao " .
-            "set Codigo_Reuniao = $Codigo_Reuniao " .
-            ", Codigo_Localidade = $Codigo_Localidade " .
-            ", Tipo = $Tipo " .
-            ", Funcao = '$Funcao' " .
-            ", Nome = '$Nome' " .
-            "where Codigo = $Codigo";
+            "set Codigo_Reuniao = $this->Codigo_Reuniao " .
+            ", Codigo_Localidade = $this->Codigo_Localidade " .
+            ", Tipo = $this->Tipo " .
+            ", Codigo_Tipo_Servico = $this->Codigo_Tipo_Servico " .
+            ", Funcao = '$this->Funcao' " .
+            ", Nome = '$this->Nome' " .
+            "where Codigo = $this->Codigo";
     }
 
     protected function GetCmdExcluir()
     {
         return
-            "delete from Apresentacao where Codigo = $Codigo";
+            "delete from Apresentacao where Codigo = $this->Codigo";
     }
 }
 ?>

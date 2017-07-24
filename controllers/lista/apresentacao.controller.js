@@ -13,6 +13,7 @@
             $("#cmbCodigo_Reuniao").val(dados["Codigo_Reuniao"]);
             $("#cmbCodigo_Localidade").val(dados["Codigo_Localidade"]);
             $("#cmbTipo").val(dados["Tipo"]);
+            $("#cmbCodigo_Tipo_Servico").val(dados["Codigo_Tipo_Servico"]);
             $("#cmbFuncao").val(dados["Funcao"]);
             $("#txtNome").val(dados["Nome"]);
         }        

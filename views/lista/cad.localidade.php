@@ -16,17 +16,17 @@
 <form id="frmCadLocalidade">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtNome">Nome</label>
-        <input class="form-control" type="text" id="txtNome" value="" />
+        <input class="form-control" type="text" id="txtNome" name="Nome" value="" />
     </div>
 
     <div class="form-group">
         <label for="cmbTipo">Tipo</label>
-        <select class="form-control" id="cmbTipo">
+        <select class="form-control" id="cmbTipo" name="Tipo">
         <option value="I">Igreja</option>
         <option value="L">Local</option>
         </select>
@@ -34,27 +34,27 @@
 
     <div class="form-group">
         <label for="txtAnciao">Anciao</label>
-        <input class="form-control" type="text" id="txtAnciao" value="" />
+        <input class="form-control" type="text" id="txtAnciao" name="Anciao" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtDiacono">Diacono</label>
-        <input class="form-control" type="text" id="txtDiacono" value="" />
+        <input class="form-control" type="text" id="txtDiacono" name="Diacono" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtCooperador">Cooperador</label>
-        <input class="form-control" type="text" id="txtCooperador" value="" />
+        <input class="form-control" type="text" id="txtCooperador" name="Cooperador" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtCooperadorDeJovem">Cooperador de Jovem</label>
-        <input class="form-control" type="text" id="txtCooperadorDeJovem" value="" size="50" />
+        <input class="form-control" type="text" id="txtCooperador_Jovem" name="Cooperador_Jovem" value="" size="50" />
     </div>
 
     <div class="form-group">
         <label for="txtEncarregado">Encarregado</label>
-        <input class="form-control" type="text" id="txtEncarregado" value="" size="50" />
+        <input class="form-control" type="text" id="txtEncarregado" name="Encarregado" value="" size="50" />
     </div>
 
     <div class="form-group">

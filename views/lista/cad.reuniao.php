@@ -16,37 +16,37 @@
 <form id="frmCadReuniao">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
     <div>
 
     <div class="form-group">
         <label for="txtDescricao">Descricao</label>
-        <input class="form-control" type="text" id="txtDescricao" value="" />
+        <input class="form-control" type="text" id="txtDescricao" name="Descricao" value="" />
     <div>
 
     <div class="form-group">
         <label for="txtData">Data</label>
-        <input class="form-control" type="date" id="txtData" value="" />
+        <input class="form-control" type="date" id="txtData" name="Data" value="" />
     <div>
 
     <div class="form-group">
-        <label for="txtDataProxima">Data Proxima</label>
-        <input class="form-control" type="date" id="txtDataProxima" value="" />
+        <label for="txtData_Proxima">Data Proxima</label>
+        <input class="form-control" type="date" id="txtData_Proxima" name="Data_Proxima"value="" />
     <div>
 
     <div class="form-group">
-        <label for="txtHoraInicio">Hora Inicio</label>
-        <input class="form-control" type="text" id="txtHoraInicio" value="" />
+        <label for="txtHora_Inicio">Hora Inicio</label>
+        <input class="form-control" type="text" id="txtHora_Inicio" name="Hora_Inicio" value="" />
     <div>
 
     <div class="form-group">
-        <label for="txtAtende">Atende</label>
-        <input class="form-control" type="text" id="txtAtende" value="" size="50%" />
+        <label for="txtNome_Atende">Atende</label>
+        <input class="form-control" type="text" id="txtNome_Atende" name="Nome_Atende" value="" size="50%" />
     <div>
 
     <div class="form-group">
         <label for="txtPalavra">Palavra</label>
-        <input class="form-control" type="text" id="txtPalavra" value="" size="50%" />
+        <input class="form-control" type="text" id="txtPalavra" name="Palavra" value="" size="50%" />
     </div>
 </form>
 

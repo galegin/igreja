@@ -23,15 +23,6 @@ else if ($opcao == "Salvar")
     $localidade->Encarregado = $_POST['Encarregado'];
     $localidade->Dias_Culto = $_POST['Dias_Culto'];
     $localidade->Dias_Culto_Jovem = $_POST['Dias_Culto_Jovem'];
-    $localidade->Tipo_Logradouro = $_POST['Tipo_Logradouro'];
-    $localidade->Logradouro = $_POST['Logradouro'];
-    $localidade->Numero_Logradouro = $_POST['Numero_Logradouro'];
-    $localidade->Bairro = $_POST['Bairro'];
-    $localidade->Cidade = $_POST['Cidade'];
-    $localidade->Tipo_Imovel = $_POST['Tipo_Imovel'];
-    $localidade->Acomodacao = $_POST['Acomodacao'];
-    $localidade->Comodatario = $_POST['Comodatario'];
-    $localidade->Metragem = $_POST['Metragem'];
     $localidade->Salvar();
 }
 else if ($opcao == "Excluir")

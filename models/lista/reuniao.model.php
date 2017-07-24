@@ -1,6 +1,6 @@
 <?php
 
-require_once("../persistencia.php");
+require_once("../../models/persistencia.php");
 
 class Reuniao extends Persistencia
 {
@@ -23,36 +23,42 @@ class Reuniao extends Persistencia
         $Palavra = $record["Palavra"];
     }
 
+    protected function GetCmdListar()
+    {
+        return
+            "select * from Reuniao";
+    }
+
     protected function GetCmdConsultar()
     {
         return
-            "select * from Reuniao where Codigo = $Codigo";
+            "select * from Reuniao where Codigo = $this->Codigo";
     }
 
     protected function GetCmdIncluir()
     {
         return
             "insert into Reuniao (Codigo,Descricao,Data,Data_Proxima,Hora_Inicio,Nome_Atende,Palavra) " . 
-            "values ($Codigo,'$Descricao','$Data','$Data_Proxima','$Hora_Inicio','$Nome_Atende','$Palavra')";
+            "values ($this->Codigo,'$this->Descricao','$this->Data','$this->Data_Proxima','$this->Hora_Inicio','$this->Nome_Atende','$this->Palavra')";
     }
 
     protected function GetCmdAlterar()
     {
         return
             "update Reuniao " .
-            "set Descricao = '$Descricao' " .
-            ", Data = '$Data' " .
-            ", Data_Proxima = '$Data_Proxima' " .
-            ", Hora_Inicio = '$Hora_Inicio' " .
-            ", Nome_Atende = '$Nome_Atende' " .
-            ", Palavra = '$Palavra' " .
-            "where Codigo = $Codigo";
+            "set Descricao = '$this->Descricao' " .
+            ", Data = '$this->Data' " .
+            ", Data_Proxima = '$this->Data_Proxima' " .
+            ", Hora_Inicio = '$this->Hora_Inicio' " .
+            ", Nome_Atende = '$this->Nome_Atende' " .
+            ", Palavra = '$this->Palavra' " .
+            "where Codigo = $this->Codigo";
     }
 
     protected function GetCmdExcluir()
     {
         return
-            "delete from Reuniao where Codigo = $Codigo";
+            "delete from Reuniao where Codigo = $this->Codigo";
     }      
 }
 ?>

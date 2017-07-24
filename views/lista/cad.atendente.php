@@ -16,17 +16,17 @@
 <form id="frmCadAtendente">
     <div class="form-group">
         <label for="">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
     </div>
 
     <div class="form-group">
         <label for="">Nome</label>
-        <input class="form-control" type="text" id="txtNome" value="" />
+        <input class="form-control" type="text" id="txtNome" name="Nome" value="" />
     </div>
 
     <div class="form-group">
         <label for="">Ministerio</label>
-        <select class="form-control" id="cmbMinisterio">
+        <select class="form-control" id="cmbMinisterio" name="Ministerio" >
         <option value="0">Anciao</option>
         <option value="1">Diacono</option>
         <option value="2">Cooperador</option>
@@ -42,7 +42,7 @@
 
     <div class="form-group">
         <label for="">Administracao</label>
-        <select class="form-control" id="cmbAdministracao">
+        <select class="form-control" id="cmbAdministracao" name="Administracao" >
         <option value="0">Presidente</option>
         <option value="1">Vice-Presidente</option>
         <option value="2">Secretario</option>
@@ -54,6 +54,26 @@
         <option value="8">Aux. Secretaria</option>
         <option value="9">Aux. Livro</option>
         </select>
+    </div>
+
+    <div class="form-group">
+        <label for="">Telefone Pessoal</label>
+        <input class="form-control" type="text" id="txtTelefone_Pessoal" name="Telefone_Pessoal" value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="">Telefone Trabalho</label>
+        <input class="form-control" type="text" id="txtTelefone_Trabalho" name="Telefone_Trabalho" value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="">Telefone Recado</label>
+        <input class="form-control" type="text" id="txtTelefone_Recado" name="Telefone_Recado" value="" />
+    </div>
+
+    <div class="form-group">
+        <label for="">Data Apresentacao</label>
+        <input class="form-control" type="date" id="txtData_Apresentacao" name="Data_Apresentacao" value="" />
     </div>
 </form>
 

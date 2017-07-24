@@ -18,15 +18,6 @@
             $("#txtEncarregado").val(dados["Encarregado"]);
             $("#txtDias_Culto").val(dados["Dias_Culto"]);
             $("#txtDias_Culto_Jovem").val(dados["Dias_Culto_Jovem"]);
-            $("#txtTipo_Logradouro").val(dados["Tipo_Logradouro"]);
-            $("#txtLogradouro").val(dados["Logradouro"]);
-            $("#txtNumero_Logradouro").val(dados["Numero_Logradouro"]);
-            $("#txtBairro").val(dados["Bairro"]);
-            $("#txtCidade").val(dados["Cidade"]);
-            $("#cmbTipo_Imovel").val(dados["Tipo_Imovel"]);
-            $("#txtAcomodacao").val(dados["Acomodacao"]);
-            $("#txtComodatario").val(dados["Comodatario"]);
-            $("#txtMetragem").val(dados["Metragem"]);
         }        
     }
 

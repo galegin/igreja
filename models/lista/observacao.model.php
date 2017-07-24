@@ -1,6 +1,6 @@
 <?php
 
-require_once("../persistencia.php");
+require_once("../../models/persistencia.php");
 
 class Observacao extends Persistencia
 {
@@ -15,32 +15,38 @@ class Observacao extends Persistencia
         $Descricao = $record["Descricao"];
     }
 
+    protected function GetCmdListar()
+    {
+        return
+            "select * from Observacao";
+    }
+
     protected function GetCmdConsultar()
     {
         return
-            "select * from Observacao where Codigo = $Codigo";
+            "select * from Observacao where Codigo = $this->Codigo";
     }
 
     protected function GetCmdIncluir()
     {
         return
             "insert into Observacao (Codigo,Codigo_Reuniao,Descricao) " . 
-            "values ($Codigo,$Codigo_Reuniao,'$Descricao')";
+            "values ($this->Codigo,$this->Codigo_Reuniao,'$this->Descricao')";
     }
 
     protected function GetCmdAlterar()
     {
         return
             "update Observacao " .
-            "set Codigo_Reuniao = $Codigo_Reuniao " .
-            ", Descricao = '$Descricao' " .
-            "where Codigo = $Codigo";
+            "set Codigo_Reuniao = $this->Codigo_Reuniao " .
+            ", Descricao = '$this->Descricao' " .
+            "where Codigo = $this->Codigo";
     }
 
     protected function GetCmdExcluir()
     {
         return
-            "delete from Observacao where Codigo = $Codigo";
+            "delete from Observacao where Codigo = $this->Codigo";
     } 
 }
 ?>
