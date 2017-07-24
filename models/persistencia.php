@@ -82,32 +82,10 @@ abstract class Persistencia
 
     //--
 
-    public function Existe($sql)
-    {
-        $existe = 0;
-
-        try
-        {
-            $sql = "select count(*) EXISTE from (" . $sql . ") a" ;
-            $record = $this->GetConsulta($sql);
-            $existe = $record["EXISTE"];
-        } 
-        catch (Exception $e)
-        {
-            throw new Exception("Error " . $e->getMessage(), 1);
-        }
-
-        return $existe;
-    }
-
-    //--
-
     public function Salvar()
     {
-        //$existe = $this->Existe($this->GetCmdConsultar());
         $record = $this->GetConsulta($this->GetCmdConsultar());
-
-        //if ($existe == 0)
+        
         if ($record["Codigo"] == 0)
             return $this->Incluir();
         else

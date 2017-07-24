@@ -11,7 +11,11 @@
         {
             $("#txtCodigo").val(dados["Codigo"]);
             $("#txtDescricao").val(dados["Descricao"]);
-            $("#cmbTipo").val(dados["Tipo"]);
+            $("#txtData").val(dados["Data"]);
+            $("#txtData_Proxima").val(dados["Data_Proxima"]);
+            $("#txtHora_Inicio").val(dados["Hora_Inicio"]);
+            $("#txtNome_Atende").val(dados["Nome_Atende"]);
+            $("#txtPalavra").val(dados["Palavra"]);
         }        
     }
 

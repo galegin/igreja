@@ -32,7 +32,7 @@ class Observacao extends Persistencia
     {
         return
             "update Observacao " .
-            "set Codigo_Reuniao = '$Codigo_Reuniao' " .
+            "set Codigo_Reuniao = $Codigo_Reuniao " .
             ", Descricao = '$Descricao' " .
             "where Codigo = $Codigo";
     }
