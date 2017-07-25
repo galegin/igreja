@@ -11,7 +11,7 @@
         {
             $("#txtCodigo").val(dados["Codigo"]);
             $("#txtNome").val(dados["Nome"]);
-            $("#txtTipo").val(dados["Tipo"]);
+            $("#cmbTipo").val(dados["Tipo"]);
             $("#txtAnciao").val(dados["Anciao"]);
             $("#txtCooperador").val(dados["Cooperador"]);
             $("#txtCooperador_Jovem").val(dados["Cooperador_Jovem"]);

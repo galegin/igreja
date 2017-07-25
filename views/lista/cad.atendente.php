@@ -15,17 +15,17 @@
 
 <form id="frmCadAtendente">
     <div class="form-group">
-        <label for="">Codigo</label>
+        <label for="txtCodigo">Codigo</label>
         <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
     </div>
 
     <div class="form-group">
-        <label for="">Nome</label>
+        <label for="txtNome">Nome</label>
         <input class="form-control" type="text" id="txtNome" name="Nome" value="" />
     </div>
 
     <div class="form-group">
-        <label for="">Ministerio</label>
+        <label for="cmbMinisterio">Ministerio</label>
         <select class="form-control" id="cmbMinisterio" name="Ministerio" >
         <option value="0">Anciao</option>
         <option value="1">Diacono</option>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group">
-        <label for="">Administracao</label>
+        <label for="cmbAdministracao">Administracao</label>
         <select class="form-control" id="cmbAdministracao" name="Administracao" >
         <option value="0">Presidente</option>
         <option value="1">Vice-Presidente</option>
@@ -57,27 +57,36 @@
     </div>
 
     <div class="form-group">
-        <label for="">Localidade</label>
-        <input class="form-control" type="text" id="cmbCodigo_Localidade" name="Codigo_Localidade" value="" />
-    </div>    
+        <label for="cmbCodigo_Localidade">Localidade</label>
+        <select class="form-control" id="cmbCodigo_Localidade" name="Codigo_Localidade" >
+        <?php 
+            require_once("../../models/lista/localidade.model.php");
+            $localidade = new Localidade();
+            $lista = $localidade->Listar();
+            foreach ($lista as $record) {
+                echo '<option value="' . $record["Codigo"] . '">' . $record["Nome"] . '</option>';
+            }
+        ?>
+        </select>
+    </div>
 
     <div class="form-group">
-        <label for="">Telefone Pessoal</label>
+        <label for="txtTelefone_Pessoal">Telefone Pessoal</label>
         <input class="form-control" type="text" id="txtTelefone_Pessoal" name="Telefone_Pessoal" value="" />
     </div>
 
     <div class="form-group">
-        <label for="">Telefone Trabalho</label>
+        <label for="txtTelefone_Trabalho">Telefone Trabalho</label>
         <input class="form-control" type="text" id="txtTelefone_Trabalho" name="Telefone_Trabalho" value="" />
     </div>
 
     <div class="form-group">
-        <label for="">Telefone Recado</label>
+        <label for="txtTelefone_Recado">Telefone Recado</label>
         <input class="form-control" type="text" id="txtTelefone_Recado" name="Telefone_Recado" value="" />
     </div>
 
     <div class="form-group">
-        <label for="">Data Apresentacao</label>
+        <label for="txtData_Apresentacao">Data Apresentacao</label>
         <input class="form-control" type="date" id="txtData_Apresentacao" name="Data_Apresentacao" value="" />
     </div>
 </form>

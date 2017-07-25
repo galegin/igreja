@@ -32,7 +32,7 @@ class Localidade extends Persistencia
     protected function GetCmdListar()
     {
         return
-            "select * from Localidaed";
+            "select * from Localidade";
     }
 
     protected function GetCmdConsultar()

@@ -10,7 +10,7 @@
         if (dados["Codigo"] > 0)
         {
             $("#txtCodigo").val(dados["Codigo"]);
-            $("#txtCodigo_Reuniao").val(dados["Codigo_Reuniao"]);
+            $("#cmbCodigo_Reuniao").val(dados["Codigo_Reuniao"]);
             $("#txtDescricao").val(dados["Descricao"]);
         }
     }

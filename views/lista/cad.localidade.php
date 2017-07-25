@@ -16,7 +16,7 @@
 <form id="frmCadLocalidade">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
+        <input class="form-control" type="text" id=txtCodigo" name="Codigo" value="" />
     </div>
 
     <div class="form-group">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group">
-        <label for="txtCooperadorDeJovem">Cooperador de Jovem</label>
+        <label for="txtCooperador_Jovem">Cooperador de Jovem</label>
         <input class="form-control" type="text" id="txtCooperador_Jovem" name="Cooperador_Jovem" value="" size="50" />
     </div>
 
@@ -62,7 +62,7 @@
         
         <div class="form-inline">
             <span size="50">Domingo<span>
-            <select class="form-control" id="cmbCultoOficialDom">
+            <select class="form-control" id="cmbCultoOficialDom" name="CultoOficialDom">
             <option value=""></option>
             <option value="DM">Manha</option>
             <option value="DT">Tarde</option>
@@ -72,7 +72,7 @@
             
         <div class="form-inline">
             <span>Segunda<span>
-            <select class="form-control" id="cmbCultoOficialSeg">
+            <select class="form-control" id="cmbCultoOficialSeg" name="CultoOficialSeg">
             <option value=""></option>
             <option value="2M">Manha</option>
             <option value="2T">Tarde</option>
@@ -82,7 +82,7 @@
             
         <div class="form-inline">
             <span>Terca<span>
-            <select class="form-control" id="cmbCultoOficialTer">
+            <select class="form-control" id="cmbCultoOficialTer" name="CultoOficialTer">
             <option value=""></option>
             <option value="3M">Manha</option>
             <option value="3T">Tarde</option>
@@ -92,7 +92,7 @@
             
         <div class="form-inline">
             <span>Quarta<span>
-            <select class="form-control" id="cmbCultoOficialQua">
+            <select class="form-control" id=cmb"CultoOficialQua" name="CultoOficialQua">
             <option value=""></option>
             <option value="4M">Manha</option>
             <option value="4T">Tarde</option>
@@ -102,7 +102,7 @@
             
         <div class="form-inline">
             <span>Quinta<span>
-            <select class="form-control" id="cmbCultoOficialQui">
+            <select class="form-control" id="cmbCultoOficialQui" name="CultoOficialQui">
             <option value=""></option>
             <option value="5M">Manha</option>
             <option value="5T">Tarde</option>
@@ -112,7 +112,7 @@
             
         <div class="form-inline">
             <span>Sexta<span>
-            <select class="form-control" id="cmbCultoOficialSex">
+            <select class="form-control" id="cmbCultoOficialSex" name="CultoOficialSex">
             <option value=""></option>
             <option value="6M">Manha</option>
             <option value="6T">Tarde</option>
@@ -122,7 +122,7 @@
             
         <div class="form-inline">
             <span>Sabado<span>
-            <select class="form-control" id="cmbCultoOficialSab">
+            <select class="form-control" id="cmbCultoOficialSab" name="CultoOficialSab">
             <option value=""></option>
             <option value="SM">Manha</option>
             <option value="ST">Tarde</option>
@@ -134,19 +134,19 @@
     <div class="form-group">
         <label>Dias de Culto de Jovem</label><br>
         <div class="checkbox">
-            <label><input type="checkbox" id="chkCultoJovem1Dom" />1 Domingo</label>
+            <label><input type="checkbox" id="chkCultoJovem1Dom" name="CultoJovem1Dom" />1 Domingo</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" id="chkCultoJovem2Dom" />2 Domingo</label>
+            <label><input type="checkbox" id="chkCultoJovem2Dom" name="CultoJovem2Dom" />2 Domingo</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" id="chkCultoJovem3Dom" />3 Domingo</label>
+            <label><input type="checkbox" id="chkCultoJovem3Dom" name="CultoJovem3Dom" />3 Domingo</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" id="chkCultoJovem4Dom" />4 Domingo</label>
+            <label><input type="checkbox" id="chkCultoJovem4Dom" name="CultoJovem4Dom" />4 Domingo</label>
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" id="chkCultoJovem5Dom" />5 Domingo</label>        
+            <label><input type="checkbox" id="chkCultoJovem5Dom" name="CultoJovem5Dom" />5 Domingo</label>        
         </div>
     </div>
 </form>
