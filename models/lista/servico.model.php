@@ -19,18 +19,18 @@ class Servico extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Codigo_Reuniao = $record["Codigo_Reuniao"];
-        $Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
-        $Codigo_Localidade = $record["Codigo_Localidade"];
-        $Data_Inicio = $record["Data_Inicio"];
-        $Data_Termino = $record["Data_Termino"];
-        $Hora_Inicio = $record["Hora_Inicio"];
-        $Hora_Termino = $record["Hora_Termino"];
-        $Complemento = $record["Complemento"];
-        $Atendente = $record["Atendente"];
-        $Qtde_Irmao = $record["Qtde_Irmao"];
-        $Qtde_Irma = $record["Qtde_Irma"];
+        $this->Codigo = $record["Codigo"];
+        $this->Codigo_Reuniao = $record["Codigo_Reuniao"];
+        $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
+        $this->Codigo_Localidade = $record["Codigo_Localidade"];
+        $this->Data_Inicio = $record["Data_Inicio"];
+        $this->Data_Termino = $record["Data_Termino"];
+        $this->Hora_Inicio = $record["Hora_Inicio"];
+        $this->Hora_Termino = $record["Hora_Termino"];
+        $this->Complemento = $record["Complemento"];
+        $this->Atendente = $record["Atendente"];
+        $this->Qtde_Irmao = $record["Qtde_Irmao"];
+        $this->Qtde_Irma = $record["Qtde_Irma"];
     }
 
     protected function GetCmdListar()

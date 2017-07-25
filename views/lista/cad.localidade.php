@@ -16,7 +16,7 @@
 <form id="frmCadLocalidade">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id=txtCodigo" name="Codigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
     </div>
 
     <div class="form-group">
@@ -92,7 +92,7 @@
             
         <div class="form-inline">
             <span>Quarta<span>
-            <select class="form-control" id=cmb"CultoOficialQua" name="CultoOficialQua">
+            <select class="form-control" id="cmbCultoOficialQua" name="CultoOficialQua">
             <option value=""></option>
             <option value="4M">Manha</option>
             <option value="4T">Tarde</option>

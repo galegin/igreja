@@ -27,8 +27,8 @@
     </div>
 
     <div class="form-group">
-        <label for="txtTipo">Tipo</label>
-        <select class="form-control" id="txtTipo" name="Tipo">
+        <label for="cmbTipo">Tipo</label>
+        <select class="form-control" id="cmbTipo" name="Tipo">
         <option value="0">Servico</option>
         <option value="1">Batismo</option>
         <option value="2">Culto Ensinamento</option>

@@ -17,16 +17,16 @@ class Localidade extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Nome = $record["Nome"];
-        $Tipo = $record["Tipo"];
-        $Anciao = $record["Anciao"];
-        $Diacono = $record["Diacono"];
-        $Cooperador = $record["Cooperador"];
-        $Cooperador_Jovem = $record["Cooperador_Jovem"];
-        $Encarregado = $record["Encarregado"];
-        $Dias_Culto = $record["Dias_Culto"];
-        $Dias_Culto_Jovem = $record["Dias_Culto_Jovem"];
+        $this->Codigo = $record["Codigo"];
+        $this->Nome = $record["Nome"];
+        $this->Tipo = $record["Tipo"];
+        $this->Anciao = $record["Anciao"];
+        $this->Diacono = $record["Diacono"];
+        $this->Cooperador = $record["Cooperador"];
+        $this->Cooperador_Jovem = $record["Cooperador_Jovem"];
+        $this->Encarregado = $record["Encarregado"];
+        $this->Dias_Culto = $record["Dias_Culto"];
+        $this->Dias_Culto_Jovem = $record["Dias_Culto_Jovem"];
     }
 
     protected function GetCmdListar()

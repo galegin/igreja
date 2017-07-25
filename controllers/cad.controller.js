@@ -2,28 +2,26 @@
 
     $(document).ready(function() {
 
+        //-- metodos
+
         $('#btnLimpar').click(function() {
             console.log("Limpar");
             location.reload();
             return false;
         });
 
-        $('#txtCodigo').blur(function() {
-            $("#btnConsultar").click();
-        });
-
         $('#btnConsultar').click(function() {
             console.log("Consultar");
 
-            var dados = $(name_form).serialize() + "&opcao=Consultar";
-            console.log(dados);
+            var values = getValues();
+            console.log(values);
 
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: url_api,
                 async: true,
-                data: dados,
+                data: { opcao : "Consultar", dados: values },
                 success: function(response) {
                     console.log("success " + response);
                     setValues(response["dados"]);
@@ -39,15 +37,15 @@
         $('#btnSalvar').click(function() {
             console.log("Salvar");
 
-            var dados = $(name_form).serialize() + "&opcao=Salvar";
-            console.log(dados);
+            var values = getValues();
+            console.log(values);
 
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: url_api,
                 async: true,
-                data: dados,
+                data: { opcao : "Salvar", dados: values },
                 success: function(response) {
                     console.log("success " + response);
                 },
@@ -66,15 +64,15 @@
                 return false;
             }            
 
-            var dados = $(name_form).serialize() + "&opcao=Excluir";
-            console.log(dados);
+            var values = getValues();
+            console.log(values);
 
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: url_api,
                 async: true,
-                data: dados,
+                data: { opcao : "Excluir", dados: values },
                 success: function(response) {
                     console.log("success " + response);
                     location.reload();
@@ -86,6 +84,15 @@
 
             return false;
         });
+
+        //-- consulta chave
+
+        $('#txtCodigo').blur(function() {
+            $("#btnConsultar").click();
+        });
+
+        //--
+
     });
 
 </script>

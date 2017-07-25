@@ -14,13 +14,13 @@ class Reuniao extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Descricao = $record["Descricao"];
-        $Data = $record["Data"];
-        $Data_Proxima = $record["Data_Proxima"];
-        $Hora_Inicio = $record["Hora_Inicio"];
-        $Nome_Atende = $record["Nome_Atende"];
-        $Palavra = $record["Palavra"];
+        $this->Codigo = $record["Codigo"];
+        $this->Descricao = $record["Descricao"];
+        $this->Data = $record["Data"];
+        $this->Data_Proxima = $record["Data_Proxima"];
+        $this->Hora_Inicio = $record["Hora_Inicio"];
+        $this->Nome_Atende = $record["Nome_Atende"];
+        $this->Palavra = $record["Palavra"];
     }
 
     protected function GetCmdListar()

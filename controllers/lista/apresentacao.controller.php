@@ -2,29 +2,32 @@
 
 require_once("../../models/lista/apresentacao.model.php");
 
-$apresentacao = new Apresentacao();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("apresentacao.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("apresentacao.controller.php", "dados: " . json_encode($dados));
+
+$apresentacao = new Apresentacao();
 
 if ($opcao == "Consultar")
 {
-    $apresentacao->Codigo = $_POST['Codigo'];
+    $apresentacao->Codigo = $dados['Codigo'];
     $apresentacao->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $apresentacao->Codigo = $_POST['Codigo'];
-    $apresentacao->Codigo_Reuniao = $_POST['Codigo_Reuniao'];
-    $apresentacao->Codigo_Localidade = $_POST['Codigo_Localidade'];
-    $apresentacao->Tipo = $_POST['Tipo'];
-    $apresentacao->Codigo_Tipo_Servico = $_POST['Codigo_Tipo_Servico'];
-    $apresentacao->Funcao = $_POST['Funcao'];
-    $apresentacao->Nome = $_POST['Nome'];
+    $apresentacao->Codigo = $dados['Codigo'];
+    $apresentacao->Codigo_Reuniao = $dados['Codigo_Reuniao'];
+    $apresentacao->Codigo_Localidade = $dados['Codigo_Localidade'];
+    $apresentacao->Tipo = $dados['Tipo'];
+    $apresentacao->Codigo_Tipo_Servico = $dados['Codigo_Tipo_Servico'];
+    $apresentacao->Funcao = $dados['Funcao'];
+    $apresentacao->Nome = $dados['Nome'];
     $apresentacao->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $apresentacao->Codigo = $_POST['Codigo'];
+    $apresentacao->Codigo = $dados['Codigo'];
     $apresentacao->Excluir();
 }
 

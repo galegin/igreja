@@ -15,14 +15,14 @@ class AgendaServico extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
-        $Codigo_Localidade = $record["Codigo_Localidade"];
-        $Dia_Semana = $record["Dia_Semana"];
-        $Semana_Mes = $record["Semana_Mes"];
-        $Hora = $record["Hora"];
-        $Complemento = $record["Complemento"];
-        $Atendente = $record["Atendente"];
+        $this->Codigo = $record["Codigo"];
+        $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
+        $this->Codigo_Localidade = $record["Codigo_Localidade"];
+        $this->Dia_Semana = $record["Dia_Semana"];
+        $this->Semana_Mes = $record["Semana_Mes"];
+        $this->Hora = $record["Hora"];
+        $this->Complemento = $record["Complemento"];
+        $this->Atendente = $record["Atendente"];
     }
 
     protected function GetCmdListar()

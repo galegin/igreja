@@ -3,9 +3,23 @@
     var url_api = '../../controllers/lista/observacao.controller.php';
     var name_form = '#frmCadObservacao';
 
+    function getValues()
+    {
+        var values =
+        {
+            Codigo :  $("#txtCodigo").val(),
+            Codigo_Reuniao : $("#cmbCodigo_Reuniao").val(),
+            Descricao : $("#txtDescricao").val(),
+        };
+
+        console.log("values " + values);
+
+        return values;
+    }
+
     function setValues(dados)
     {
-        console.log("dados" + dados);
+        console.log("dados " + dados);
 
         if (dados["Codigo"] > 0)
         {

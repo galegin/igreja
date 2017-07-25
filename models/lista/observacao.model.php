@@ -10,9 +10,9 @@ class Observacao extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Codigo_Reuniao = $record["Codigo_Reuniao"];
-        $Descricao = $record["Descricao"];
+        $this->Codigo = $record["Codigo"];
+        $this->Codigo_Reuniao = $record["Codigo_Reuniao"];
+        $this->Descricao = $record["Descricao"];
     }
 
     protected function GetCmdListar()

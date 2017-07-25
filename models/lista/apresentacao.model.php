@@ -14,13 +14,13 @@ class Apresentacao extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Codigo_Reuniao = $record["Codigo_Reuniao"];
-        $Codigo_Localidade = $record["Codigo_Localidade"];
-        $Tipo = $record["Tipo"];
-        $Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
-        $Funcao = $record["Funcao"];
-        $Nome = $record["Nome"];
+        $this->Codigo = $record["Codigo"];
+        $this->Codigo_Reuniao = $record["Codigo_Reuniao"];
+        $this->Codigo_Localidade = $record["Codigo_Localidade"];
+        $this->Tipo = $record["Tipo"];
+        $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
+        $this->Funcao = $record["Funcao"];
+        $this->Nome = $record["Nome"];
     }
 
     protected function GetCmdListar()

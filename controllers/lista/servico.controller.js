@@ -3,9 +3,32 @@
     var url_api = '../../controllers/lista/servico.controller.php';
     var name_form = '#frmCadServico';
 
+    function getValues()
+    {
+        var values =
+        {
+            Codigo : $("#txtCodigo").val(),
+            Codigo_Reuniao : $("#cmbCodigo_Reuniao").val(),
+            Codigo_Tipo_Servico : $("#cmbCodigo_Tipo_Servico").val(),
+            Codigo_Localidade : $("#cmbCodigo_Localidade").val(),
+            Data_Inicio : $("#txtData_Inicio").val(),
+            Data_Termino : $("#txtData_Termino").val(),
+            Hora_Inicio : $("#txtHora_Inicio").val(),
+            Hora_Termino : $("#txtHora_Termino").val(),
+            Complemento : $("#txtComplemento").val(),
+            Atendente : $("#txtAtendente").val(),
+            Qtde_Irmao : $("#txtQtde_Irmao").val(),
+            Qtde_Irma : $("#txtQtde_Irma").val(),
+        };
+
+        console.log("values " + values);
+
+        return values;
+    }
+
     function setValues(dados)
     {
-        console.log("dados" + dados);
+        console.log("dados " + dados);
 
         if (dados["Codigo"] > 0)
         {

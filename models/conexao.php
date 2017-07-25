@@ -95,7 +95,7 @@ class ConexaoMySql
     {
         try 
         {
-            return $this->GetQuery($sql)->fetch();
+            return $this->GetQuery($sql)->fetch(PDO::FETCH_ASSOC);
         }
         catch (Exception $e)
         {

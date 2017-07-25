@@ -16,15 +16,15 @@ class Atendente extends Persistencia
 
     protected function SetRecord($record)
     {
-        $Codigo = $record["Codigo"];
-        $Nome = $record["Nome"];
-        $Ministerio = $record["Ministerio"];
-        $Administracao = $record["Administracao"];
-        $Codigo_Localidade = $record["Codigo_Localidade"];
-        $Telefone_Pessoal = $record["Telefone_Pessoal"];
-        $Telefone_Trabalho = $record["Telefone_Trabalho"];
-        $Telefone_Recado = $record["Telefone_Recado"];
-        $Data_Apresentacao = $record["Data_Apresentacao"];
+        $this->Codigo = $record["Codigo"];
+        $this->Nome = $record["Nome"];
+        $this->Ministerio = $record["Ministerio"];
+        $this->Administracao = $record["Administracao"];
+        $this->Codigo_Localidade = $record["Codigo_Localidade"];
+        $this->Telefone_Pessoal = $record["Telefone_Pessoal"];
+        $this->Telefone_Trabalho = $record["Telefone_Trabalho"];
+        $this->Telefone_Recado = $record["Telefone_Recado"];
+        $this->Data_Apresentacao = $record["Data_Apresentacao"];
     }
 
     protected function GetCmdListar()

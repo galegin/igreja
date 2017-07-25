@@ -2,32 +2,35 @@
 
 require_once("../../models/lista/localidade.model.php");
 
-$localidade = new Localidade();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("localidade.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("localidade.controller.php", "dados: " . json_encode($dados));
+
+$localidade = new Localidade();
 
 if ($opcao == "Consultar")
 {
-    $localidade->Codigo = $_POST['Codigo'];
+    $localidade->Codigo = $dados['Codigo'];
     $localidade->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $localidade->Codigo = $_POST['Codigo'];
-    $localidade->Descricao = $_POST['Descricao'];
-    $localidade->Tipo = $_POST['Tipo'];
-    $localidade->Anciao = $_POST['Anciao'];
-    $localidade->Diacono = $_POST['Diacono'];
-    $localidade->Cooperador = $_POST['Cooperador'];
-    $localidade->Cooperador_Jovem = $_POST['Cooperador_Jovem'];
-    $localidade->Encarregado = $_POST['Encarregado'];
-    $localidade->Dias_Culto = $_POST['Dias_Culto'];
-    $localidade->Dias_Culto_Jovem = $_POST['Dias_Culto_Jovem'];
+    $localidade->Codigo = $dados['Codigo'];
+    $localidade->Nome = $dados['Nome'];
+    $localidade->Tipo = $dados['Tipo'];
+    $localidade->Anciao = $dados['Anciao'];
+    $localidade->Diacono = $dados['Diacono'];
+    $localidade->Cooperador = $dados['Cooperador'];
+    $localidade->Cooperador_Jovem = $dados['Cooperador_Jovem'];
+    $localidade->Encarregado = $dados['Encarregado'];
+    $localidade->Dias_Culto = $dados['Dias_Culto'];
+    $localidade->Dias_Culto_Jovem = $dados['Dias_Culto_Jovem'];
     $localidade->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $localidade->Codigo = $_POST['Codigo'];
+    $localidade->Codigo = $dados['Codigo'];
     $localidade->Excluir();
 }
 

@@ -3,9 +3,27 @@
     var url_api = '../../controllers/lista/reuniao.controller.php';
     var name_form = '#frmCadReuniao';
 
+    function getValues()
+    {
+        var values =
+        {
+            Codigo :  $("#txtCodigo").val(),
+            Descricao : $("#txtDescricao").val(),
+            Data : $("#txtData").val(),
+            Data_Proxima : $("#txtData_Proxima").val(),
+            Hora_Inicio : $("#txtHora_Inicio").val(),
+            Nome_Atende : $("#txtNome_Atende").val(),
+            Palavra : $("#txtPalavra").val(),
+        };
+
+        console.log("values " + values);
+
+        return values;
+    }
+
     function setValues(dados)
     {
-        console.log("dados" + dados);
+        console.log("dados " + dados);
 
         if (dados["Codigo"] > 0)
         {

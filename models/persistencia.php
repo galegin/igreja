@@ -57,6 +57,12 @@ abstract class Persistencia
     public function Consultar()
     {
         $record = $this->GetConsulta($this->GetCmdConsultar());
+
+        $fields = array_keys($record);
+
+        foreach ($fields as $key) {
+            Logger::Instance()->Info("Persistencia.Consultar()", $key . "=" . $record[$key]);
+        }
         
         $this->SetRecord($record);
 

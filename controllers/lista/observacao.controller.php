@@ -2,25 +2,28 @@
 
 require_once("../../models/lista/observacao.model.php");
 
-$observacao = new Observacao();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("observacao.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("observacao.controller.php", "dados: " . json_encode($dados));
+
+$observacao = new Observacao();
 
 if ($opcao == "Consultar")
 {
-    $observacao->Codigo = $_POST['Codigo'];
+    $observacao->Codigo = $dados['Codigo'];
     $observacao->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $observacao->Codigo = $_POST['Codigo'];
-    $observacao->Codigo_Reuniao = $_POST['Codigo_Reuniao'];
-    $observacao->Descricao = $_POST['Descricao'];
+    $observacao->Codigo = $dados['Codigo'];
+    $observacao->Codigo_Reuniao = $dados['Codigo_Reuniao'];
+    $observacao->Descricao = $dados['Descricao'];
     $observacao->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $observacao->Codigo = $_POST['Codigo'];
+    $observacao->Codigo = $dados['Codigo'];
     $observacao->Excluir();
 }
 

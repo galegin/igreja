@@ -2,25 +2,28 @@
 
 require_once("../../models/lista/tipo.servico.model.php");
 
-$tiposervico = new TipoServico();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("tipo.servico.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("tipo.servico.controller.php", "dados: " . json_encode($dados));
+
+$tiposervico = new TipoServico();
 
 if ($opcao == "Consultar")
 {
-    $tiposervico->Codigo = $_POST['Codigo'];
+    $tiposervico->Codigo = $dados['Codigo'];
     $tiposervico->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $tiposervico->Codigo = $_POST['Codigo'];
-    $tiposervico->Descricao = $_POST['Descricao'];
-    $tiposervico->Tipo = $_POST['Tipo'];
+    $tiposervico->Codigo = $dados['Codigo'];
+    $tiposervico->Descricao = $dados['Descricao'];
+    $tiposervico->Tipo = $dados['Tipo'];
     $tiposervico->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $tiposervico->Codigo = $_POST['Codigo'];
+    $tiposervico->Codigo = $dados['Codigo'];
     $tiposervico->Excluir();
 }
 

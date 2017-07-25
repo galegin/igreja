@@ -2,31 +2,34 @@
 
 require_once("../../models/lista/atendente.model.php");
 
-$atendente = new Atendente();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("atendente.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("atendente.controller.php", "dados: " . $dados['Codigo']);
+
+$atendente = new Atendente();
 
 if ($opcao == "Consultar")
 {
-    $atendente->Codigo = $_POST['Codigo'];
+    $atendente->Codigo = $dados['Codigo'];
     $atendente->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $atendente->Codigo = $_POST['Codigo'];
-    $atendente->Nome = $_POST['Nome'];
-    $atendente->Ministerio = $_POST['Ministerio'];
-    $atendente->Administracao = $_POST['Administracao'];
-    $atendente->Codigo_Localidade = $_POST['Codigo_Localidade'];
-    $atendente->Telefone_Pessoal = $_POST['Telefone_Pessoal'];
-    $atendente->Telefone_Trabalho = $_POST['Telefone_Trabalho'];
-    $atendente->Telefone_Recado = $_POST['Telefone_Recado'];
-    $atendente->Data_Apresentacao = $_POST['Data_Apresentacao'];
+    $atendente->Codigo = $dados['Codigo'];
+    $atendente->Nome = $dados['Nome'];
+    $atendente->Ministerio = $dados['Ministerio'];
+    $atendente->Administracao = $dados['Administracao'];
+    $atendente->Codigo_Localidade = $dados['Codigo_Localidade'];
+    $atendente->Telefone_Pessoal = $dados['Telefone_Pessoal'];
+    $atendente->Telefone_Trabalho = $dados['Telefone_Trabalho'];
+    $atendente->Telefone_Recado = $dados['Telefone_Recado'];
+    $atendente->Data_Apresentacao = $dados['Data_Apresentacao'];
     $atendente->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $atendente->Codigo = $_POST['Codigo'];
+    $atendente->Codigo = $dados['Codigo'];
     $atendente->Excluir();
 }
 

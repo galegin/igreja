@@ -2,29 +2,32 @@
 
 require_once("../../models/lista/reuniao.model.php");
 
-$reuniao = new Reuniao();
-
 $opcao = $_POST['opcao'];
+Logger::Instance()->Info("reuniao.controller.php", "opcao: " . $opcao);
+$dados = $_POST['dados'];
+Logger::Instance()->Info("reuniao.controller.php", "dados: " . json_encode($dados));
+
+$reuniao = new Reuniao();
 
 if ($opcao == "Consultar")
 {
-    $reuniao->Codigo = $_POST['Codigo'];
+    $reuniao->Codigo = $dados['Codigo'];
     $reuniao->Consultar();
 }
 else if ($opcao == "Salvar")
 {
-    $reuniao->Codigo = $_POST['Codigo'];
-    $reuniao->Descricao = $_POST['Descricao'];
-    $reuniao->Data = $_POST['Data'];
-    $reuniao->Data_Proxima = $_POST['Data_Proxima'];
-    $reuniao->Hora_Inicio = $_POST['Hora_Inicio'];
-    $reuniao->Nome_Atende = $_POST['Nome_Atende'];
-    $reuniao->Palavra = $_POST['Palavra'];
+    $reuniao->Codigo = $dados['Codigo'];
+    $reuniao->Descricao = $dados['Descricao'];
+    $reuniao->Data = $dados['Data'];
+    $reuniao->Data_Proxima = $dados['Data_Proxima'];
+    $reuniao->Hora_Inicio = $dados['Hora_Inicio'];
+    $reuniao->Nome_Atende = $dados['Nome_Atende'];
+    $reuniao->Palavra = $dados['Palavra'];
     $reuniao->Salvar();
 }
 else if ($opcao == "Excluir")
 {
-    $reuniao->Codigo = $_POST['Codigo'];
+    $reuniao->Codigo = $dados['Codigo'];
     $reuniao->Excluir();
 }
 
