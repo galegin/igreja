@@ -15,7 +15,7 @@ class Localidade extends Persistencia
     public $Dias_Culto;
     public $Dias_Culto_Jovem;
 
-    protected function SetRecord($record)
+    public function SetRecord($record)
     {
         $this->Codigo = $record["Codigo"];
         $this->Nome = $record["Nome"];

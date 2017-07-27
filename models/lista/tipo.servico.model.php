@@ -7,12 +7,14 @@ class TipoServico extends Persistencia
     public $Codigo;
     public $Descricao;
     public $Tipo;
+    public $Ordem;
 
-    protected function SetRecord($record)
+    public function SetRecord($record)
     {
         $this->Codigo = $record["Codigo"];
         $this->Descricao = $record["Descricao"];
         $this->Tipo = $record["Tipo"];
+        $this->Ordem = $record["Ordem"];
     }
 
     protected function GetCmdListar()
@@ -30,8 +32,8 @@ class TipoServico extends Persistencia
     protected function GetCmdIncluir()
     {
         return 
-            "insert into TipoServico (Codigo,Descricao,Tipo) " .
-            "values ($this->Codigo,'$this->Descricao',$this->Tipo)";
+            "insert into TipoServico (Codigo,Descricao,Tipo,Ordem) " .
+            "values ($this->Codigo,'$this->Descricao',$this->Tipo, $this->Ordem)";
     }
 
     protected function GetCmdAlterar()
@@ -40,6 +42,7 @@ class TipoServico extends Persistencia
             "update TipoServico " .
             "set Descricao = '$this->Descricao' " .
             ", Tipo = $this->Tipo " .
+            ", Ordem = $this->Ordem " .
             "where Codigo = $this->Codigo";
     }
 

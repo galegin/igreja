@@ -8,7 +8,7 @@ class Observacao extends Persistencia
     public $Codigo_Reuniao;
     public $Descricao;
 
-    protected function SetRecord($record)
+    public function SetRecord($record)
     {
         $this->Codigo = $record["Codigo"];
         $this->Codigo_Reuniao = $record["Codigo_Reuniao"];

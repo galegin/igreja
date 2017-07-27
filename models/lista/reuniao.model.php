@@ -12,7 +12,7 @@ class Reuniao extends Persistencia
     public $Nome_Atende;
     public $Palavra;
 
-    protected function SetRecord($record)
+    public function SetRecord($record)
     {
         $this->Codigo = $record["Codigo"];
         $this->Descricao = $record["Descricao"];

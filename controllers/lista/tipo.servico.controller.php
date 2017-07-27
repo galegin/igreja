@@ -19,6 +19,7 @@ else if ($opcao == "Salvar")
     $tiposervico->Codigo = $dados['Codigo'];
     $tiposervico->Descricao = $dados['Descricao'];
     $tiposervico->Tipo = $dados['Tipo'];
+    $tiposervico->Ordem = $dados['Ordem'];
     $tiposervico->Salvar();
 }
 else if ($opcao == "Excluir")

@@ -13,7 +13,7 @@ class AgendaServico extends Persistencia
     public $Complemento;
     public $Atendente;
 
-    protected function SetRecord($record)
+    public function SetRecord($record)
     {
         $this->Codigo = $record["Codigo"];
         $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];

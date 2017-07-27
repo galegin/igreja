@@ -5,6 +5,18 @@
 <?php require_once("include.php"); ?>
 </head>
 
+<script>
+function AlterarServico(codigo)
+{
+    alert("AlterarServico -> codigo: " + codigo);
+}
+
+function ExcluirServico(codigo)
+{
+    alert("ExcluirServico -> codigo: " + codigo);
+}
+</script>
+
 <body>
 
 <?php require_once("../cabecalho.php"); ?>
@@ -13,26 +25,54 @@
 
 <?php require_once("lista.botao.php"); ?>
 
-<p>Reuniao
-<input type="text" id="txtReuniao">
-</p>
+<form id="frmFiltro">
+    <div class="form-group">
+        <label for="txtReuniao">Reuniao</label>
+        <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
+        <?php 
+            require_once("../../services/lista/reuniao.service.php");
+            $reuniao = ReuniaoService::ReuniaoAtual();
+            echo '<option value="' . $reuniao->Codigo . '">' . $reuniao->Descricao . '</option>' . "\n";
+        ?>
+        </select>
+    </div>
+</form>
 
-<table>
-<tr>
-    <td>Localidade</td>
-    <td>Data</td>
-    <td>Horario</td>
-    <td>Atende</td>
-    <td>Complemento</td>
-</tr>
-<tr>
-    <td><input id="txtLocalidade" value="Cianortinho" size="30" /></td>
-    <td><input id="txtData" value="01/01/1900" size="10" /></td>
-    <td><input id="txtHorario" value="19:30" size="5" /></td>
-    <td><input id="txtAtende" value="Teste" size="30" /></td>
-    <td><input id="txtComplemento" value="Rua" size="30" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <td>Localidade</td>
+            <td>Data</td>
+            <td>Horario</td>
+            <td>Atende</td>
+            <td>Complemento</td>
+            <td></td>
+        </tr>
+        <?php
+            require_once("../../services/lista/servico.service.php");
+            $lista = ServicoService::ListaServicoReuniao($reuniao->Codigo);
+            foreach ($lista as $servicolista) {
+                echo '<tr>' . "\n";
+                echo '<td>' . $servicolista->Nome_Localidade . '</td>' . "\n";
+                echo '<td>' . $servicolista->Data_Inicio . '</td>' . "\n";
+                echo '<td>' . $servicolista->Hora_Inicio . '</td>' . "\n";
+                echo '<td>' . $servicolista->Atendente . '</td>' . "\n";
+                echo '<td>' . $servicolista->Complemento . '</td>' . "\n";
+                
+                echo '<td>' . "\n";
+                echo '<button class="btn btn-default" type="button" onclick="AlterarServico(' . $servicolista->Codigo . ')" >'. "\n";
+                echo '<span class="glyphicon glyphicon-pencil"></span>'. "\n";
+                echo '</button>'. "\n";
+                echo '<button class="btn btn-default" type="button" onclick="ExcluirServico(' . $servicolista->Codigo . ')" >'. "\n";
+                echo '<span class="glyphicon glyphicon-trash"></span>'. "\n";
+                echo '</button>'. "\n";
+                echo '</td>' . "\n";
+                
+                echo '</tr>' . "\n";
+            }
+        ?>
+    </table>
+</div>
 
 <?php require_once("../rodape.php"); ?>
 

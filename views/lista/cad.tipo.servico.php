@@ -37,6 +37,11 @@
         <option value="5">Reunia Mocidade</option>
         </select>
     </div>
+
+    <div class="form-group">
+        <label for="txtOrdem">Ordem</label>
+        <input class="form-control" type="number" id="txtOrdem" name="Ordem" value="" />
+    </div>
 </form>
 
 <?php require_once("../../controllers/lista/tipo.servico.controller.js"); ?>

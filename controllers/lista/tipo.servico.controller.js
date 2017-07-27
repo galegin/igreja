@@ -10,6 +10,7 @@
             Codigo : $("#txtCodigo").val(),
             Descricao : $("#txtDescricao").val(),
             Tipo : $("#cmbTipo").val(),
+            Ordem : $("#txtOrdem").val(),
         };
 
         console.log("values " + values);
@@ -26,6 +27,7 @@
             $("#txtCodigo").val(dados["Codigo"]);
             $("#txtDescricao").val(dados["Descricao"]);
             $("#cmbTipo").val(dados["Tipo"]);
+            $("#txtOrdem").val(dados["Ordem"]);
         }
     }
 

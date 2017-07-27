@@ -20,24 +20,24 @@ abstract class Persistencia
 
     //--
 
-    protected function GetLista($sql)
+    public function GetLista($sql)
     {
         return $this->GetConexao()->GetLista($sql);
     }
 
-    protected function GetConsulta($sql)
+    public function GetConsulta($sql)
     {
         return $this->GetConexao()->GetConsulta($sql);
     }
 
-    protected function ExecComando($cmd)
+    public function ExecComando($cmd)
     {
         return $this->GetConexao()->ExecComando($cmd);
     }
 
     //--
 
-    protected abstract function SetRecord($record);
+    public abstract function SetRecord($record);
 
     //--
 
