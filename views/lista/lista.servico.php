@@ -6,15 +6,15 @@
 </head>
 
 <script>
-function AlterarServico(codigo)
-{
-    alert("AlterarServico -> codigo: " + codigo);
-}
+    function AlterarServico(codigo)
+    {
+        alert("AlterarServico -> codigo: " + codigo);
+    }
 
-function ExcluirServico(codigo)
-{
-    alert("ExcluirServico -> codigo: " + codigo);
-}
+    function ExcluirServico(codigo)
+    {
+        alert("ExcluirServico -> codigo: " + codigo);
+    }
 </script>
 
 <body>
@@ -40,37 +40,47 @@ function ExcluirServico(codigo)
 
 <div class="table-responsive">
     <table class="table">
-        <tr>
-            <td>Localidade</td>
-            <td>Data</td>
-            <td>Horario</td>
-            <td>Atende</td>
-            <td>Complemento</td>
-            <td></td>
-        </tr>
-        <?php
-            require_once("../../services/lista/servico.service.php");
-            $lista = ServicoService::ListaServicoReuniao($reuniao->Codigo);
-            foreach ($lista as $servicolista) {
-                echo '<tr>' . "\n";
-                echo '<td>' . $servicolista->Nome_Localidade . '</td>' . "\n";
-                echo '<td>' . $servicolista->Data_Inicio . '</td>' . "\n";
-                echo '<td>' . $servicolista->Hora_Inicio . '</td>' . "\n";
-                echo '<td>' . $servicolista->Atendente . '</td>' . "\n";
-                echo '<td>' . $servicolista->Complemento . '</td>' . "\n";
-                
-                echo '<td>' . "\n";
-                echo '<button class="btn btn-default" type="button" onclick="AlterarServico(' . $servicolista->Codigo . ')" >'. "\n";
-                echo '<span class="glyphicon glyphicon-pencil"></span>'. "\n";
-                echo '</button>'. "\n";
-                echo '<button class="btn btn-default" type="button" onclick="ExcluirServico(' . $servicolista->Codigo . ')" >'. "\n";
-                echo '<span class="glyphicon glyphicon-trash"></span>'. "\n";
-                echo '</button>'. "\n";
-                echo '</td>' . "\n";
-                
-                echo '</tr>' . "\n";
-            }
-        ?>
+        <colgroup>
+            <col class="col-md-4">
+            <col class="col-md-1">
+            <col class="col-md-1">
+            <col class="col-md-2">
+            <col class="col-md-3">
+            <col class="col-md-1">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>Localidade</th>
+                <th>Data</th>
+                <th>Horario</th>
+                <th>Atende</th>
+                <th>Complemento</th>
+                <th></th>
+            </tr>
+            <?php
+                require_once("../../services/lista/servico.service.php");
+                $servicos = ServicoService::ListaServicoReuniao($reuniao->Codigo);
+                foreach ($servicos as $servico) {
+                    echo '<tr>' . "\n";
+                    echo '<td>' . $servico->Nome_Localidade . '</td>' . "\n";
+                    echo '<td>' . $servico->Data_Inicio . '</td>' . "\n";
+                    echo '<td>' . $servico->Hora_Inicio . '</td>' . "\n";
+                    echo '<td>' . $servico->Atendente . '</td>' . "\n";
+                    echo '<td>' . $servico->Complemento . '</td>' . "\n";
+                    
+                    echo '<td>' . "\n";
+                    echo '<button class="btn btn-default" type="button" onclick="AlterarServico(' . $servico->Codigo . ')" >'. "\n";
+                    echo '<span class="glyphicon glyphicon-pencil"></span>'. "\n";
+                    echo '</button>'. "\n";
+                    echo '<button class="btn btn-default" type="button" onclick="ExcluirServico(' . $servico->Codigo . ')" >'. "\n";
+                    echo '<span class="glyphicon glyphicon-trash"></span>'. "\n";
+                    echo '</button>'. "\n";
+                    echo '</td>' . "\n";
+                    
+                    echo '</tr>' . "\n";
+                }
+            ?>
+        </tbody>
     </table>
 </div>
 

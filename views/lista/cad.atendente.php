@@ -60,11 +60,10 @@
         <label for="cmbCodigo_Localidade">Localidade</label>
         <select class="form-control" id="cmbCodigo_Localidade" name="Codigo_Localidade" >
         <?php 
-            require_once("../../models/lista/localidade.model.php");
-            $localidade = new Localidade();
-            $lista = $localidade->Listar();
-            foreach ($lista as $record) {
-                echo '<option value="' . $record["Codigo"] . '">' . $record["Nome"] . '</option>';
+            require_once("../../services/lista/localidade.service.php");
+            $localidades = LocalidadeService::ListarTodas();
+            foreach ($localidades as $localidade) {
+                echo '<option value="' . $localidade->Codigo . '">' . $localidade->Nome . '</option>';
             }
         ?>
         </select>

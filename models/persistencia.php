@@ -1,8 +1,9 @@
 <?php 
 
 require_once("modulo.php");
+require_once("consulta.php");
 
-abstract class Persistencia
+abstract class Persistencia extends Consulta
 {
     private $_conexao;
 
@@ -10,20 +11,7 @@ abstract class Persistencia
     {
     }
 
-    protected function GetConexao()
-    {
-        if (!isset($this->_conexao))
-            $this->_conexao = Modulo::Instance()->ConexaoAmbiente();
-
-        return $this->_conexao;
-    }
-
     //--
-
-    public function GetLista($sql)
-    {
-        return $this->GetConexao()->GetLista($sql);
-    }
 
     public function GetConsulta($sql)
     {
@@ -37,11 +25,6 @@ abstract class Persistencia
 
     //--
 
-    public abstract function SetRecord($record);
-
-    //--
-
-    protected abstract function GetCmdListar();
     protected abstract function GetCmdConsultar();
     protected abstract function GetCmdIncluir();
     protected abstract function GetCmdAlterar();
@@ -49,22 +32,15 @@ abstract class Persistencia
 
     //--
 
-    public function Listar()
-    {
-        return $this->GetLista($this->GetCmdListar());
-    }
-
     public function Consultar()
     {
         $record = $this->GetConsulta($this->GetCmdConsultar());
 
-        $fields = array_keys($record);
-
-        foreach ($fields as $key) {
-            Logger::Instance()->Info("Persistencia.Consultar()", $key . "=" . $record[$key]);
+        foreach ($record as $key => $value) {
+            Logger::Instance()->Info("Persistencia.Consultar()", $key . "=" . $value);
         }
         
-        $this->SetRecord($record);
+        $this->SetValues($record);
 
         return $record;
     }

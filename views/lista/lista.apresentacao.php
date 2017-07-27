@@ -13,50 +13,71 @@
 
 <?php require_once("lista.botao.php"); ?>
 
-<p>Reuniao
-<input type="text" id="txtReuniao">
-</p>
+<form id="frmFiltro">
+    <div class="form-group">
+        <label for="txtReuniao">Reuniao</label>
+        <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
+        <?php 
+            require_once("../../services/lista/reuniao.service.php");
+            $reuniao = ReuniaoService::ReuniaoAtual();
+            echo '<option value="' . $reuniao->Codigo . '">' . $reuniao->Descricao . '</option>' . "\n";
+        ?>
+        </select>
+    </div>
+</form>
 
 <h3>Servico(s) a ser(em) confirmado(s)</h3>
 
-<table>
-<tr>
-    <td>Tipo Servico</td>
-    <td>Localidade</td>
-</tr>
-<tr>
-    <td><input id="txtTipoServico" value="Batismo" /></td>
-    <td><input id="txtLocalidade" value="Cianortinho" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tipo Servico</th>
+                <th>Localidade</th>
+            </tr>
+            <tr>
+                <td>Batismo</td>
+                <td>Cianortinho</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <h3>Servico(s) a ser(em) apresentado(s)</h3>
 
-<table>
-<tr>
-    <td>Tipo Servico</td>
-    <td>Localidade</td>
-</tr>
-<tr>
-    <td><input id="txtTipoServico" value="Culto de evangelizacao" /></td>
-    <td><input id="txtLocalidade" value="Cianortinho" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Tipo Servico</th>
+                <th>Localidade</th>
+            </tr>
+            <tr>
+                <td>Culto de evangelizacao</td>
+                <td>Cianortinho</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <h3>Irmao(s) a ser(em) apresentado(s)</h3>
 
-<table>
-<tr>
-    <td>Localidade</td>
-    <td>Funcao</td>
-    <td>Nome</td>
-</tr>
-<tr>
-    <td><input id="txtLocalidade" value="Cianortinho" /></td>
-    <td><input id="txtFuncao" value="Atendento de Sanitario" /></td>
-    <td><input id="txtNome" value="Jose" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Localidade</th>
+                <th>Funcao</th>
+                <th>Nome</th>
+            </tr>
+            <tr>
+                <td>Cianortinho</td>
+                <td>Atendento de Sanitario</td>
+                <td>Jose</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <?php require_once("../rodape.php"); ?>
 

@@ -17,22 +17,6 @@ class Servico extends Persistencia
     public $Qtde_Irmao;
     public $Qtde_Irma;
 
-    public function SetRecord($record)
-    {
-        $this->Codigo = $record["Codigo"];
-        $this->Codigo_Reuniao = $record["Codigo_Reuniao"];
-        $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
-        $this->Codigo_Localidade = $record["Codigo_Localidade"];
-        $this->Data_Inicio = $record["Data_Inicio"];
-        $this->Data_Termino = $record["Data_Termino"];
-        $this->Hora_Inicio = $record["Hora_Inicio"];
-        $this->Hora_Termino = $record["Hora_Termino"];
-        $this->Complemento = $record["Complemento"];
-        $this->Atendente = $record["Atendente"];
-        $this->Qtde_Irmao = $record["Qtde_Irmao"];
-        $this->Qtde_Irma = $record["Qtde_Irma"];
-    }
-
     protected function GetCmdListar()
     {
         return

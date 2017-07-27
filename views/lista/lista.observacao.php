@@ -13,18 +13,31 @@
 
 <?php require_once("lista.botao.php"); ?>
 
-<p>Reuniao
-<input type="text" id="txtReuniao">
-</p>
+<form id="frmFiltro">
+    <div class="form-group">
+        <label for="txtReuniao">Reuniao</label>
+        <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
+        <?php 
+            require_once("../../services/lista/reuniao.service.php");
+            $reuniao = ReuniaoService::ReuniaoAtual();
+            echo '<option value="' . $reuniao->Codigo . '">' . $reuniao->Descricao . '</option>' . "\n";
+        ?>
+        </select>
+    </div>
+</form>
 
-<table>
-<tr>
-    <td>Observacao</td>
-</tr>
-<tr>
-    <td><input id="txtObservacao" value="Cianortinho" size="100" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+	<table class="table">
+        <tbody>
+			<tr>
+			    <th>Observacao</th>
+			</tr>
+			<tr>
+			    <td>Cianortinho</td>
+			</tr>
+        </tbody>
+	</table>
+</div>
 
 <?php require_once("../rodape.php"); ?>
 

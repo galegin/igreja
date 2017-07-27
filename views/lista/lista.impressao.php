@@ -13,26 +13,39 @@
 
 <?php require_once("lista.botao.php"); ?>
 
-<p>Reuniao
-<input type="text" id="txtReuniao">
-</p>
+<form id="frmFiltro">
+    <div class="form-group">
+        <label for="txtReuniao">Reuniao</label>
+        <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
+        <?php 
+            require_once("../../services/lista/reuniao.service.php");
+            $reuniao = ReuniaoService::ReuniaoAtual();
+            echo '<option value="' . $reuniao->Codigo . '">' . $reuniao->Descricao . '</option>' . "\n";
+        ?>
+        </select>
+    </div>
+</form>
 
-<table>
-<tr>
-    <td>Localidade</td>
-    <td>Data</td>
-    <td>Horario</td>
-    <td>Atende</td>
-    <td>Complemento</td>
-</tr>
-<tr>
-    <td><input id="txtLocalidade" value="Cianortinho" size="30" /></td>
-    <td><input id="txtData" value="01/01/1900" size="10" /></td>
-    <td><input id="txtHorario" value="19:30" size="5" /></td>
-    <td><input id="txtAtende" value="Teste" size="30" /></td>
-    <td><input id="txtComplemento" value="Rua" size="30" /></td>
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Localidade</th>
+                <th>Data</th>
+                <th>Horario</th>
+                <th>Atende</th>
+                <th>Complemento</th>
+            </tr>
+            <tr>
+                <td>Cianortinho</td>
+                <td>01/01/1900</td>
+                <td>19:30</td>
+                <td>Teste</td>
+                <td>Rua</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <?php require_once("../rodape.php"); ?>
 

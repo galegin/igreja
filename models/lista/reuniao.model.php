@@ -12,17 +12,6 @@ class Reuniao extends Persistencia
     public $Nome_Atende;
     public $Palavra;
 
-    public function SetRecord($record)
-    {
-        $this->Codigo = $record["Codigo"];
-        $this->Descricao = $record["Descricao"];
-        $this->Data = $record["Data"];
-        $this->Data_Proxima = $record["Data_Proxima"];
-        $this->Hora_Inicio = $record["Hora_Inicio"];
-        $this->Nome_Atende = $record["Nome_Atende"];
-        $this->Palavra = $record["Palavra"];
-    }
-
     protected function GetCmdListar()
     {
         return

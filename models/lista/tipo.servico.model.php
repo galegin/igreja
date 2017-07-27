@@ -9,14 +9,6 @@ class TipoServico extends Persistencia
     public $Tipo;
     public $Ordem;
 
-    public function SetRecord($record)
-    {
-        $this->Codigo = $record["Codigo"];
-        $this->Descricao = $record["Descricao"];
-        $this->Tipo = $record["Tipo"];
-        $this->Ordem = $record["Ordem"];
-    }
-
     protected function GetCmdListar()
     {
         return

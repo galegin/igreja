@@ -14,19 +14,6 @@ class Atendente extends Persistencia
     public $Telefone_Recado;
     public $Data_Apresentacao;
 
-    public function SetRecord($record)
-    {
-        $this->Codigo = $record["Codigo"];
-        $this->Nome = $record["Nome"];
-        $this->Ministerio = $record["Ministerio"];
-        $this->Administracao = $record["Administracao"];
-        $this->Codigo_Localidade = $record["Codigo_Localidade"];
-        $this->Telefone_Pessoal = $record["Telefone_Pessoal"];
-        $this->Telefone_Trabalho = $record["Telefone_Trabalho"];
-        $this->Telefone_Recado = $record["Telefone_Recado"];
-        $this->Data_Apresentacao = $record["Data_Apresentacao"];
-    }
-
     protected function GetCmdListar()
     {
         return

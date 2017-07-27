@@ -13,30 +13,41 @@
 
 <?php require_once("lista.botao.php"); ?>
 
-<p>Ano
-<input type="number" id="txtAno">
-</p>
+<form id="frmFiltro">
+    <div class="form-group">
+        <label for="txtAno">Ano</label>
+        <?php
+            $data = new DateTime();
+            $ano = $data->format("Y");
+            echo '<input class="form-control" type="number" id="txtAno" name="Ano" value="' . $ano . '"/>' . "\n";
+        ?>
+    </div>
+</form>
 
-<table>
-<tr>
-    <td>Localidade</td>
-    <td>Data</td>
-    <td>Horario</td>
-    <td>Anciao</td>
-    <td>Diacono</td>
-    <td>Irmao</td>
-    <td>Irma</td>
-</tr>
-<tr>
-    <td><input id="txtLocalidade" value="Cianortinho" size="30" /></td>
-    <td><input id="txtData" value="01/01/1900" size="10" /></td>
-    <td><input id="txtHorario" value="19:30" size="5" /></td>
-    <td><input id="txtAnciao" value="Teste" size="20" /></td>
-    <td><input id="txtDiacono" value="Teste" size="20" /></td>
-    <td><input id="txtIrmao" value="0" size="5" /></td>
-    <td><input id="txtIrma" value="0" size="5" /></td>    
-</tr>
-</table>
+<div class="table-responsive">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Localidade</th>
+                <th>Data</th>
+                <th>Horario</th>
+                <th>Anciao</th>
+                <th>Diacono</th>
+                <th>Irmao</th>
+                <th>Irma</th>
+            </tr>
+            <tr>
+                <td>Cianortinho</td>
+                <td>01/01/1900</td>
+                <td>19:30</td>
+                <td>Teste</td>
+                <td>Teste</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <?php require_once("../rodape.php"); ?>
 

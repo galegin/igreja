@@ -12,17 +12,6 @@ class Apresentacao extends Persistencia
     public $Funcao;
     public $Nome;
 
-    public function SetRecord($record)
-    {
-        $this->Codigo = $record["Codigo"];
-        $this->Codigo_Reuniao = $record["Codigo_Reuniao"];
-        $this->Codigo_Localidade = $record["Codigo_Localidade"];
-        $this->Tipo = $record["Tipo"];
-        $this->Codigo_Tipo_Servico = $record["Codigo_Tipo_Servico"];
-        $this->Funcao = $record["Funcao"];
-        $this->Nome = $record["Nome"];
-    }
-
     protected function GetCmdListar()
     {
         return
