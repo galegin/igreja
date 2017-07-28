@@ -8,6 +8,30 @@ require_once("../../models/lista/igreja.servico.consulta.model.php");
 
 class ServicoService
 {
+	public static function GetChave($servico,$reuniao,$tiposervico)
+	{
+		$chave = 
+            ($servico->Codigo_Servico ?: 'null') . ',' . 
+            ($servico->Codigo_Reuniao ?: $reuniao->Codigo ?: 'null') . ',' . 
+            ($servico->Codigo_Tipo_Servico ?: $tiposervico->Codigo ?: 'null') . ',' . 
+            ($servico->Codigo_Localidade ?: 'null') ;
+        //echo '$chave ' . $chave . ' ';
+        return $chave;
+    }
+
+	public static function GetChaveComp($servico,$reuniao,$tiposervico)
+	{
+        $chavecomp = 
+            ($servico->Codigo_Servico ?: '0') . '_' . 
+            ($servico->Codigo_Reuniao ?: $reuniao->Codigo ?: '0') . '_' . 
+            ($servico->Codigo_Tipo_Servico ?: $tiposervico->Codigo ?: '0') . '_' . 
+            ($servico->Codigo_Localidade ?: '0') ;
+        //echo '$chavecomp ' . $chavecomp . ' ';		
+        return $chavecomp;
+	}
+
+	//--
+
 	public static function ListarServicoReuniao($codigo_reuniao)
 	{
 		$servicoconsulta = new ServicoConsulta();

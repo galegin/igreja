@@ -55,32 +55,6 @@ class IgrejaServicoConsulta extends Consulta
 		//echo '$where_l ' . $where_l . "\n";
 		//echo '$where_s ' . $where_s . "\n";
 		
-		/* $sql =
-			'select l.Codigo as Codigo_Localidade ' .
-			', l.Nome as Nome_Localidade ' .
-			', l.Tipo as Tipo_Localidade ' .
-			', s.Codigo as Codigo_Servico' .
-			', s.Codigo_Reuniao ' .
-			', r.Descricao as Descricao_Reuniao ' .
-			', s.Codigo_Tipo_Servico ' .
-			', t.Descricao as Descricao_Tipo_Servico ' .
-			', t.Tipo as Tipo_Servico ' .
-			', t.Ordem as Ordem_Servico ' .
-			', s.Data_Inicio ' .
-			', s.Data_Termino ' .
-			', s.Hora_Inicio ' .
-			', s.Hora_Termino ' .
-			', s.Complemento ' .
-			', s.Atendente ' .
-			', s.Qtde_Irmao ' .
-			', s.Qtde_Irma ' .
-			'from Localidade l ' .
-			'left outer join Servico s on (s.Codigo_Localidade = l.Codigo' . $where_s . ') ' .
-			'left outer join Reuniao r on (r.Codigo = s.Codigo_Reuniao) ' .
-			'left outer join TipoServico t on (t.Codigo = s.Codigo_Tipo_Servico' . $where_t . ') ' .
-			$where_l .
-			'order by l.Nome' ; */
-
 		$sql =
 			'select l.Codigo as Codigo_Localidade ' .
 			', l.Nome as Nome_Localidade ' .
@@ -119,16 +93,16 @@ class IgrejaServicoConsulta extends Consulta
 			$where_l .
 			'order by l.Nome ' ;
 
-		echo $sql;
+		//echo $sql;
 
 		return $sql;
 	}
 
 	public function GetAtendente($index)
-	{		
-		$atendente = '/' . (isset($this->Atendente) ? $this->Atendente : '') . '/';
+	{
+		$atendente = '/' . ($this->Atendente ?: '') . '/';
 		$atendentes = explode("/", $atendente);
-		return $atendentes[$index];
+		return trim($atendentes[$index]);
 	}
 }
 ?>

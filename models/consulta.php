@@ -29,18 +29,19 @@ abstract class Consulta
 
     public function SetValues($values)
     {
-        foreach ($values as $key => $value) {
+        /* foreach ($values as $key => $value)
+            Logger::Instance()->Info("Consulta.SetValues()", $key . "=" . $value); */
+
+        foreach ($values as $key => $value)
             $this->{$key} = $value;
-        }
     }
 
     public function GetValues()
     {
         $values = array();
         
-        foreach ($this as $propName => $propValue) {
+        foreach ($this as $propName => $propValue)
             $values[$propName] = $propValue;
-        }
         
         return $values;
     }

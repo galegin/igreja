@@ -4,7 +4,7 @@ require_once("../../models/consulta.php");
 
 class ServicoConsulta extends Consulta
 {
-	public $Codigo;
+	public $Codigo_Servico;
 	public $Codigo_Reuniao;
 	public $Descricao_Reuniao;
 	public $Codigo_Tipo_Servico;
@@ -48,7 +48,7 @@ class ServicoConsulta extends Consulta
 		//echo $where;
 
 		$sql =
-			'select s.Codigo ' .
+			'select s.Codigo as Codigo_Servico ' .
 			', s.Codigo_Reuniao ' .
 			', r.Descricao as Descricao_Reuniao ' .
 			', s.Codigo_Tipo_Servico ' .
@@ -72,16 +72,16 @@ class ServicoConsulta extends Consulta
 			$where .
 			'order by t.Ordem, t.Descricao, s.Data_Inicio, s.Hora_Inicio, l.Nome ' ;
 
-		echo $sql;
+		//echo $sql;
 
 		return $sql;
 	}
 
 	public function GetAtendente($index)
 	{
-		$atendente = '/' . (isset($this->Atendente) ? $this->Atendente : '') . '/';
+		$atendente = '/' . ($this->Atendente ?: '') . '/';
 		$atendentes = explode("/", $atendente);
-		return $atendentes[$index];
+		return trim($atendentes[$index]);
 	}
 }
 ?>

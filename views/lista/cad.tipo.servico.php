@@ -18,12 +18,12 @@
 <form id="frmCadTipoServico" action="" method="post">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtDescricao">Descricao</label>
-        <input class="form-control" type="text" id="txtDescricao" name="Descricao" value="" />
+        <input class="form-control" type="text" id="txtDescricao" value="" />
     </div>
 
     <div class="form-group">
@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label for="txtOrdem">Ordem</label>
-        <input class="form-control" type="number" id="txtOrdem" name="Ordem" value="" />
+        <input class="form-control" type="number" id="txtOrdem" value="" />
     </div>
 </form>
 

@@ -16,17 +16,17 @@
 <form id="frmCadAtendente">
     <div class="form-group">
         <label for="txtCodigo">Codigo</label>
-        <input class="form-control" type="text" id="txtCodigo" name="Codigo" value="" />
+        <input class="form-control" type="text" id="txtCodigo" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtNome">Nome</label>
-        <input class="form-control" type="text" id="txtNome" name="Nome" value="" />
+        <input class="form-control" type="text" id="txtNome" value="" />
     </div>
 
     <div class="form-group">
         <label for="cmbMinisterio">Ministerio</label>
-        <select class="form-control" id="cmbMinisterio" name="Ministerio" >
+        <select class="form-control" id="cmbMinisterio" >
         <option value="0">Anciao</option>
         <option value="1">Diacono</option>
         <option value="2">Cooperador</option>
@@ -42,7 +42,7 @@
 
     <div class="form-group">
         <label for="cmbAdministracao">Administracao</label>
-        <select class="form-control" id="cmbAdministracao" name="Administracao" >
+        <select class="form-control" id="cmbAdministracao" >
         <option value="0">Presidente</option>
         <option value="1">Vice-Presidente</option>
         <option value="2">Secretario</option>
@@ -58,35 +58,34 @@
 
     <div class="form-group">
         <label for="cmbCodigo_Localidade">Localidade</label>
-        <select class="form-control" id="cmbCodigo_Localidade" name="Codigo_Localidade" >
+        <select class="form-control" id="cmbCodigo_Localidade" >
         <?php 
             require_once("../../services/lista/localidade.service.php");
             $localidades = LocalidadeService::ListarTodas();
-            foreach ($localidades as $localidade) {
+            foreach ($localidades as $localidade)
                 echo '<option value="' . $localidade->Codigo . '">' . $localidade->Nome . '</option>';
-            }
         ?>
         </select>
     </div>
 
     <div class="form-group">
         <label for="txtTelefone_Pessoal">Telefone Pessoal</label>
-        <input class="form-control" type="text" id="txtTelefone_Pessoal" name="Telefone_Pessoal" value="" />
+        <input class="form-control" type="text" id="txtTelefone_Pessoal" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtTelefone_Trabalho">Telefone Trabalho</label>
-        <input class="form-control" type="text" id="txtTelefone_Trabalho" name="Telefone_Trabalho" value="" />
+        <input class="form-control" type="text" id="txtTelefone_Trabalho" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtTelefone_Recado">Telefone Recado</label>
-        <input class="form-control" type="text" id="txtTelefone_Recado" name="Telefone_Recado" value="" />
+        <input class="form-control" type="text" id="txtTelefone_Recado" value="" />
     </div>
 
     <div class="form-group">
         <label for="txtData_Apresentacao">Data Apresentacao</label>
-        <input class="form-control" type="date" id="txtData_Apresentacao" name="Data_Apresentacao" value="" />
+        <input class="form-control" type="date" id="txtData_Apresentacao" value="" />
     </div>
 </form>
 

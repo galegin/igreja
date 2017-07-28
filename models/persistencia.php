@@ -36,10 +36,6 @@ abstract class Persistencia extends Consulta
         
         $record = $this->GetConsulta($sql);
         
-        foreach ($record as $key => $value) {
-            Logger::Instance()->Info("Persistencia.ConsultarObj()", $key . "=" . $value);
-        }
-
         $this->SetValues($record);
 
         return $this;
@@ -49,10 +45,6 @@ abstract class Persistencia extends Consulta
     {
         $record = $this->GetConsulta($this->GetCmdConsultar());
         
-        foreach ($record as $key => $value) {
-            Logger::Instance()->Info("Persistencia.Consultar())", $key . "=" . $value);
-        }
-
         $this->SetValues($record);
 
         return $this;

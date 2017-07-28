@@ -9,5 +9,11 @@ class TipoServicoService
 		$tiposervico = new TipoServico();
 		return $tiposervico->ConsultarObj("Tipo = " . $tipo_servico);
 	}
+
+	public static function ListarTodas()
+	{
+        $tiposervico = new TipoServico();
+        return $tiposervico->Listar();
+	}	
 }
 ?>
