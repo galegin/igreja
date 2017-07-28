@@ -21,33 +21,33 @@ class ServicoConsulta extends Consulta
 	public $Atendente;
 	public $Qtde_Irmao;
 	public $Qtde_Irma;
-
+	
 	protected function GetCmdListar()
 	{
 		$where = '';
 
 		if (isset($this->Codigo_Reuniao))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"s.Codigo_Reuniao = " . $this->Codigo_Reuniao . " " ;
 		if (isset($this->Codigo_Tipo_Servico))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"s.Codigo_Tipo_Servico = " . $this->Codigo_Tipo_Servico . " " ;
 		if (isset($this->Tipo_Servico))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"t.Tipo = " . $this->Tipo_Servico . " " ;
 		if (isset($this->Codigo_Localidade))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"s.Codigo_Localidade = " . $this->Codigo_Localidade . " " ;
 		if (isset($this->Data_Inicio))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"s.Data_Inicio >= '" . $this->Data_Inicio . "' " ;
 		if (isset($this->Data_Termino))
-			$where = $where . ($where != "" ? "where " : " and") .
+			$where = $where . ($where != "" ? "and " : "where ") .
 				"s.Data_Inicio <= '" . $this->Data_Termino . "' " ;
 
-		echo $where;
+		//echo $where;
 
-		return
+		$sql =
 			'select s.Codigo ' .
 			', s.Codigo_Reuniao ' .
 			', r.Descricao as Descricao_Reuniao ' .
@@ -70,7 +70,18 @@ class ServicoConsulta extends Consulta
 			'inner join TipoServico t on (t.Codigo = s.Codigo_Tipo_Servico) ' .
 			'inner join Localidade l on (l.Codigo = s.Codigo_Localidade) ' .
 			$where .
-			'order by t.Ordem, t.Descricao, s.Data_Inicio, s.Hora_Inicio, l.Nome ';
+			'order by t.Ordem, t.Descricao, s.Data_Inicio, s.Hora_Inicio, l.Nome ' ;
+
+		echo $sql;
+
+		return $sql;
+	}
+
+	public function GetAtendente($index)
+	{
+		$atendente = '/' . (isset($this->Atendente) ? $this->Atendente : '') . '/';
+		$atendentes = explode("/", $atendente);
+		return $atendentes[$index];
 	}
 }
 ?>

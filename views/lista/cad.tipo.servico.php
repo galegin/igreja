@@ -31,10 +31,10 @@
         <select class="form-control" id="cmbTipo" name="Tipo">
         <option value="0">Servico</option>
         <option value="1">Batismo</option>
-        <option value="2">Culto Ensinamento</option>
-        <option value="3">Santa Ceia</option>
-        <option value="4">Coleta</option>
-        <option value="5">Reuniao Mocidade</option>
+        <option value="2">Santa Ceia</option>
+        <option value="3">Culto Ensinamento</option>
+        <option value="4">Reuniao Mocidade</option>
+        <option value="5">Coleta</option>
         </select>
     </div>
 

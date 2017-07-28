@@ -2,6 +2,9 @@
 
 require_once("../../models/persistencia.php");
 
+define("TL_LOCAL", 0);
+define("TL_IGREJA", 1);
+
 class Localidade extends Persistencia
 {
     public $Codigo;

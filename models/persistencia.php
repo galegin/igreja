@@ -5,8 +5,6 @@ require_once("consulta.php");
 
 abstract class Persistencia extends Consulta
 {
-    private $_conexao;
-
     public function Pesistencia()
     {
     }
@@ -32,17 +30,32 @@ abstract class Persistencia extends Consulta
 
     //--
 
+    public function ConsultarObj($where)
+    {
+        $sql = $this->GetCmdListar() . (isset($where) ? " where " : "") . $where;
+        
+        $record = $this->GetConsulta($sql);
+        
+        foreach ($record as $key => $value) {
+            Logger::Instance()->Info("Persistencia.ConsultarObj()", $key . "=" . $value);
+        }
+
+        $this->SetValues($record);
+
+        return $this;
+    }
+
     public function Consultar()
     {
         $record = $this->GetConsulta($this->GetCmdConsultar());
-
-        foreach ($record as $key => $value) {
-            Logger::Instance()->Info("Persistencia.Consultar()", $key . "=" . $value);
-        }
         
+        foreach ($record as $key => $value) {
+            Logger::Instance()->Info("Persistencia.Consultar())", $key . "=" . $value);
+        }
+
         $this->SetValues($record);
 
-        return $record;
+        return $this;
     }
 
     //--
