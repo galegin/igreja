@@ -34,7 +34,7 @@
         <option value="2">Culto Ensinamento</option>
         <option value="3">Santa Ceia</option>
         <option value="4">Coleta</option>
-        <option value="5">Reunia Mocidade</option>
+        <option value="5">Reuniao Mocidade</option>
         </select>
     </div>
 

@@ -15,12 +15,14 @@
 
 <form id="frmFiltro">
     <div class="form-group">
-        <label for="txtAno">Ano</label>
-        <?php
-            $data = new DateTime();
-            $ano = $data->format("Y");
-            echo '<input class="form-control" type="number" id="txtAno" name="Ano" value="' . $ano . '"/>' . "\n";
+        <label for="cmbCodigo_Reuniao">Reuniao</label>
+        <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
+        <?php 
+            require_once("../../services/lista/reuniao.service.php");
+            $reuniao = ReuniaoService::ReuniaoAtual();
+            echo '<option value="' . $reuniao->Codigo . '">' . $reuniao->Descricao . '</option>' . "\n";
         ?>
+        </select>
     </div>
 </form>
 

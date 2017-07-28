@@ -27,7 +27,7 @@
 
 <form id="frmFiltro">
     <div class="form-group">
-        <label for="txtReuniao">Reuniao</label>
+        <label for="cmbCodigo_Reuniao">Reuniao</label>
         <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
         <?php 
             require_once("../../services/lista/reuniao.service.php");
@@ -59,7 +59,7 @@
             </tr>
             <?php
                 require_once("../../services/lista/servico.service.php");
-                $servicos = ServicoService::ListaServicoReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarServicoReuniao($reuniao->Codigo);
                 foreach ($servicos as $servico) {
                     echo '<tr>' . "\n";
                     echo '<td>' . $servico->Nome_Localidade . '</td>' . "\n";

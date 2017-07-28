@@ -15,7 +15,7 @@
 
 <form id="frmFiltro">
     <div class="form-group">
-        <label for="txtReuniao">Reuniao</label>
+        <label for="cmbCodigo_Reuniao">Reuniao</label>
         <select class="form-control" id="cmbCodigo_Reuniao" name="Codigo_Reuniao" >
         <?php 
             require_once("../../services/lista/reuniao.service.php");
