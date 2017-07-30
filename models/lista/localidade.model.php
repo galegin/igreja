@@ -18,7 +18,7 @@ class Localidade extends Persistencia
     public $Dias_Culto;
     public $Dias_Culto_Jovem;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Localidade";
@@ -59,6 +59,6 @@ class Localidade extends Persistencia
     {
         return
             "delete from Localidade where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

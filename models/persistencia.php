@@ -23,27 +23,83 @@ abstract class Persistencia extends Consulta
 
     //--
 
-    protected abstract function GetCmdConsultar();
-    protected abstract function GetCmdIncluir();
-    protected abstract function GetCmdAlterar();
-    protected abstract function GetCmdExcluir();
+    protected function GetCmdConsultar($where = "")
+    {
+        if ($where != "")
+            $where = " where " . $where ;
+        else
+            $where = " where Codigo = " . $this->{'Codigo'} . "" ;
+
+        $sql = 
+            "select * from " . get_class($this) .
+            $where ;
+
+        echo $sql;
+        Logger::Instance()->Info("Pesistencia.GetCmdConsultar", "sql: " . $sql);
+
+        return $sql;
+    }
+
+    protected function GetCmdIncluir()
+    {
+        $names = "";
+        $values = "";
+
+        foreach ($this as $propName => $propValue)
+        {
+            $names = $names . ($names != "" ? "," : "") . 
+                $propName;
+            $values = $values . ($values != "" ? "," : "") . 
+                (isset($propValue) && $propValue != "" ? "'" . $propValue . "'" : "null") ;
+        }
+
+        $sql = 
+            "insert into " . get_class($this) .
+            " (" . $names . ") values (" . $values . ") " ;
+
+        echo $sql;
+        Logger::Instance()->Info("Pesistencia.GetCmdIncluir", "sql: " . $sql);
+
+        return $sql;        
+    }
+
+    protected function GetCmdAlterar()
+    {
+        $sets = "";
+
+        foreach ($this as $propName => $propValue)
+            if ($propName != "Codigo")
+                $sets = $sets . ($sets != "" ? ", " : "") . 
+                    $propName . " = " . (isset($propValue) && $propValue != "" ? "'" . $propValue . "'" : "null") ;
+
+        $sql = 
+            "update " . get_class($this) . 
+            " set " . $sets . 
+            " where Codigo = " . $this->{'Codigo'} . "" ;
+
+        echo $sql;
+        Logger::Instance()->Info("Pesistencia.GetCmdAlterar", "sql: " . $sql);
+
+        return $sql;        
+    }
+
+    protected function GetCmdExcluir()
+    {
+        $sql = 
+            "delete from " . get_class($this) . 
+            " where Codigo = " . $this->{'Codigo'} . "" ;
+
+        echo $sql;
+        Logger::Instance()->Info("Pesistencia.GetCmdExcluir", "sql: " . $sql);
+
+        return $sql;
+    }
 
     //--
 
-    public function ConsultarObj($where)
+    public function Consultar($where = "")
     {
-        $sql = $this->GetCmdListar() . (isset($where) ? " where " : "") . $where;
-        
-        $record = $this->GetConsulta($sql);
-        
-        $this->SetValues($record);
-
-        return $this;
-    }
-
-    public function Consultar()
-    {
-        $record = $this->GetConsulta($this->GetCmdConsultar());
+        $record = $this->GetConsulta($this->GetCmdConsultar($where));
         
         $this->SetValues($record);
 

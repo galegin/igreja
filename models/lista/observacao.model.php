@@ -8,7 +8,7 @@ class Observacao extends Persistencia
     public $Codigo_Reuniao;
     public $Descricao;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Observacao";
@@ -40,6 +40,6 @@ class Observacao extends Persistencia
     {
         return
             "delete from Observacao where Codigo = $this->Codigo";
-    } 
+    } */
 }
 ?>

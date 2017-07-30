@@ -22,7 +22,7 @@ class ServicoConsulta extends Consulta
 	public $Qtde_Irmao;
 	public $Qtde_Irma;
 	
-	protected function GetCmdListar()
+	protected function GetCmdListar($where = "")
 	{
 		$where = '';
 

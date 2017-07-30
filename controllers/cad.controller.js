@@ -1,5 +1,29 @@
 <script type="text/javascript" language="javascript">
 
+    function RequisicaoEvent(opcao_requisicao)
+    {
+        console.log("opcao_requisicao: " + opcao_requisicao);
+
+        var values = getValues();
+        console.log(values);
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: url_api,
+            async: true,
+            data: { opcao : opcao_requisicao, dados: values },
+            success: function(response) {
+                console.log("success " + response);
+                if (opcao_requisicao == "Consultar")
+                    setValues(response["dados"]);
+            },
+            error: function(response) {
+                console.log("error " + response);
+            }
+        });
+    }
+
     $(document).ready(function() {
 
         //-- metodos
@@ -11,7 +35,7 @@
         });
 
         $('#btnConsultar').click(function() {
-            console.log("Consultar");
+            /* console.log("Consultar");
 
             var values = getValues();
             console.log(values);
@@ -29,13 +53,15 @@
                 error: function(response) {
                     console.log("error " + response);
                 }
-            });
+            }); */
+
+            RequisicaoEvent("Consultar");
 
             return false;
         });
 
         $('#btnSalvar').click(function() {
-            console.log("Salvar");
+            /* console.log("Salvar");
 
             var values = getValues();
             console.log(values);
@@ -52,19 +78,21 @@
                 error: function(response) {
                     console.log("error " + response);
                 }
-            });
+            }); */
+
+            RequisicaoEvent("Salvar");
 
             return false;
         });
         
         $('#btnExcluir').click(function() {
-            console.log("Excluir");
+            // console.log("Excluir");
 
             if (!confirm("Confirma exclusão ?")) {
                 return false;
             }            
 
-            var values = getValues();
+            /* var values = getValues();
             console.log(values);
 
             $.ajax({
@@ -80,7 +108,9 @@
                 error: function(response) {
                     console.log("error " + response);
                 }
-            });
+            }); */
+
+            RequisicaoEvent("Excluir");
 
             return false;
         });

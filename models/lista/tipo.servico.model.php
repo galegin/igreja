@@ -16,7 +16,7 @@ class TipoServico extends Persistencia
     public $Tipo;
     public $Ordem;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from TipoServico";
@@ -32,7 +32,7 @@ class TipoServico extends Persistencia
     {
         return 
             "insert into TipoServico (Codigo,Descricao,Tipo,Ordem) " .
-            "values ($this->Codigo,'$this->Descricao',$this->Tipo, $this->Ordem)";
+            "values ($this->Codigo,'$this->Descricao',$this->Tipo,$this->Ordem)";
     }
 
     protected function GetCmdAlterar()
@@ -49,6 +49,6 @@ class TipoServico extends Persistencia
     {
         return
             "delete from TipoServico where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

@@ -13,7 +13,7 @@ class ReuniaoService
 				"from Reuniao " . 
 				"where Data <= '" . $data->format('Y-m-d H:i:s') . "')";
 		$reuniao = new Reuniao();
-		return $reuniao->ConsultarObj($where);
+		return $reuniao->Consultar($where);
 	}
 }
 ?>

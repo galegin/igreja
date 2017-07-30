@@ -7,7 +7,7 @@ class TipoServicoService
 	public static function BuscarTipoServicoTipo($tipo_servico)
 	{
 		$tiposervico = new TipoServico();
-		return $tiposervico->ConsultarObj("Tipo = " . $tipo_servico);
+		return $tiposervico->Consultar("Tipo = " . $tipo_servico);
 	}
 
 	public static function ListarTodas()

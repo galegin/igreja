@@ -8,25 +8,14 @@ $dados = $_POST['dados'];
 Logger::Instance()->Info("tipo.servico.controller.php", "dados: " . json_encode($dados));
 
 $tiposervico = new TipoServico();
+$tiposervico->SetValues($dados);
 
 if ($opcao == "Consultar")
-{
-    $tiposervico->Codigo = $dados['Codigo'];
-    $tiposervico->Consultar();
-}
+    $tiposervico->Consultar("");
 else if ($opcao == "Salvar")
-{
-    $tiposervico->Codigo = $dados['Codigo'];
-    $tiposervico->Descricao = $dados['Descricao'];
-    $tiposervico->Tipo = $dados['Tipo'];
-    $tiposervico->Ordem = $dados['Ordem'];
     $tiposervico->Salvar();
-}
 else if ($opcao == "Excluir")
-{
-    $tiposervico->Codigo = $dados['Codigo'];
     $tiposervico->Excluir();
-}
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $tiposervico);
 

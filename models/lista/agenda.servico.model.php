@@ -13,7 +13,7 @@ class AgendaServico extends Persistencia
     public $Complemento;
     public $Atendente;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from AgendaServico";
@@ -52,6 +52,6 @@ class AgendaServico extends Persistencia
     {
         return
             "delete from AgendaServico where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

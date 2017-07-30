@@ -17,7 +17,7 @@ class Servico extends Persistencia
     public $Qtde_Irmao;
     public $Qtde_Irma;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Servico";
@@ -32,10 +32,10 @@ class Servico extends Persistencia
     protected function GetCmdIncluir()
     {
         return
-            "insert into Servico (/*Codigo,*/Codigo_Reuniao,Codigo_Tipo_Servico,Codigo_Localidade" . 
+            "insert into Servico (Codigo,Codigo_Reuniao,Codigo_Tipo_Servico,Codigo_Localidade" . 
                 ",Data_Inicio,Data_Termino,Hora_Inicio,Hora_Termino" . 
                 ",Complemento,Atendente,Qtde_Irmao,Qtde_Irma) " .
-            "values (/*$this->Codigo,*/$this->Codigo_Reuniao,$this->Codigo_Tipo_Servico,$this->Codigo_Localidade" .
+            "values ($this->Codigo,$this->Codigo_Reuniao,$this->Codigo_Tipo_Servico,$this->Codigo_Localidade" .
                 ",'$this->Data_Inicio','$this->Data_Termino','$this->Hora_Inicio','$this->Hora_Termino'" .
                 ",'$this->Complemento','$this->Atendente',$this->Qtde_Irmao,$this->Qtde_Irma)";
     }
@@ -62,6 +62,6 @@ class Servico extends Persistencia
     {
         return
             "delete from Servico where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

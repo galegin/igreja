@@ -15,7 +15,6 @@ class ServicoService
             ($servico->Codigo_Reuniao ?: $reuniao->Codigo ?: 'null') . ',' . 
             ($servico->Codigo_Tipo_Servico ?: $tiposervico->Codigo ?: 'null') . ',' . 
             ($servico->Codigo_Localidade ?: 'null') ;
-        //echo '$chave ' . $chave . ' ';
         return $chave;
     }
 
@@ -26,7 +25,6 @@ class ServicoService
             ($servico->Codigo_Reuniao ?: $reuniao->Codigo ?: '0') . '_' . 
             ($servico->Codigo_Tipo_Servico ?: $tiposervico->Codigo ?: '0') . '_' . 
             ($servico->Codigo_Localidade ?: '0') ;
-        //echo '$chavecomp ' . $chavecomp . ' ';		
         return $chavecomp;
 	}
 
@@ -41,19 +39,33 @@ class ServicoService
 
 	//--
 
+	public static function PrimeiroDiaAno($data)
+	{
+		//$ano = explode("-", $reuniao->Data)[0];
+		$ano = date("Y", strtotime($data));
+		$datainicio = new DateTime();
+		$datainicio->setDate($ano, 1, 1);
+		return $datainicio;
+	}
+
+	public static function UltimoDiaAno($data)
+	{
+		$ano = date("Y", strtotime($data));
+		$datatermino = new DateTime();
+		$datatermino->setDate($ano, 12, 31);
+		return $datatermino;
+	}
+
+	//--
+
 	public static function ListarTipoServicoReuniao($codigo_reuniao,$tipo_servico)
 	{
 		$reuniao = new Reuniao();
 		$reuniao->Codigo = $codigo_reuniao;
 		$reuniao->Consultar();
 
-		$ano = explode("-", $reuniao->Data)[0];
-
-		$datainicio = new DateTime();
-		$datainicio->setDate($ano, 1, 1);
-
-		$datatermino = new DateTime();
-		$datatermino->setDate($ano, 12, 31);
+		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
+		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
 		$servicoconsulta = new ServicoConsulta();
 		$servicoconsulta->Data_Inicio = $datainicio->format('Y-m-d');
@@ -80,13 +92,8 @@ class ServicoService
 		$reuniao->Codigo = $codigo_reuniao;
 		$reuniao->Consultar();
 
-		$ano = explode("-", $reuniao->Data)[0];
-
-		$datainicio = new DateTime();
-		$datainicio->setDate($ano, 1, 1);
-
-		$datatermino = new DateTime();
-		$datatermino->setDate($ano, 12, 31);
+		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
+		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
 		$igrejaservicoconsulta = new IgrejaServicoConsulta();
 		$igrejaservicoconsulta->Data_Inicio = $datainicio->format('Y-m-d');

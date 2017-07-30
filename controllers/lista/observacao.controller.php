@@ -8,24 +8,14 @@ $dados = $_POST['dados'];
 Logger::Instance()->Info("observacao.controller.php", "dados: " . json_encode($dados));
 
 $observacao = new Observacao();
+$observacao->SetValues($dados);
 
 if ($opcao == "Consultar")
-{
-    $observacao->Codigo = $dados['Codigo'];
     $observacao->Consultar();
-}
 else if ($opcao == "Salvar")
-{
-    $observacao->Codigo = $dados['Codigo'];
-    $observacao->Codigo_Reuniao = $dados['Codigo_Reuniao'];
-    $observacao->Descricao = $dados['Descricao'];
     $observacao->Salvar();
-}
 else if ($opcao == "Excluir")
-{
-    $observacao->Codigo = $dados['Codigo'];
     $observacao->Excluir();
-}
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $observacao);
 

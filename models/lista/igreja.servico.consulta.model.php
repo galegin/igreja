@@ -23,7 +23,7 @@ class IgrejaServicoConsulta extends Consulta
 	public $Qtde_Irmao;
 	public $Qtde_Irma;
 
-	protected function GetCmdListar()
+	protected function GetCmdListar($where = "")
 	{
 		$where_l = '';
 		$where_s = '';

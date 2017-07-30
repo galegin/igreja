@@ -66,9 +66,10 @@
         };
     }
 
-    function IncluirServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    function RequisicaoServico(opcao_requisicao,codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
     {
-        console.log("IncluirServico -> " + 
+        console.log("RequisicaoServico -> " + 
+            "opcao_requisicao: " + opcao_requisicao + " / " + 
             "codigo_servico: " + codigo_servico + " / " + 
             "codigo_reuniao: " + codigo_reuniao + " / " + 
             "codigo_tipo_servico: " + codigo_tipo_servico + " / " + 
@@ -82,7 +83,7 @@
             dataType: 'json',
             url: url_api,
             async: true,
-            data: { opcao : "Incluir", dados: values },
+            data: { opcao : opcao_requisicao, dados: values },
             success: function(response) {
                 console.log("success " + response);
                 //setValues(response["dados"]);
@@ -91,60 +92,21 @@
                 console.log("error " + response);
             }
         });
+    }
+
+    function IncluirServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    {
+        RequisicaoServico("Incluir",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
     }
 
     function AlterarServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
     {
-        console.log("AlterarServico -> " +
-            "codigo_servico: " + codigo_servico + " / " + 
-            "codigo_reuniao: " + codigo_reuniao + " / " + 
-            "codigo_tipo_servico: " + codigo_tipo_servico + " / " + 
-            "codigo_localidade: " + codigo_localidade);
-        
-        var values = GetValues(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
-        console.log(values);
-
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: url_api,
-            async: true,
-            data: { opcao : "Alterar", dados: values },
-            success: function(response) {
-                console.log("success " + response);
-                //setValues(response["dados"]);
-            },
-            error: function(response) {
-                console.log("error " + response);
-            }
-        });
+        RequisicaoServico("Alterar",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
     }
 
     function ExcluirServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
     {
-        console.log("ExcluirServico -> " +
-            "codigo_servico: " + codigo_servico + " / " + 
-            "codigo_reuniao: " + codigo_reuniao + " / " + 
-            "codigo_tipo_servico: " + codigo_tipo_servico + " / " + 
-            "codigo_localidade: " + codigo_localidade);
-
-        var values = GetValues(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
-        console.log(values);
-
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: url_api,
-            async: true,
-            data: { opcao : "Excluir", dados: values },
-            success: function(response) {
-                console.log("success " + response);
-                //setValues(response["dados"]);
-            },
-            error: function(response) {
-                console.log("error " + response);
-            }
-        });
+        RequisicaoServico("Excluir",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
     }
 
 </script>

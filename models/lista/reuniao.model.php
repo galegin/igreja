@@ -12,7 +12,7 @@ class Reuniao extends Persistencia
     public $Nome_Atende;
     public $Palavra;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Reuniao";
@@ -48,6 +48,6 @@ class Reuniao extends Persistencia
     {
         return
             "delete from Reuniao where Codigo = $this->Codigo";
-    }      
+    } */    
 }
 ?>

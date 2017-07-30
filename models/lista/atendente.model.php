@@ -14,7 +14,7 @@ class Atendente extends Persistencia
     public $Telefone_Recado;
     public $Data_Apresentacao;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Atendente";
@@ -54,6 +54,6 @@ class Atendente extends Persistencia
     {
         return
             "delete from Atendente where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

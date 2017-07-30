@@ -12,7 +12,7 @@ class Apresentacao extends Persistencia
     public $Funcao;
     public $Nome;
 
-    protected function GetCmdListar()
+    /* protected function GetCmdListar()
     {
         return
             "select * from Apresentacao";
@@ -48,6 +48,6 @@ class Apresentacao extends Persistencia
     {
         return
             "delete from Apresentacao where Codigo = $this->Codigo";
-    }
+    } */
 }
 ?>

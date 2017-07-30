@@ -32,8 +32,19 @@ abstract class Consulta
         /* foreach ($values as $key => $value)
             Logger::Instance()->Info("Consulta.SetValues()", $key . "=" . $value); */
 
-        foreach ($values as $key => $value)
-            $this->{$key} = $value;
+        /* foreach ($values as $key => $value)
+            $this->{$key} = $value; */
+
+        /* foreach ($this as $propName => $propValue)
+            $this->{$propName} = $values[$propName]; */
+
+        $keys = array_keys($values);
+
+        foreach ($keys as $key)
+        {
+            //Logger::Instance()->Info("Consulta.SetValues()", $key . "=" . $values[$key]);
+            $this->{$key} = $values[$key];
+        }
     }
 
     public function GetValues()
@@ -48,13 +59,33 @@ abstract class Consulta
 
     //--
 
-    protected abstract function GetCmdListar();
+    protected function GetCmdListar($where = "")
+    {
+        if ($where == "")
+            foreach ($this as $propName => $propValue)
+                if (isset($propValue))
+                    $where = $where . ($where != null ? " and " : "") . 
+                        $propName . " = '" . $propValue . "'" ;
+
+        $sql =
+            'select * from ' . get_class($this) .
+            ($where != null ? ' where ' : '') . $where ;
+
+        echo $sql;
+        Logger::Instance()->Info("Consulta.GetSqlListar", "sql: " . $sql);
+
+        return $sql;
+    }
 
     //--
 
-    public function ListarObj($class,$sql)
+    public function Listar($where = "")
     {
+        $class = get_class($this);
+
         $lista = new ArrayObject();
+
+        $sql = $this->GetCmdListar($where);
         
         $query = $this->GetLista($sql);
         
@@ -65,13 +96,6 @@ abstract class Consulta
         }
 
         return $lista;
-    }
-
-    //--
-
-    public function Listar()
-    {
-        return $this->ListarObj(get_class($this), $this->GetCmdListar());
     }
 }
 ?>
