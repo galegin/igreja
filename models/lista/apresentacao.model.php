@@ -2,6 +2,10 @@
 
 require_once("../../models/persistencia.php");
 
+define("TA_CONF_SERVICO", 1);
+define("TA_APRES_SERVICO", 2);
+define("TA_APRES_SERVO", 3);
+
 class Apresentacao extends Persistencia
 {
     public $Codigo;

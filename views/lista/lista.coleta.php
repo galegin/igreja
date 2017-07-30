@@ -88,7 +88,7 @@
 
                 $tiposervico = TipoServicoService::BuscarTipoServicoTipo(TS_COLETA);
 
-                $servicos = ServicoService::ListarColetaReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarColetaReuniao($reuniao);
                 foreach ($servicos as $servico)
                     GerarDocumento::GerarLinha($servico,$reuniao,$tiposervico);
             ?>

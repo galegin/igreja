@@ -90,7 +90,7 @@
 
                 //--
 
-                $servicos = ServicoService::ListarCultoEnsinamentoReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarCultoEnsinamentoReuniao($reuniao);
                 foreach ($servicos as $servico)
                     GerarDocumento::GerarLinha($servico,$reuniao,$tiposervico);
             ?>

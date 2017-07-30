@@ -18,6 +18,8 @@
                 console.log(response);
                 if (response["opcao"] == "Consultar")
                     setValues(response["dados"]);
+                else if (response["opcao"] == "Excluir")
+                    location.reload();
             },
             error: function(response) {
                 console.log("error");

@@ -33,7 +33,7 @@
         <option value="3">Cooperador de Jovem</option>
         <option value="4">Encarregado Regional</option>
         <option value="5">Encarregado Local</option>
-        <option value="6">Examinadora</option>    
+        <option value="6">Examinadora</option>
         <option value="7">Instrutora</option>
         <option value="8">Organista</option>
         <option value="9">Administrador</option>

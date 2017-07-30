@@ -112,7 +112,7 @@
 
                 //--
                 
-                $servicos = ServicoService::ListarBatismoReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarBatismoReuniao($reuniao);
                 foreach ($servicos as $servico)
                     GerarDocumento::GerarLinha($servico,$reuniao,$tiposervico);
             ?>

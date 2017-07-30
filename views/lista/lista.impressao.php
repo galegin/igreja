@@ -104,7 +104,7 @@
 
                 //--
 
-                $servicos = ServicoService::ListarServicoReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarServicoReuniao($reuniao);
                 $codigotiposervico = null;
                 foreach ($servicos as $servico) {
                     if ($codigotiposervico == null || $servico->Codigo_Tipo_Servico != $codigotiposervico)

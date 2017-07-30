@@ -124,7 +124,7 @@
 
                 //--
 
-                $servicos = ServicoService::ListarServicoReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarServicoReuniao($reuniao);
                 foreach ($servicos as $servico)
                     GerarDocumento::GerarLinha($servico,$reuniao,$tiposervico);
             ?>

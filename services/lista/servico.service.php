@@ -30,10 +30,10 @@ class ServicoService
 
 	//--
 
-	public static function ListarServicoReuniao($codigo_reuniao)
+	public static function ListarServicoReuniao($reuniao)
 	{
 		$servicoconsulta = new ServicoConsulta();
-		$servicoconsulta->Codigo_Reuniao = $codigo_reuniao;
+		$servicoconsulta->Codigo_Reuniao = $reuniao->Codigo;
 		return $servicoconsulta->Listar();
 	}
 
@@ -41,7 +41,6 @@ class ServicoService
 
 	public static function PrimeiroDiaAno($data)
 	{
-		//$ano = explode("-", $reuniao->Data)[0];
 		$ano = date("Y", strtotime($data));
 		$datainicio = new DateTime();
 		$datainicio->setDate($ano, 1, 1);
@@ -58,12 +57,8 @@ class ServicoService
 
 	//--
 
-	public static function ListarTipoServicoReuniao($codigo_reuniao,$tipo_servico)
+	public static function ListarTipoServicoReuniao($reuniao,$tipo_servico)
 	{
-		$reuniao = new Reuniao();
-		$reuniao->Codigo = $codigo_reuniao;
-		$reuniao->Consultar();
-
 		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
 		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
@@ -74,24 +69,20 @@ class ServicoService
 		return $servicoconsulta->Listar();
 	}
 
-	public static function ListarBatismoReuniao($codigo_reuniao)
+	public static function ListarBatismoReuniao($reuniao)
 	{
-		return self::ListarTipoServicoReuniao($codigo_reuniao, TS_BATISMO);
+		return self::ListarTipoServicoReuniao($reuniao, TS_BATISMO);
 	}
 
-	public static function ListarReuniaoMocidadeReuniao($codigo_reuniao)
+	public static function ListarReuniaoMocidadeReuniao($reuniao)
 	{
-		return self::ListarTipoServicoReuniao($codigo_reuniao, TS_REUNIAOMOCIDADE);
+		return self::ListarTipoServicoReuniao($reuniao, TS_REUNIAOMOCIDADE);
 	}
 
 	//-- por igreja
 
-	public static function ListarIgrejaTipoServicoReuniao($codigo_reuniao,$tipo_servico)
+	public static function ListarIgrejaTipoServicoReuniao($reuniao,$tipo_servico)
 	{
-		$reuniao = new Reuniao();
-		$reuniao->Codigo = $codigo_reuniao;
-		$reuniao->Consultar();
-
 		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
 		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
@@ -103,22 +94,22 @@ class ServicoService
 		return $igrejaservicoconsulta->Listar();
 	}
 
-	public static function ListarCultoEnsinamentoReuniao($codigo_reuniao)
+	public static function ListarCultoEnsinamentoReuniao($reuniao)
 	{
-		return self::ListarIgrejaTipoServicoReuniao($codigo_reuniao, TS_CULTOENSINAMENTO);
+		return self::ListarIgrejaTipoServicoReuniao($reuniao, TS_CULTOENSINAMENTO);
 	}
 
-	public static function ListarSantaCeiaReuniao($codigo_reuniao)
+	public static function ListarSantaCeiaReuniao($reuniao)
 	{
-		return self::ListarIgrejaTipoServicoReuniao($codigo_reuniao, TS_SANTACEIA);
+		return self::ListarIgrejaTipoServicoReuniao($reuniao, TS_SANTACEIA);
 	}
 
 	//--
 
-	public static function ListarColetaReuniao($codigo_reuniao)
+	public static function ListarColetaReuniao($reuniao)
 	{
 		$servicoconsulta = new IgrejaServicoConsulta();
-		$servicoconsulta->Codigo_Reuniao = $codigo_reuniao;
+		$servicoconsulta->Codigo_Reuniao = $reuniao->Codigo;
 		$servicoconsulta->Tipo_Servico = TS_COLETA;
 		return $servicoconsulta->Listar();
 	}

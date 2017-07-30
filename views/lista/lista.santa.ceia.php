@@ -94,7 +94,7 @@
 
                 //--
 
-                $servicos = ServicoService::ListarSantaCeiaReuniao($reuniao->Codigo);
+                $servicos = ServicoService::ListarSantaCeiaReuniao($reuniao);
                 foreach ($servicos as $servico)
                     GerarDocumento::GerarLinha($servico,$reuniao,$tiposervico);
             ?>
