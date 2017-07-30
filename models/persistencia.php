@@ -34,7 +34,7 @@ abstract class Persistencia extends Consulta
             "select * from " . get_class($this) .
             $where ;
 
-        echo $sql;
+        //echo $sql;
         Logger::Instance()->Info("Pesistencia.GetCmdConsultar", "sql: " . $sql);
 
         return $sql;
@@ -47,8 +47,7 @@ abstract class Persistencia extends Consulta
 
         foreach ($this as $propName => $propValue)
         {
-            $names = $names . ($names != "" ? "," : "") . 
-                $propName;
+            $names = $names . ($names != "" ? "," : "") . $propName;
             $values = $values . ($values != "" ? "," : "") . 
                 (isset($propValue) && $propValue != "" ? "'" . $propValue . "'" : "null") ;
         }
@@ -57,7 +56,7 @@ abstract class Persistencia extends Consulta
             "insert into " . get_class($this) .
             " (" . $names . ") values (" . $values . ") " ;
 
-        echo $sql;
+        //echo $sql;
         Logger::Instance()->Info("Pesistencia.GetCmdIncluir", "sql: " . $sql);
 
         return $sql;        
@@ -77,7 +76,7 @@ abstract class Persistencia extends Consulta
             " set " . $sets . 
             " where Codigo = " . $this->{'Codigo'} . "" ;
 
-        echo $sql;
+        //echo $sql;
         Logger::Instance()->Info("Pesistencia.GetCmdAlterar", "sql: " . $sql);
 
         return $sql;        
@@ -89,7 +88,7 @@ abstract class Persistencia extends Consulta
             "delete from " . get_class($this) . 
             " where Codigo = " . $this->{'Codigo'} . "" ;
 
-        echo $sql;
+        //echo $sql;
         Logger::Instance()->Info("Pesistencia.GetCmdExcluir", "sql: " . $sql);
 
         return $sql;

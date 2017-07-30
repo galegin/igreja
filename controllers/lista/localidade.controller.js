@@ -49,15 +49,11 @@
             Dias_Culto_Jovem : diasCultoJovem.trim(), // $("#txtDias_Culto_Jovem").val(),
         };
 
-        console.log("values " + values);
-
         return values;
     }
 
     function setValues(dados)
     {
-        console.log("dados " + dados);
-
         if (dados["Codigo"] > 0)
         {
             $("#txtCodigo").val(dados["Codigo"]);

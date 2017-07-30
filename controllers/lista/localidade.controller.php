@@ -18,6 +18,7 @@ else if ($opcao == "Excluir")
     $localidade->Excluir();
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $localidade);
+Logger::Instance()->Info("localidade.controller.php", "response: " . json_encode($response));
 
 echo json_encode($response);    
 

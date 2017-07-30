@@ -22,6 +22,7 @@ else if ($opcao == "Excluir")
     $servico->Excluir();
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $servico);
+Logger::Instance()->Info("servico.controller.php", "response: " . json_encode($response));
 
 echo json_encode($response);    
 

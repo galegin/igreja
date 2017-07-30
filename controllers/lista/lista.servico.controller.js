@@ -9,7 +9,7 @@
             (codigo_reuniao != null ? codigo_reuniao : "0") + "_" + 
             (codigo_tipo_servico != null ? codigo_tipo_servico : "0") + "_" + 
             (codigo_localidade != null ? codigo_localidade : "0") ;
-        console.log("chave -> " + chave);
+        console.log("chave: " + chave);
         return chave;
     }
 
@@ -85,11 +85,13 @@
             async: true,
             data: { opcao : opcao_requisicao, dados: values },
             success: function(response) {
-                console.log("success " + response);
+                console.log("success");
+                console.log(response);
                 //setValues(response["dados"]);
             },
             error: function(response) {
-                console.log("error " + response);
+                console.log("error");
+                console.log(response);
             }
         });
     }

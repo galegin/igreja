@@ -1,8 +1,8 @@
 <script type="text/javascript" language="javascript">
 
-    function RequisicaoEvent(opcao_requisicao)
+    function RequisicaoEvent(requisicao)
     {
-        console.log("opcao_requisicao: " + opcao_requisicao);
+        console.log("requisicao: " + requisicao);
 
         var values = getValues();
         console.log(values);
@@ -12,14 +12,16 @@
             dataType: 'json',
             url: url_api,
             async: true,
-            data: { opcao : opcao_requisicao, dados: values },
+            data: { opcao : requisicao, dados : values },
             success: function(response) {
-                console.log("success " + response);
-                if (opcao_requisicao == "Consultar")
+                console.log("success");
+                console.log(response);
+                if (response["opcao"] == "Consultar")
                     setValues(response["dados"]);
             },
             error: function(response) {
-                console.log("error " + response);
+                console.log("error");
+                console.log(response);
             }
         });
     }
@@ -35,83 +37,18 @@
         });
 
         $('#btnConsultar').click(function() {
-            /* console.log("Consultar");
-
-            var values = getValues();
-            console.log(values);
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: url_api,
-                async: true,
-                data: { opcao : "Consultar", dados: values },
-                success: function(response) {
-                    console.log("success " + response);
-                    setValues(response["dados"]);
-                },
-                error: function(response) {
-                    console.log("error " + response);
-                }
-            }); */
-
             RequisicaoEvent("Consultar");
-
             return false;
         });
 
         $('#btnSalvar').click(function() {
-            /* console.log("Salvar");
-
-            var values = getValues();
-            console.log(values);
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: url_api,
-                async: true,
-                data: { opcao : "Salvar", dados: values },
-                success: function(response) {
-                    console.log("success " + response);
-                },
-                error: function(response) {
-                    console.log("error " + response);
-                }
-            }); */
-
             RequisicaoEvent("Salvar");
-
             return false;
         });
         
         $('#btnExcluir').click(function() {
-            // console.log("Excluir");
-
-            if (!confirm("Confirma exclusão ?")) {
-                return false;
-            }            
-
-            /* var values = getValues();
-            console.log(values);
-
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: url_api,
-                async: true,
-                data: { opcao : "Excluir", dados: values },
-                success: function(response) {
-                    console.log("success " + response);
-                    location.reload();
-                },
-                error: function(response) {
-                    console.log("error " + response);
-                }
-            }); */
-
-            RequisicaoEvent("Excluir");
-
+            if (confirm("Confirma exclusão ?"))
+                RequisicaoEvent("Excluir");
             return false;
         });
 

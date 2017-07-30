@@ -18,6 +18,7 @@ else if ($opcao == "Excluir")
     $agendaservico->Excluir();
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $agendaservico);
+Logger::Instance()->Info("agenda.servico.controller.php", "response: " . json_encode($response));
 
 echo json_encode($response);    
 

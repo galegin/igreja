@@ -18,6 +18,7 @@ else if ($opcao == "Excluir")
     $atendente->Excluir();
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $atendente);
+Logger::Instance()->Info("atendente.controller.php", "response: " . json_encode($response));
 
 echo json_encode($response);    
 

@@ -11,14 +11,15 @@ $tiposervico = new TipoServico();
 $tiposervico->SetValues($dados);
 
 if ($opcao == "Consultar")
-    $tiposervico->Consultar("");
+    $tiposervico->Consultar();
 else if ($opcao == "Salvar")
     $tiposervico->Salvar();
 else if ($opcao == "Excluir")
     $tiposervico->Excluir();
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $tiposervico);
+Logger::Instance()->Info("tipo.servico.controller.php", "response: " . json_encode($response));
 
-echo json_encode($response);    
+echo json_encode($response);
 
 ?>

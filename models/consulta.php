@@ -71,7 +71,7 @@ abstract class Consulta
             'select * from ' . get_class($this) .
             ($where != null ? ' where ' : '') . $where ;
 
-        echo $sql;
+        //echo $sql;
         Logger::Instance()->Info("Consulta.GetSqlListar", "sql: " . $sql);
 
         return $sql;
