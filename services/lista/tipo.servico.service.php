@@ -14,6 +14,6 @@ class TipoServicoService
 	{
         $tiposervico = new TipoServico();
         return $tiposervico->Listar();
-	}	
+	}
 }
 ?>

@@ -31,10 +31,52 @@
         <tbody>
 			<tr>
 			    <th>Observacao</th>
+                <th width="100px"></th>                
 			</tr>
-			<tr>
-			    <td>Cianortinho</td>
-			</tr>
+            <?php
+                require_once("../../services/lista/observacao.service.php");
+
+                class GerarDocumento
+                {
+                    public static function GerarLinha($observacao)
+                    {
+                        $chave = ObservacaoService::GetChave($observacao,$reuniao);
+                        $chavecomp = ObservacaoService::GetChaveComp($observacao,$reuniao);
+
+                        echo '<tr>';
+                        echo '<td><input class="form-control" id="txtDescricao" value="' . $observacao->Descricao . '" /></td>';
+
+                        if (isset($observacao->Codigo))
+                        {
+                            echo '<td>' . "\n";
+                            echo '<button class="btn btn-default" type="button" onclick="AlterarObs(' . $chave . ')" >'. "\n";
+                            echo '<span class="glyphicon glyphicon-pencil"></span>'. "\n";
+                            echo '</button>'. "\n";
+                            echo '<button class="btn btn-default" type="button" onclick="ExcluirObs(' . $chave . ')" >'. "\n";
+                            echo '<span class="glyphicon glyphicon-trash"></span>'. "\n";
+                            echo '</button>'. "\n";
+                            echo '</td>' . "\n";
+                         } 
+                         else
+                         {
+                            echo '<td>' . "\n";
+                            echo '<button class="btn btn-default" type="button" onclick="IncluirObs(' . $chave . ')" >'. "\n";
+                            echo '<span class="glyphicon glyphicon-ok"></span>'. "\n";
+                            echo '</button>'. "\n";
+                            echo '</td>' . "\n";
+                        }
+
+                        echo '</tr>';
+                    }
+                }
+
+                $observacao = new Observacao();
+                GerarDocumento::GerarLinha($observacao);
+
+                $observacoes = ObservacaoService::ListarObservacaoReuniao($reuniao);
+                foreach ($observacoes as $observacao)
+                    GerarDocumento::GerarLinha($observacao);
+            ?>            
         </tbody>
 	</table>
 </div>
