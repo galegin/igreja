@@ -12,6 +12,10 @@ $atendente->SetValues($dados);
 
 if ($opcao == "Consultar")
     $atendente->Consultar();
+else if ($opcao == "Incluir")
+    $atendente->Incluir();
+else if ($opcao == "Alterar")
+    $atendente->Alterar();
 else if ($opcao == "Salvar")
     $atendente->Salvar();
 else if ($opcao == "Excluir")

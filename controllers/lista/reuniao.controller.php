@@ -12,6 +12,10 @@ $reuniao->SetValues($dados);
 
 if ($opcao == "Consultar")
     $reuniao->Consultar();
+else if ($opcao == "Incluir")
+    $reuniao->Incluir();
+else if ($opcao == "Alterar")
+    $reuniao->Alterar();
 else if ($opcao == "Salvar")
     $reuniao->Salvar();
 else if ($opcao == "Excluir")

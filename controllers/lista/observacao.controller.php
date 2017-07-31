@@ -12,6 +12,10 @@ $observacao->SetValues($dados);
 
 if ($opcao == "Consultar")
     $observacao->Consultar();
+else if ($opcao == "Incluir")
+    $observacao->Incluir();
+else if ($opcao == "Alterar")
+    $observacao->Alterar();
 else if ($opcao == "Salvar")
     $observacao->Salvar();
 else if ($opcao == "Excluir")

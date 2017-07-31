@@ -5,7 +5,7 @@
 <?php require_once("include.php"); ?>
 </head>
 
-<?php require_once("../../controllers/lista/lista.servico.controller.js"); ?>
+<?php require_once("../../controllers/lista/servico.controller.js"); ?>
 
 <body>
 

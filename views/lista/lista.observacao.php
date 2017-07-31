@@ -5,6 +5,8 @@
 <?php require_once("include.php"); ?>
 </head>
 
+<?php require_once("../../controllers/lista/observacao.controller.js"); ?>
+
 <body>
 
 <?php require_once("../cabecalho.php"); ?>
@@ -38,13 +40,13 @@
 
                 class GerarDocumento
                 {
-                    public static function GerarLinha($observacao)
+                    public static function GerarLinha($observacao,$reuniao)
                     {
                         $chave = ObservacaoService::GetChave($observacao,$reuniao);
                         $chavecomp = ObservacaoService::GetChaveComp($observacao,$reuniao);
 
                         echo '<tr>';
-                        echo '<td><input class="form-control" id="txtDescricao" value="' . $observacao->Descricao . '" /></td>';
+                        echo '<td><input class="form-control" id="txtDescricao_' . $chavecomp . '" value="' . $observacao->Descricao . '" /></td>';
 
                         if (isset($observacao->Codigo))
                         {
@@ -71,11 +73,11 @@
                 }
 
                 $observacao = new Observacao();
-                GerarDocumento::GerarLinha($observacao);
+                GerarDocumento::GerarLinha($observacao,$reuniao);
 
                 $observacoes = ObservacaoService::ListarObservacaoReuniao($reuniao);
                 foreach ($observacoes as $observacao)
-                    GerarDocumento::GerarLinha($observacao);
+                    GerarDocumento::GerarLinha($observacao,$reuniao);
             ?>            
         </tbody>
 	</table>

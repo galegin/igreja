@@ -1,46 +1,114 @@
-<script type="text/javascript" language="javascript">
+<script>
 
-    var url_api = '../../controllers/lista/servico.controller.php';
-    var name_form = '#frmCadServico';
+    var url_api = "../../controllers/lista/servico.controller.php";
 
-    function getValues()
+    function GetChave(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
     {
-        var values =
-        {
-            Codigo : $("#txtCodigo").val(),
-            Codigo_Reuniao : $("#cmbCodigo_Reuniao").val(),
-            Codigo_Tipo_Servico : $("#cmbCodigo_Tipo_Servico").val(),
-            Codigo_Localidade : $("#cmbCodigo_Localidade").val(),
-            Data_Inicio : $("#txtData_Inicio").val(),
-            Data_Termino : $("#txtData_Termino").val(),
-            Hora_Inicio : $("#txtHora_Inicio").val(),
-            Hora_Termino : $("#txtHora_Termino").val(),
-            Complemento : $("#txtComplemento").val(),
-            Atendente : $("#txtAtendente").val(),
-            Qtde_Irmao : $("#txtQtde_Irmao").val(),
-            Qtde_Irma : $("#txtQtde_Irma").val(),
-        };
-
-        return values;
+        var chave = 
+            (codigo_servico != null ? codigo_servico : "0" ) + "_" + 
+            (codigo_reuniao != null ? codigo_reuniao : "0") + "_" + 
+            (codigo_tipo_servico != null ? codigo_tipo_servico : "0") + "_" + 
+            (codigo_localidade != null ? codigo_localidade : "0") ;
+        console.log("chave: " + chave);
+        return chave;
     }
 
-    function setValues(dados)
+    function GetValues(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
     {
-        if (dados["Codigo"] > 0)
-        {
-            $("#txtCodigo").val(dados["Codigo"]);
-            $("#cmbCodigo_Reuniao").val(dados["Codigo_Reuniao"]);
-            $("#cmbCodigo_Tipo_Servico").val(dados["Codigo_Tipo_Servico"]);
-            $("#cmbCodigo_Localidade").val(dados["Codigo_Localidade"]);
-            $("#txtData_Inicio").val(dados["Data_Inicio"]);
-            $("#txtData_Termino").val(dados["Data_Termino"]);
-            $("#txtHora_Inicio").val(dados["Hora_Inicio"]);
-            $("#txtHora_Termino").val(dados["Hora_Termino"]);
-            $("#txtComplemento").val(dados["Complemento"]);
-            $("#txtAtendente").val(dados["Atendente"]);
-            $("#txtQtde_Irmao").val(dados["Qtde_Irmao"]);
-            $("#txtQtde_Irma").val(dados["Qtde_Irma"]);
-        }        
+        var chave = GetChave(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
+
+        var codigoservico = $("#txtCodigo_Servico_" + chave).val();
+        if (codigoservico == null || codigoservico == "")
+            codigoservico = codigo_servico;
+        var codigoreuniao = $("#cmbCodigo_Reuniao_" + chave).val();
+        if (codigoreuniao == null || codigoreuniao == "")
+            codigoreuniao = codigo_reuniao;
+        var codigotiposervico = $("#cmbCodigo_Tipo_Servico_" + chave).val();
+        if (codigotiposervico == null || codigotiposervico == "")
+            codigotiposervico = codigo_tipo_servico;
+        var codigolocalidade  = $("#cmbCodigo_Localidade_" + chave).val();
+        if (codigolocalidade == null || codigolocalidade == "")
+            codigolocalidade = codigo_localidade;
+        
+        var datainicio = $("#txtData_Inicio_" + chave).val();
+        var horainicio = $("#txtHora_Inicio_" + chave).val();
+
+        var complemento = $("#txtComplemento_" + chave).val();
+
+        var atendente = "";
+        var atendente1 = $("#txtAtendente_1_" + chave).val();
+        if (atendente1 != null && atendente1 != "")
+            atendente += (atendente != "" ? " / " : "") + atendente1;
+        var atendente2 = $("#txtAtendente_2_" + chave).val();
+        if (atendente2 != null && atendente2 != "")
+            atendente += (atendente != "" ? " / " : "") + atendente2;
+
+        var qtdeirmao = $("#txtQtde_Irmao_" + chave).val();
+        if (qtdeirmao == null || qtdeirmao == "")
+            qtdeirmao = 0;
+        var qtdeirma = $("#txtQtde_Irma_" + chave).val();
+        if (qtdeirma == null || qtdeirma == "")
+            qtdeirma = 0;
+
+        return {
+            Codigo : codigoservico,
+            Codigo_Reuniao : codigoreuniao,
+            Codigo_Localidade : codigolocalidade,
+            Codigo_Tipo_Servico : codigotiposervico,
+            Data_Inicio : datainicio,
+            Data_Termino : datainicio,
+            Hora_Inicio : horainicio,
+            Hora_Termino : horainicio,
+            Complemento : complemento,
+            Atendente : atendente,
+            Qtde_Irmao : qtdeirmao,
+            Qtde_Irma : qtdeirma,
+        };
+    }
+
+    function RequisicaoServico(opcao_requisicao,codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    {
+        console.log("RequisicaoServico -> " + 
+            "opcao_requisicao: " + opcao_requisicao + " / " + 
+            "codigo_servico: " + codigo_servico + " / " + 
+            "codigo_reuniao: " + codigo_reuniao + " / " + 
+            "codigo_tipo_servico: " + codigo_tipo_servico + " / " + 
+            "codigo_localidade: " + codigo_localidade);
+
+        var values = GetValues(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
+        console.log(values);
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: url_api,
+            async: true,
+            data: { opcao : opcao_requisicao, dados: values },
+            success: function(response) {
+                console.log("success");
+                console.log(response);
+                //setValues(response["dados"]);
+            },
+            error: function(response) {
+                console.log("error");
+                console.log(response);
+            }
+        });
+    }
+
+    function IncluirServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    {
+        RequisicaoServico("Incluir",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
+    }
+
+    function AlterarServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    {
+        RequisicaoServico("Alterar",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
+    }
+
+    function ExcluirServico(codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade)
+    {
+        RequisicaoServico("Excluir",codigo_servico,codigo_reuniao,codigo_tipo_servico,codigo_localidade);
     }
 
 </script>

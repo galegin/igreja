@@ -12,6 +12,10 @@ $tiposervico->SetValues($dados);
 
 if ($opcao == "Consultar")
     $tiposervico->Consultar();
+else if ($opcao == "Incluir")
+    $tiposervico->Incluir();
+else if ($opcao == "Alterar")
+    $tiposervico->Alterar();
 else if ($opcao == "Salvar")
     $tiposervico->Salvar();
 else if ($opcao == "Excluir")

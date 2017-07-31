@@ -12,6 +12,10 @@ $apresentacao->SetValues($dados);
 
 if ($opcao == "Consultar")
     $apresentacao->Consultar();
+else if ($opcao == "Incluir")
+    $apresentacao->Incluir();
+else if ($opcao == "Alterar")
+    $apresentacao->Alterar();
 else if ($opcao == "Salvar")
     $apresentacao->Salvar();
 else if ($opcao == "Excluir")

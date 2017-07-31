@@ -12,6 +12,10 @@ $localidade->SetValues($dados);
 
 if ($opcao == "Consultar")
     $localidade->Consultar();
+else if ($opcao == "Incluir")
+    $localidade->Incluir();
+else if ($opcao == "Alterar")
+    $localidade->Alterar();
 else if ($opcao == "Salvar")
     $localidade->Salvar();
 else if ($opcao == "Excluir")

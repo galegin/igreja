@@ -1,36 +1,89 @@
-<script type="text/javascript" language="javascript">
+<script>
 
-    var url_api = '../../controllers/lista/apresentacao.controller.php';
-    var name_form = '#frmCadApresentacao';
+    var url_api = "../../controllers/lista/apresentacao.controller.php";
 
-    function getValues()
+    function GetChave(codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
     {
-        var values =
-        {
-            Codigo :  $("#txtCodigo").val(),
-            Codigo_Reuniao : $("#cmbCodigo_Reuniao").val(),
-            Codigo_Localidade : $("#cmbCodigo_Localidade").val(),
-            Tipo : $("#cmbTipo").val(),
-            Codigo_Tipo_Servico : $("#cmbCodigo_Tipo_Servico").val(),
-            Funcao : $("#txtFuncao").val(),
-            Nome : $("#txtNome").val(),
-        };
-
-        return values;
+        var chave = 
+            (codigo_apresentacao != null ? codigo_apresentacao : "0" ) + "_" + 
+            (codigo_reuniao != null ? codigo_reuniao : "0") + "_" + 
+            (tipo_apresentacao != null ? tipo_apresentacao : "0" ) ;
+        console.log("chave: " + chave);
+        return chave;
     }
 
-    function setValues(dados)
+    function GetValues(codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
     {
-        if (dados["Codigo"] > 0)
-        {
-            $("#txtCodigo").val(dados["Codigo"]);
-            $("#cmbCodigo_Reuniao").val(dados["Codigo_Reuniao"]);
-            $("#cmbCodigo_Localidade").val(dados["Codigo_Localidade"]);
-            $("#cmbTipo").val(dados["Tipo"]);
-            $("#cmbCodigo_Tipo_Servico").val(dados["Codigo_Tipo_Servico"]);
-            $("#txtFuncao").val(dados["Funcao"]);
-            $("#txtNome").val(dados["Nome"]);
-        }        
+        var chave = GetChave(codigo_apresentacao,codigo_reuniao,tipo_apresentacao);
+
+        var codigoapresentacao = $("#cmbCodigo_Apresentacao_" + chave).val();
+        if (codigoapresentacao == null || codigoapresentacao == "")
+            codigoapresentacao = codigo_apresentacao;
+        var codigoreuniao = $("#cmbCodigo_Reuniao_" + chave).val();
+        if (codigoreuniao == null || codigoreuniao == "")
+            codigoreuniao = codigo_reuniao;
+        var tipoapresentacao = $("#cmbTipo_Apresentacao_" + chave).val();
+        if (tipoapresentacao == null || tipoapresentacao == "")
+            tipoapresentacao = tipo_apresentacao;
+
+        var codigolocalidade = $("#cmbCodigo_Localidade_" + chave).val();
+        var codigotiposervico = $("#cmbCodigo_Tipo_Servico_" + chave).val();
+        var funcao = $("#txtFuncao_" + chave).val();
+        var nome = $("#txtNome_" + chave).val();
+
+        return {
+            Codigo : codigoapresentacao,
+            Codigo_Reuniao : codigoreuniao,
+            Tipo : tipoapresentacao,
+            Codigo_Localidade : codigolocalidade,
+            Codigo_Tipo_Servico : codigotiposervico,
+            Funcao : funcao,
+            Nome : nome,
+        };
+    }
+
+    function RequisicaoApres(opcao_requisicao,codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
+    {
+        console.log("RequisicaoServico -> " + 
+            "opcao_requisicao: " + opcao_requisicao + " / " + 
+            "codigo_apresentacao: " + codigo_apresentacao + " / " + 
+            "codigo_reuniao: " + codigo_reuniao + " / " + 
+            "tipo_apresentacao: " + tipo_apresentacao );
+
+        var values = GetValues(codigo_apresentacao,codigo_reuniao,tipo_apresentacao);
+        console.log(values);
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: url_api,
+            async: true,
+            data: { opcao : opcao_requisicao, dados: values },
+            success: function(response) {
+                console.log("success");
+                console.log(response);
+                //setValues(response["dados"]);
+            },
+            error: function(response) {
+                console.log("error");
+                console.log(response);
+            }
+        });
+    }
+
+    function IncluirApres(codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
+    {
+        RequisicaoApres("Incluir",codigo_apresentacao,codigo_reuniao,tipo_apresentacao);
+    }
+
+    function AlterarApres(codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
+    {
+        RequisicaoApres("Alterar",codigo_apresentacao,codigo_reuniao,tipo_apresentacao);
+    }
+
+    function ExcluirApres(codigo_apresentacao,codigo_reuniao,tipo_apresentacao)
+    {
+        RequisicaoApres("Excluir",codigo_apresentacaotipo_apresentacao,codigo_reuniao);
     }
 
 </script>

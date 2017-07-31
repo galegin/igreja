@@ -12,6 +12,10 @@ $agendaservico->SetValues($dados);
 
 if ($opcao == "Consultar")
     $agendaservico->Consultar();
+else if ($opcao == "Incluir")
+    $agendaservico->Incluir();
+else if ($opcao == "Alterar")
+    $agendaservico->Alterar();
 else if ($opcao == "Salvar")
     $agendaservico->Salvar();
 else if ($opcao == "Excluir")
