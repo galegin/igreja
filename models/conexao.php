@@ -119,10 +119,6 @@ class ConexaoMySql
             Logger::Instance()->Erro("ConexaoMySql.ExecComando", $e->getMessage());
             throw new Exception("Error " . $e->getMessage(), 1);
         }
-
-        //$this->GetConexao()->lastInsertId();
-
-        //return true;
     }
 }
 ?>

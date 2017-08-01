@@ -16,10 +16,17 @@
             success: function(response) {
                 console.log("success");
                 console.log(response);
-                if (response["opcao"] == "Consultar")
-                    setValues(response["dados"]);
-                else if (response["opcao"] == "Excluir")
-                    location.reload();
+                var opcao = response["opcao"];
+                switch (opcao)
+                {
+                    case "Consultar":
+                    case "Salvar":
+                        setValues(response["dados"]);
+                        break;
+                    case "Excluir":
+                        location.reload();
+                        break;
+                }
             },
             error: function(response) {
                 console.log("error");

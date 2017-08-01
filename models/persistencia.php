@@ -105,7 +105,11 @@ abstract class Persistencia extends Consulta
 
     public function Incluir()
     {
-        return $this->ExecComando($this->GetCmdIncluir());
+        $retorno = $this->ExecComando($this->GetCmdIncluir());
+
+        $this->{'Codigo'} = $this->GetConexao()->lastInsertId();
+
+        return $retorno;
     }
 
     public function Alterar()
@@ -122,9 +126,15 @@ abstract class Persistencia extends Consulta
 
     public function Salvar()
     {
-        $record = $this->GetConsulta($this->GetCmdConsultar());
+        $codigo = $this->{'Codigo'};
+
+        if (isset($codigo))
+        {
+            $record = $this->GetConsulta($this->GetCmdConsultar());
+            $codigo = $record["Codigo"];
+        }
         
-        if ($record["Codigo"] == 0)
+        if (!isset($codigo))
             return $this->Incluir();
         else
             return $this->Alterar();
