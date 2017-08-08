@@ -1,13 +1,34 @@
 unit Perstencia;
 
-//require_once('modulo.php');
-//require_once('consulta.php');
-
 interface
+
+uses
+  modulo, consulta;
 
 type
     TPersistencia = class(TConsulta)
+    private
+    protected
+      function get_class(obj : object) : string;
+      function get_codigo(obj : object) : string;
+      function set_codigo(obj : object; val : object) : string;
+
+      function GetConsulta(sql : string) : object;
+      function ExecComando(cmd : string) : boolean;
+
+      function GetCmdConsultar(where : string = '') : string;
+      function GetCmdIncluir() : string;
+      function GetCmdAlterar() : string;
+      function GetCmdExcluir() : string;
+
+      function Consultar(where : string = '') : object;
+      function Incluir() : boolean;
+      function Alterar() : boolean;
+      function Excluir() : boolean;
+      function Salvar() : boolean;
     public
+      constructor Create();
+    published
     end;    
 
 implementation
