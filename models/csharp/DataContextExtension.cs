@@ -10,64 +10,6 @@ namespace RetailApp.Repositorio.Extensions
 
     public static class DataContextExtension
     {
-        public static int QtdeRegistro(this DbContext context, string sql)
-        {
-            var connection = context.Database.Connection;            
-            var state = connection.State;
-            if (state == ConnectionState.Closed)
-                connn.Open();
-            
-            var retorno = -1;
-
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = $"select count(*) from ({sql})";
-                retorno = Convert.ToInt32(command.ExecuteScalar());
-            }
-            finally
-            {
-                if (state == connectionState.Closed)
-                    connection.Close();
-            }
-            
-            return retorno;
-        }
-
-        public static int CreateTable(this DbContext context, string table, string cmd)
-        {
-            var retorno = -1;
-            
-            try
-            {
-                retorno = context.QtdeRegistro($"select * from {table}");
-            }
-            catch {}
-            
-            if (retorno == -1)
-                context.ExecComando(cmd);
-        }
-        
-        public static void ExecComando(this DbContext context, string cmd)
-        {
-            var connection = context.Database.Connection;
-            var state = connection.State;
-            if (state == ConnectionState.Closed)
-                connection.Open();
-
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = cmd;
-                command.ExecuteNonQuery();
-            }
-            finally
-            {
-                if (state == ConnectionState.Closed)
-                    connection.Close();
-            }
-        }
-
         public static List<TObject> GetLista<TObject>(this DbContext context, string where = "")
         {
             var connection = context.Database.Connection;

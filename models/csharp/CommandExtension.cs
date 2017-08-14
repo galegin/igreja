@@ -8,13 +8,6 @@ namespace RetailApp.Repositorio.Extensions
 
     public static class CommandExtension
     {
-        //-- table
-
-        private static string GetTable<TObject>()
-        {
-            return typeof(TObject).GetAttributeType<TabelaAttribute>().Nome;
-        }
-
         //-- value
 
         private static string GetValueStr(this object value)
@@ -41,7 +34,7 @@ namespace RetailApp.Repositorio.Extensions
 
         public static string GetSelect<TObject>(string where = "")
         {
-            var table = GetTable<TObject>();
+            var table = typeof(TObject).GetAttributeType<TabelaAttribute>().Nome;
             var fieldsAtr = string.Empty;
             var fields = string.Empty;
 
@@ -77,7 +70,7 @@ namespace RetailApp.Repositorio.Extensions
 
         public static string GetInsert<TObject>(this TObject obj)
         {
-            var table = GetTable<TObject>();
+            var table = typeof(TObject).GetAttributeType<TabelaAttribute>().Nome;
             var campos = string.Empty;
             var values = string.Empty;
 
@@ -98,7 +91,7 @@ namespace RetailApp.Repositorio.Extensions
 
         public static string GetUpdate<TObject>(this TObject obj)
         {
-            var table = GetTable<TObject>();
+            var table = typeof(TObject).GetAttributeType<TabelaAttribute>().Nome;
             var sets = string.Empty;
             var where = string.Empty;
 
@@ -121,7 +114,7 @@ namespace RetailApp.Repositorio.Extensions
 
         public static string GetDelete<TObject>(this TObject obj)
         {
-            var table = GetTable<TObject>();
+            var table = typeof(TObject).GetAttributeType<TabelaAttribute>().Nome;
             var where = string.Empty;
 
             foreach (var prop in typeof(TObject).GetProperties())
