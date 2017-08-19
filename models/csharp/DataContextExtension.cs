@@ -10,6 +10,9 @@ namespace RetailApp.Repositorio.Extensions
 
     public static class DataContextExtension
     {
+
+        //-- lista
+
         public static List<TObject> GetLista<TObject>(this DbContext context, string where = "")
         {
             var connection = context.Database.Connection;
@@ -111,5 +114,22 @@ namespace RetailApp.Repositorio.Extensions
                     connection.Close();
             }
         }
+
+        //-- objeto
+
+        public static TObject GetObjeto<TObject>(this DbContext context, string where = "")
+        {
+            return context.GetLista<TObject>(where).FirstOrDefault();
+        }
+
+        public static void SetObjeto<TObject>(this DbContext context, TObject obj)
+        {
+            context.SetLista(new List<TObject> { obj });
+        }
+
+        public static void RemObjeto<TObject>(this DbContext context, TObject obj)
+        {
+            context.RemLista(new List<TObject> { obj });
+        }        
     }
 }

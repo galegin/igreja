@@ -5,7 +5,6 @@ namespace RetailApp.Repositorio.Context
 {
     //-- miguel - 8/4/2017 10:30:12 AM ; ???
 
-    [DbConfigurationType(typeof(ModelConfiguration))]
     public class DataContext : DbContext
     {
         static DataContext()
@@ -20,7 +19,7 @@ namespace RetailApp.Repositorio.Context
             Username = "loginp";
             Password = "loginp";
 
-            Database.Log = x => Debug.WriteLine(x);
+            //Database.Log = x => Debug.WriteLine(x);
         }
 
         public DataContext(string hostname, string username, string password)
@@ -30,27 +29,11 @@ namespace RetailApp.Repositorio.Context
             Username = username;
             Password = password;
 
-            //Configuration.AutoDetectChangesEnabled = false;
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
-
-            Database.Log = x => Debug.WriteLine(x);
-            Database.Connection.ConnectionString = OracleHelper.ConnectionString(hostname, username, password);
+            //Database.Log = x => Debug.WriteLine(x);
         }
 
         public string Hostname { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Add(new BooleanConvention());
-
-            modelBuilder.HasDefaultSchema(Username.ToUpper());
-
-            // modelBuilder.Configurations.Add(new AmbienteMap());
-
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }
