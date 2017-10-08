@@ -10,20 +10,25 @@ class Logger
     {
         if (!isset(self::$instance))
             self::$instance = new Logger();
-
         return self::$instance;
     } 
 
 	protected function Log($tipo, $method, $message)
 	{
 		$data = date('d.m.Y h:i:s');
-		$log = "[$data] [$tipo] $message / $method \n\n";
-		$path = LOG_PATH . date("Y.m.d") . ".audit.log";
+		$log = 
+			"<log>\n" .
+			"<data>$data</data>\n" .
+			"<tipo>$tipo</tipo>\n" .
+			"<message>$message</message>\n" .
+			"<metodo>$method</metodo>\n" . 
+			"</log>\n\n";
+		$path = LOG_PATH . date("Y.m.d") . ".audit.xml";
 		error_log($log, 3, $path);
 		//error_log($log, 0);
 	}
 
-	public  function Debug($method, $message)
+	public function Debug($method, $message)
 	{
 		$this->Log("DEBUG", $method, $message);
 	}

@@ -7,7 +7,7 @@ show create table reuniao;
 show create table servico;
 show create table tiposervico;
 
-create if not exists table reuniao (
+create table if not exists reuniao (
  Codigo int(11) auto_increment,
  Descricao varchar(100) not null,
  Data date not null,
@@ -15,10 +15,10 @@ create if not exists table reuniao (
  Hora_Inicio varchar(5) null,
  Nome_Atende varchar(100) null,
  Palavra varchar(100) null,
- constraint reuniaop1 primary key on (Codigo)
+ constraint reuniaop1 primary key (Codigo)
 );
  
-create if not exists table localidade (
+create table if not exists localidade (
  Codigo int(11) auto_increment,
  Nome varchar(1000) not null,
  Tipo int(11) not null default 0,
@@ -29,18 +29,18 @@ create if not exists table localidade (
  Encarregado varchar(100) null,
  Dias_Culto varchar(100) null,
  Dias_Culto_Jovem varchar(100) null,
- constraint localidadep1 primary key on (Codigo)
+ constraint localidadep1 primary key (Codigo)
 );
  
-create if not exists table tiposervico (
+create table if not exists tiposervico (
  Codigo int(11) auto_increment,
  Descricao varchar(4000) not null,
  Tipo int(11) not null default 0,
  Ordem int(11) null,
- constraint tiposervicop1 primary key on (Codigo)
+ constraint tiposervicop1 primary key (Codigo)
 );
 
-create if not exists table atendente (
+create table if not exists atendente (
  Codigo int(11) auto_increment,
  Nome varchar(100) not null,
  Ministerio int(11) not null default 0,
@@ -50,11 +50,11 @@ create if not exists table atendente (
  Telefone_Trabalho varchar(20) null,
  Telefone_Recado varchar(20) null,
  Data_Apresentacao date null,
- constraint atendentep1 primary key on (Codigo)
+ constraint atendentep1 primary key (Codigo),
  constraint atendente_localidade foreign key (Codigo_Localidade) references Localidade (Codigo)
 );
 
-create if not exists table agendaservico (
+create table if not exists agendaservico (
  Codigo int(11) auto_increment,
  Codigo_Tipo_Servico int(11) not null,
  Codigo_Localidade int(11) not null,
@@ -63,12 +63,12 @@ create if not exists table agendaservico (
  Hora varchar(5) null,
  Complemento varchar(4000) null,
  Atendente varchar(1000) null,
- constraint agendaservicop1 primary key on (Codigo),
+ constraint agendaservicop1 primary key (Codigo),
  constraint agendaservico_tiposervico foreign key (Codigo_Tipo_Servico) references TipoServico (Codigo),
  constraint agendaservico_localidade foreign key (Codigo_Localidade) references Localidade (Codigo)
 );
 
-create if not exists table apresentacao (
+create table if not exists apresentacao (
  Codigo int(11) auto_increment,
  Codigo_Reuniao int(11) not null,
  Codigo_Localidade int(11) not null,
@@ -76,21 +76,21 @@ create if not exists table apresentacao (
  Codigo_Tipo_Servico int(11) null,
  Funcao varchar(100) null,
  Nome varchar(100) null,
- constraint apresentacaop1 primary key on (Codigo),
+ constraint apresentacaop1 primary key (Codigo),
  constraint apresentacao_reuniao foreign key (Codigo_Reuniao) references Reuniao (Codigo),
  constraint apresentacao_tiposervico foreign key (Codigo_Tipo_Servico) references TipoServico (Codigo),
  constraint apresentacao_localidade foreign key (Codigo_Localidade) references Localidade (Codigo)
 );
 
-create if not exists table observacao (
+create table if not exists observacao (
  Codigo int(11) auto_increment,
  Codigo_Reuniao int(11) not null,
  Descricao varchar(4000) not null,
- constraint agendaservicop1 primary key on (Codigo),
- constraint agendaservico_reuniao foreign key (Codigo_Reuniao) references Reuniao (Codigo),
+ constraint agendaservicop1 primary key (Codigo),
+ constraint agendaservico_reuniao foreign key (Codigo_Reuniao) references Reuniao (Codigo)
 );
 
-create if not exists table servico (
+create table if not exists servico (
  Codigo int(11) auto_increment,
  Codigo_Reuniao int(11) not null,
  Codigo_Tipo_Servico int(11) not null,
@@ -103,7 +103,7 @@ create if not exists table servico (
  Atendente varchar(1000) null,
  Qtde_Irmao int(11) null,
  Qtde_Irma int(11) null,
- constraint servicop1 primary key on (Codigo),
+ constraint servicop1 primary key (Codigo),
  constraint servico_reuniao foreign key (Codigo_Reuniao) references Reuniao (Codigo),
  constraint servico_tiposervico foreign key (Codigo_Tipo_Servico) references TipoServico (Codigo),
  constraint servico_localidade foreign key (Codigo_Localidade) references Localidade (Codigo)

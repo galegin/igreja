@@ -5,26 +5,12 @@ require_once("consulta.php");
 
 abstract class Persistencia extends Consulta
 {
-    public function Pesistencia()
-    {
-    }
-
-    //--
-
-    public function GetConsulta($sql)
-    {
-        return $this->GetConexao()->GetConsulta($sql);
-    }
-
-    public function ExecComando($cmd)
-    {
-        return $this->GetConexao()->ExecComando($cmd);
-    }
-
     //--
 
     protected function GetCmdConsultar($where = "")
     {
+        $METHOD = "Pesistencia.GetCmdConsultar";
+
         if ($where != "")
             $where = " where " . $where ;
         else
@@ -34,13 +20,15 @@ abstract class Persistencia extends Consulta
             "select * from " . get_class($this) .
             $where ;
 
-        Logger::Instance()->Info("Pesistencia.GetCmdConsultar", "sql: " . $sql);
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
         return $sql;
     }
 
     protected function GetCmdIncluir()
     {
+        $METHOD = "Pesistencia.GetCmdIncluir";
+
         $names = "";
         $values = "";
 
@@ -55,13 +43,15 @@ abstract class Persistencia extends Consulta
             "insert into " . get_class($this) .
             " (" . $names . ") values (" . $values . ") " ;
 
-        Logger::Instance()->Info("Pesistencia.GetCmdIncluir", "sql: " . $sql);
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
-        return $sql;        
+        return $sql;
     }
 
     protected function GetCmdAlterar()
     {
+        $METHOD = "Pesistencia.GetCmdAlterar";
+
         $sets = "";
 
         foreach ($this as $propName => $propValue)
@@ -74,18 +64,20 @@ abstract class Persistencia extends Consulta
             " set " . $sets . 
             " where Codigo = " . $this->{'Codigo'} . "" ;
 
-        Logger::Instance()->Info("Pesistencia.GetCmdAlterar", "sql: " . $sql);
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
         return $sql;        
     }
 
     protected function GetCmdExcluir()
     {
+        $METHOD = "Pesistencia.GetCmdExcluir";
+
         $sql = 
             "delete from " . get_class($this) . 
             " where Codigo = " . $this->{'Codigo'} . "" ;
 
-        Logger::Instance()->Info("Pesistencia.GetCmdExcluir", "sql: " . $sql);
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
         return $sql;
     }
@@ -94,7 +86,7 @@ abstract class Persistencia extends Consulta
 
     public function Consultar($where = "")
     {
-        $record = $this->GetConsulta($this->GetCmdConsultar($where));
+        $record = $this->$Conexao->GetConsulta($this->GetCmdConsultar($where));
         
         $this->SetValues($record);
 
@@ -105,21 +97,21 @@ abstract class Persistencia extends Consulta
 
     public function Incluir()
     {
-        $retorno = $this->ExecComando($this->GetCmdIncluir());
+        $retorno = $this->$Conexao->ExecComando($this->GetCmdIncluir());
 
-        $this->{'Codigo'} = $this->GetConexao()->lastInsertId();
+        $this->{'Codigo'} = $this->$Conexao->lastInsertId();
 
         return $retorno;
     }
 
     public function Alterar()
     {
-        return $this->ExecComando($this->GetCmdAlterar());
+        return $this->$Conexao->ExecComando($this->GetCmdAlterar());
     }
 
     public function Excluir()
     {
-        return $this->ExecComando($this->GetCmdExcluir());
+        return $this->$Conexao->ExecComando($this->GetCmdExcluir());
     }
 
     //--
@@ -130,7 +122,7 @@ abstract class Persistencia extends Consulta
 
         if (isset($codigo))
         {
-            $record = $this->GetConsulta($this->GetCmdConsultar());
+            $record = $this->$Conexao->GetConsulta($this->GetCmdConsultar());
             $codigo = $record["Codigo"];
         }
         

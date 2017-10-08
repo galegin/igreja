@@ -4,36 +4,26 @@ require_once("modulo.php");
 
 abstract class Consulta
 {
-    private $_conexao;
+    protected $Conexao;
 
-    public function Consulta()
+    function __construct()
     {
-    }
-
-    protected function GetConexao()
-    {
-        if (!isset($this->_conexao))
-            $this->_conexao = Modulo::Instance()->ConexaoAmbiente();
-
-        return $this->_conexao;
-    }
-
-    //--
-
-    public function GetLista($sql)
-    {
-        return $this->GetConexao()->GetLista($sql);
+        $METHOD = "Consulta.__construct()";
+        Logger::Instance()->Info($METHOD, "");
+        $this->$Conexao = Modulo::Instance()->ConexaoAmbiente();
     }
 
     //--
 
     public function SetValues($values)
     {
+        $METHOD = "Consulta.SetValues()";
+        
         $keys = array_keys($values);
 
         foreach ($keys as $key)
         {
-            //Logger::Instance()->Info("Consulta.SetValues()", $key . "=" . $values[$key]);
+            Logger::Instance()->Info($METHOD, $key . "=" . $values[$key]);
             $this->{$key} = $values[$key];
         }
     }
@@ -48,10 +38,12 @@ abstract class Consulta
         return $values;
     }
 
-    //--
+    //-- "Codigo_Tipo_Servico = 1 and Codigo_Localidade = 2"
 
     protected function GetCmdListar($where = "")
     {
+        $METHOD = "Consulta.GetCmdListar()";
+
         if ($where == "")
             foreach ($this as $propName => $propValue)
                 if (isset($propValue))
@@ -62,7 +54,7 @@ abstract class Consulta
             'select * from ' . get_class($this) .
             ($where != null ? ' where ' : '') . $where ;
 
-        Logger::Instance()->Info("Consulta.GetSqlListar", "sql: " . $sql);
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
         return $sql;
     }
@@ -72,13 +64,10 @@ abstract class Consulta
     public function Listar($where = "")
     {
         $class = get_class($this);
-
         $lista = new ArrayObject();
+        $sql = $this->GetCmdListar($where);        
+        $query = $this->$Conexao->GetConsulta($sql);
 
-        $sql = $this->GetCmdListar($where);
-        
-        $query = $this->GetLista($sql);
-        
         foreach ($query as $record) {
             $obj = new $class;
             $obj->SetValues($record);

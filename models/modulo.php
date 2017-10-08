@@ -15,7 +15,6 @@ class Modulo
     {
         if (!isset(self::$instance))
             self::$instance = new Modulo();
-
         return self::$instance;
     } 
 
@@ -27,12 +26,12 @@ class Modulo
 
     public function GetConexao($nome)
     {
-        $conexao = $this->_list_conexao[$nome];
+        $conexao = $this->$_list_conexao[$nome];
         
         if (!isset($conexao))
         {
             $conexao = new ConexaoMySql(HOSTNAME, USERNAME, PASSWORD, DATABASE);
-            $this->_list_conexao[$nome] = $conexao;
+            $this->$_list_conexao[$nome] = $conexao;
         }
 
         return $conexao;
