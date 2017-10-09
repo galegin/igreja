@@ -19,6 +19,7 @@ class Logger
 		$log = 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "<log>\n" .
             "<data>$data<data/>\n" . 
             "<tipo>$tipo</tipo>\n" . 
@@ -28,6 +29,8 @@ class Logger
 =======
 =======
 >>>>>>> 2f06a0a7c25700b2d65efd5924e69f94469c4ada
+=======
+>>>>>>> 2f06a0a7c25700b2d65efd5924e69f94469c4ada
 			"<log>\n" .
 			"<data>$data</data>\n" .
 			"<tipo>$tipo</tipo>\n" .
@@ -35,6 +38,9 @@ class Logger
 			"<metodo>$method</metodo>\n" . 
 			"</log>\n\n";
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2f06a0a7c25700b2d65efd5924e69f94469c4ada
+=======
 >>>>>>> 2f06a0a7c25700b2d65efd5924e69f94469c4ada
 =======
 >>>>>>> 2f06a0a7c25700b2d65efd5924e69f94469c4ada
