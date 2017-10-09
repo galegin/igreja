@@ -17,7 +17,7 @@ Objeto::SetValues($servico, $dados);
 
 if ($opcao == "Consultar")
     $servico = Contexto::Instance()->GetObjeto(get_class($servico), "Codigo = " . $dados["Codigo"]);
-else if ($opcao == "Salvar")
+else if ($opcao == "Salvar" || $opcao == "Incluir" || $opcao == "Alterar")
     Contexto::Instance()->SetObjeto($servico);
 else if ($opcao == "Excluir")
     Contexto::Instance()->RemObjeto($servico);

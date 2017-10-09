@@ -17,7 +17,7 @@ Objeto::SetValues($reuniao, $dados);
 
 if ($opcao == "Consultar")
     $reuniao = Contexto::Instance()->GetObjeto(get_class($reuniao), "Codigo = " . $dados["Codigo"]);
-else if ($opcao == "Salvar")
+else if ($opcao == "Salvar" || $opcao == "Incluir" || $opcao == "Alterar")
     Contexto::Instance()->SetObjeto($reuniao);
 else if ($opcao == "Excluir")
     Contexto::Instance()->RemObjeto($reuniao);

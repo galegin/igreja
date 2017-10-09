@@ -56,6 +56,8 @@ class Comando
             " from (select " . $fields . " from " . $tabela . ") a " .
 			($where != "" ? " where " . $where : "");
 
+        Logger::Instance()->Info($METHOD, "sql: " . $sql);
+
 		return $sql;
 	}
 
@@ -90,7 +92,14 @@ class Comando
             self::AddString($values, self::GetValueStr($value), ", ");
         }
 
-		return "insert into " . $tabela . " (" . $fields . ") values (" . $values . ")";
+		$cmd = 
+            "insert into " . $tabela . 
+            " (" . $fields . 
+            ") values (" . $values . ")";
+
+        Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
+
+        return $cmd;
 	}
 	
 	public static function GetUpdate($obj)	
@@ -108,7 +117,14 @@ class Comando
             else
                 self::AddString($where, self::GetCampo($obj, $name) . " = " . self::GetValueStr($value), " and ");
 
-		return "update " . $tabela . " sets " . $sets . " where " . $where;
+		$cmd = 
+            "update " . $tabela . 
+            " sets " . $sets . 
+            " where " . $where;
+
+        Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
+
+        return $cmd;
 	}
 
 	public static function GetDelete($obj)	
@@ -123,7 +139,13 @@ class Comando
             if ($name == "Codigo")
                 self::AddString($where, self::GetCampo($obj, $name) . " = " . self::GetValueStr($value), " and ");
 
-		return "delete from " . $tabela . " where " . $where;
+		$cmd = 
+            "delete from " . $tabela . 
+            " where " . $where;
+
+        Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
+
+        return $cmd;
 	}	
 }
 ?>

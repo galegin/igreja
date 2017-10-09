@@ -17,7 +17,7 @@ Objeto::SetValues($tiposervico, $dados);
 
 if ($opcao == "Consultar")
     $tiposervico = Contexto::Instance()->GetObjeto(get_class($tiposervico), "Codigo = " . $dados["Codigo"]);
-else if ($opcao == "Salvar")
+else if ($opcao == "Salvar" || $opcao == "Incluir" || $opcao == "Alterar")
     Contexto::Instance()->SetObjeto($tiposervico);
 else if ($opcao == "Excluir")
     Contexto::Instance()->RemObjeto($tiposervico);

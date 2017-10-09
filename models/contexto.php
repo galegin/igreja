@@ -59,7 +59,7 @@ class Contexto
 			$query = $this->Conexao->GetConsulta($sql);
 			$row = $query->fetch();
 			$cmd = "";
-			if (isset($query))
+			if ($row["Codigo"] > 0)
 				$cmd = Comando::GetUpdate($obj);
 			else
 				$cmd = Comando::GetInsert($obj);

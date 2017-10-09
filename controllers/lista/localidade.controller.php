@@ -17,7 +17,7 @@ Objeto::SetValues($localidade, $dados);
 
 if ($opcao == "Consultar")
     $localidade = Contexto::Instance()->GetObjeto(get_class($localidade), "Codigo = " . $dados["Codigo"]);
-else if ($opcao == "Salvar")
+else if ($opcao == "Salvar" || $opcao == "Incluir" || $opcao == "Alterar")
     Contexto::Instance()->SetObjeto($localidade);
 else if ($opcao == "Excluir")
     Contexto::Instance()->RemObjeto($localidade);
