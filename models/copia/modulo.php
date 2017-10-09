@@ -15,7 +15,6 @@ class Modulo
     {
         if (!isset(self::$instance))
             self::$instance = new Modulo();
-
         return self::$instance;
     } 
 

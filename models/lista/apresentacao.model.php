@@ -1,12 +1,12 @@
 <?php
 
-require_once("../../models/persistencia.php");
+require_once("../../models/mapping.php");
 
 define("TA_CONF_SERVICO", 1);
 define("TA_APRES_SERVICO", 2);
 define("TA_APRES_SERVO", 3);
 
-class Apresentacao extends Persistencia
+class Apresentacao extends Mapping
 {
     public $Codigo;
     public $Codigo_Reuniao;

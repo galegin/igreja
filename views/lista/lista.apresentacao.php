@@ -91,9 +91,7 @@
 
                         if (isset($apresentacao->Codigo_Tipo_Servico))
                         {
-                            $tiposervico = new TipoServico();
-                            $tiposervico->Codigo = $apresentacao->Codigo_Tipo_Servico;
-                            $tiposervico->Consultar();
+                            $tiposervico = Contexto::Instance()->GetObjeto("TipoServico", "Codigo = " . $apresentacao->Codigo_Tipo_Servico);
                             $tiposervico_select = $tiposervico->Descricao;
                         }
                         else
@@ -101,9 +99,7 @@
 
                         if (isset($apresentacao->Codigo_Localidade))
                         {
-                            $localidade = new Localidade();
-                            $localidade->Codigo = $apresentacao->Codigo_Localidade;
-                            $localidade->Consultar();
+                            $localidade = Contexto::Instance()->GetObjeto("Localidade", "Codigo = " . $apresentacao->Codigo_Localidade);
                             $localidade_select = $localidade->Nome;
                         }
                         else
@@ -138,11 +134,11 @@
                 }
 
                 $apresentacao = new Apresentacao();
-                GerarDocumentoConfServico::GerarLinha($apresentacao,$reuniao,TA_CONF_SERVICO);
+                GerarDocumentoConfServico::GerarLinha($apresentacao, $reuniao, TA_CONF_SERVICO);
 
                 $apresentacoes = ApresentacaoService::ListarConfirmacaoServicoReuniao($reuniao);
                 foreach ($apresentacoes as $apresentacao)
-                    GerarDocumentoConfServico::GerarLinha($apresentacao,$reuniao,TA_CONF_SERVICO);
+                    GerarDocumentoConfServico::GerarLinha($apresentacao, $reuniao, TA_CONF_SERVICO);
             ?>
         </tbody>
     </table>
@@ -170,9 +166,7 @@
 
                         if (isset($apresentacao->Codigo_Tipo_Servico))
                         {
-                            $tiposervico = new TipoServico();
-                            $tiposervico->Codigo = $apresentacao->Codigo_Tipo_Servico;
-                            $tiposervico->Consultar();
+                            $tiposervico = Contexto::Instance()->GetObjeto("TipoServico", "Codigo = " . $apresentacao->Codigo_Tipo_Servico);
                             $tiposervico_select = $tiposervico->Descricao;
                         }
                         else
@@ -180,9 +174,7 @@
 
                         if (isset($apresentacao->Codigo_Localidade))
                         {
-                            $localidade = new Localidade();
-                            $localidade->Codigo = $apresentacao->Codigo_Localidade;
-                            $localidade->Consultar();
+                            $localidade = Contexto::Instance()->GetObjeto("Localidade", "Codigo = " . $apresentacao->Codigo_Localidade);
                             $localidade_select = $localidade->Nome;
                         }
                         else
@@ -217,11 +209,11 @@
                 }
 
                 $apresentacao = new Apresentacao();
-                GerarDocumentoApresServico::GerarLinha($apresentacao,$reuniao,TA_APRES_SERVICO);
+                GerarDocumentoApresServico::GerarLinha($apresentacao, $reuniao, TA_APRES_SERVICO);
 
                 $apresentacoes = ApresentacaoService::ListarApresentacaoServicoReuniao($reuniao);
                 foreach ($apresentacoes as $apresentacao)
-                    GerarDocumentoApresServico::GerarLinha($apresentacao,$reuniao,TA_APRES_SERVICO);
+                    GerarDocumentoApresServico::GerarLinha($apresentacao, $reuniao, TA_APRES_SERVICO);
             ?>
         </tbody>
     </table>
@@ -250,9 +242,7 @@
 
                         if (isset($apresentacao->Codigo_Localidade))
                         {
-                            $localidade = new Localidade();
-                            $localidade->Codigo = $apresentacao->Codigo_Localidade;
-                            $localidade->Consultar();
+                            $localidade = Contexto::Instance()->GetObjeto("Localidade", "Codigo = " . $apresentacao->Codigo_Localidade);
                             $localidade_select = $localidade->Nome;
                         }
                         else
@@ -288,11 +278,11 @@
                 }
 
                 $apresentacao = new Apresentacao();
-                GerarDocumentoApresServo::GerarLinha($apresentacao,$reuniao,TA_APRES_SERVO);
+                GerarDocumentoApresServo::GerarLinha($apresentacao, $reuniao, TA_APRES_SERVO);
 
                 $apresentacoes = ApresentacaoService::ListarApresentacaoServoReuniao($reuniao);
                 foreach ($apresentacoes as $apresentacao)
-                    GerarDocumentoApresServo::GerarLinha($apresentacao,$reuniao,TA_APRES_SERVO);
+                    GerarDocumentoApresServo::GerarLinha($apresentacao, $reuniao, TA_APRES_SERVO);
             ?>
         </tbody>
     </table>

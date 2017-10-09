@@ -1,11 +1,11 @@
 <?php
 
-require_once("../../models/persistencia.php");
+require_once("../../models/mapping.php");
 
 define("TL_LOCAL", 0);
 define("TL_IGREJA", 1);
 
-class Localidade extends Persistencia
+class Localidade extends Mapping
 {
     public $Codigo;
     public $Nome;

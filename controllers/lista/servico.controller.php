@@ -1,28 +1,29 @@
 <?php
 
+$METHOD = "servico.controller.php";
+
+require_once("../../models/logger.php");
+require_once("../../models/objeto.php");
+require_once("../../models/contexto.php");
 require_once("../../models/lista/servico.model.php");
 
 $opcao = $_POST['opcao'];
-Logger::Instance()->Info("servico.controller.php", "opcao: " . $opcao);
+Logger::Instance()->Info($METHOD, "opcao: " . $opcao);
 $dados = $_POST['dados'];
-Logger::Instance()->Info("servico.controller.php", "dados: " . json_encode($dados));
+Logger::Instance()->Info($METHOD, "dados: " . json_encode($dados));
 
 $servico = new Servico();
-$servico->SetValues($dados);
+Objeto::SetValues($servico, $dados);
 
 if ($opcao == "Consultar")
-    $servico->Consultar();
-else if ($opcao == "Incluir")
-    $servico->Incluir();
-else if ($opcao == "Alterar")
-    $servico->Alterar();
+    $servico = Contexto::Instance()->GetObjeto(get_class($servico), "Codigo = " . $dados["Codigo"]);
 else if ($opcao == "Salvar")
-    $servico->Salvar();
+    Contexto::Instance()->SetObjeto($servico);
 else if ($opcao == "Excluir")
-    $servico->Excluir();
+    Contexto::Instance()->RemObjeto($servico);
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $servico);
-Logger::Instance()->Info("servico.controller.php", "response: " . json_encode($response));
+Logger::Instance()->Info($METHOD, "response: " . json_encode($response));
 
 echo json_encode($response);    
 

@@ -1,8 +1,8 @@
 <?php
 
-require_once("../../models/persistencia.php");
+require_once("../../models/mapping.php");
 
-class Observacao extends Persistencia
+class Observacao extends Mapping
 {
     public $Codigo;
     public $Codigo_Reuniao;

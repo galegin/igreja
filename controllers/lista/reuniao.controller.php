@@ -1,28 +1,29 @@
 <?php
 
+$METHOD = "reuniao.controller.php";
+
+require_once("../../models/logger.php");
+require_once("../../models/objeto.php");
+require_once("../../models/contexto.php");
 require_once("../../models/lista/reuniao.model.php");
 
 $opcao = $_POST['opcao'];
-Logger::Instance()->Info("reuniao.controller.php", "opcao: " . $opcao);
+Logger::Instance()->Info($METHOD, "opcao: " . $opcao);
 $dados = $_POST['dados'];
-Logger::Instance()->Info("reuniao.controller.php", "dados: " . json_encode($dados));
+Logger::Instance()->Info($METHOD, "dados: " . json_encode($dados));
 
 $reuniao = new Reuniao();
-$reuniao->SetValues($dados);
+Objeto::SetValues($reuniao, $dados);
 
 if ($opcao == "Consultar")
-    $reuniao->Consultar();
-else if ($opcao == "Incluir")
-    $reuniao->Incluir();
-else if ($opcao == "Alterar")
-    $reuniao->Alterar();
+    $reuniao = Contexto::Instance()->GetObjeto(get_class($reuniao), "Codigo = " . $dados["Codigo"]);
 else if ($opcao == "Salvar")
-    $reuniao->Salvar();
+    Contexto::Instance()->SetObjeto($reuniao);
 else if ($opcao == "Excluir")
-    $reuniao->Excluir();
+    Contexto::Instance()->RemObjeto($reuniao);
 
 $response = array("success" => true, "opcao" => $opcao, "dados" => $reuniao);
-Logger::Instance()->Info("reuniao.controller.php", "response: " . json_encode($response));
+Logger::Instance()->Info($METHOD, "response: " . json_encode($response));
 
 echo json_encode($response);    
 

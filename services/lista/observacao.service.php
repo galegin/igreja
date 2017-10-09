@@ -1,5 +1,6 @@
 <?php 
 
+require_once("../../models/contexto.php");
 require_once("../../models/lista/observacao.model.php");
 require_once("../../models/lista/reuniao.model.php");
 
@@ -25,9 +26,9 @@ class ObservacaoService
 
 	public static function ListarObservacaoReuniao($reuniao)
 	{
-		$observacao = new Observacao();
-		$observacao->Codigo_Reuniao = $reuniao->Codigo;
-		return $observacao->Listar();
+		$where = 
+            "Codigo_Reuniao = " . $reuniao->Codigo;
+		return Contexto::Instance()->GetLista("Observacao", $where);
 	}
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-require_once("../../models/persistencia.php");
+require_once("../../models/mapping.php");
 
-class AgendaServico extends Persistencia
+class AgendaServico extends Mapping
 {
     public $Codigo;
     public $Codigo_Tipo_Servico;

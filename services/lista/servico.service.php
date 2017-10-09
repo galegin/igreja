@@ -1,5 +1,6 @@
 <?php 
 
+require_once("../../models/contexto.php");
 require_once("../../models/lista/reuniao.model.php");
 require_once("../../models/lista/tipo.servico.model.php");
 require_once("../../models/lista/localidade.model.php");
@@ -32,9 +33,9 @@ class ServicoService
 
 	public static function ListarServicoReuniao($reuniao)
 	{
-		$servicoconsulta = new ServicoConsulta();
-		$servicoconsulta->Codigo_Reuniao = $reuniao->Codigo;
-		return $servicoconsulta->Listar();
+        $where =
+            "Codigo_Reuniao = " . $reuniao->Codigo;
+		return Contexto::Instance()->GetLista("ServicoConsulta");
 	}
 
 	//--
@@ -62,11 +63,11 @@ class ServicoService
 		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
 		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
-		$servicoconsulta = new ServicoConsulta();
-		$servicoconsulta->Data_Inicio = $datainicio->format('Y-m-d');
-		$servicoconsulta->Data_Termino = $datatermino->format('Y-m-d');
-		$servicoconsulta->Tipo_Servico = $tipo_servico;
-		return $servicoconsulta->Listar();
+		$where = 
+            "Data_Inicio >= '" . $datainicio->format('Y-m-d') . "' and " .
+            "Data_Inicio <= '" . $datatermino->format('Y-m-d') . "' and " .
+            "Tipo_Servico = " . $tipo_servico;
+		return Contexto::Instance()->GetLista("ServicoConsulta", $where);
 	}
 
 	public static function ListarBatismoReuniao($reuniao)
@@ -86,12 +87,12 @@ class ServicoService
 		$datainicio = self::PrimeiroDiaAno($reuniao->Data);
 		$datatermino = self::UltimoDiaAno($reuniao->Data);
 
-		$igrejaservicoconsulta = new IgrejaServicoConsulta();
-		$igrejaservicoconsulta->Data_Inicio = $datainicio->format('Y-m-d');
-		$igrejaservicoconsulta->Data_Termino = $datatermino->format('Y-m-d');
-		$igrejaservicoconsulta->Tipo_Servico = $tipo_servico;
-		$igrejaservicoconsulta->Tipo_Localidade = TL_IGREJA;
-		return $igrejaservicoconsulta->Listar();
+		$where = 
+            "((Data_Inicio >= '" . $datainicio->format('Y-m-d') . "' and " .
+            "Data_Inicio <= '" . $datatermino->format('Y-m-d') . "') or Data_Inicio is null) and " .
+            "Tipo_Servico = " . $tipo_servico . " and " .
+            "Tipo_Localidade = " . TL_IGREJA;
+		return Contexto::Instance()->GetLista("IgrejaServicoConsulta", $where);
 	}
 
 	public static function ListarCultoEnsinamentoReuniao($reuniao)
@@ -108,10 +109,10 @@ class ServicoService
 
 	public static function ListarColetaReuniao($reuniao)
 	{
-		$servicoconsulta = new IgrejaServicoConsulta();
-		$servicoconsulta->Codigo_Reuniao = $reuniao->Codigo;
-		$servicoconsulta->Tipo_Servico = TS_COLETA;
-		return $servicoconsulta->Listar();
+		$where = 
+            "((Codigo_Reuniao = " . $reuniao->Codigo . ") or Codigo_Reuniao is null) and " .
+            "Tipo_Servico = " . TS_COLETA;
+		return Contexto::Instance()->GetLista("IgrejaServicoConsulta", $where);
 	}
 }
 ?>
