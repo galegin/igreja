@@ -1,33 +1,25 @@
 <?php
 
 require_once("logger.php");
+require_once("parametro.php");
 
 class ConexaoMySql
 {
-    public $Hostname;
-    public $Username;
-    public $Password;
-    public $Database;
-    public $Conexao;
-
-    public function __construct($database, $username, $password, $hostname)
+    public function __construct($parametro)
     {
-        $this->Database = $database;
-        $this->Username = $username;
-        $this->Password = $password;
-        $this->Hostname = $hostname;
+        $this->Parametro = $parametro;
         $this->SetConexao();
     }
 
+    public $Parametro;
+    public $Conexao;
+
     private function SetConexao()
     {
-        if (!isset($this->Conexao))
-        {
-            $this->Conexao = new PDO("mysql:host=$this->Hostname;dbname=$this->Database", $this->Username, $this->Password);
-            $this->Conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
-            if (!$this->Conexao)
-                throw new Exception("Erro ao connectar", 1);
-        }
+        $this->Conexao = new PDO("mysql:host=$this->Parametro->Hostname;dbname=$this->Parametro->Database", $this->Parametro->Username, $this->Parametro->Password);
+        $this->Conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
+        if (!$this->Conexao)
+            throw new Exception("Erro ao connectar", 1);
     }
 
     /*

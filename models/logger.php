@@ -12,6 +12,8 @@ class Logger
             self::$instance = new Logger();
         return self::$instance;
     } 
+    
+    //--
 
     protected function Log($tipo, $method, $message)
     {

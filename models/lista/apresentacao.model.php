@@ -1,12 +1,12 @@
 <?php
 
-require_once("../../models/mapping.php");
+require_once("../../models/collectionitem.php");
 
 define("TA_CONF_SERVICO", 1);
 define("TA_APRES_SERVICO", 2);
 define("TA_APRES_SERVO", 3);
 
-class Apresentacao extends Mapping
+class Apresentacao extends CollectionItem
 {
     public $Codigo;
     public $Codigo_Reuniao;

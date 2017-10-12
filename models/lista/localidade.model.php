@@ -1,11 +1,11 @@
 <?php
 
-require_once("../../models/mapping.php");
+require_once("../../models/collectionitem.php");
 
 define("TL_LOCAL", 0);
 define("TL_IGREJA", 1);
 
-class Localidade extends Mapping
+class Localidade extends CollectionItem
 {
     public $Codigo;
     public $Nome;

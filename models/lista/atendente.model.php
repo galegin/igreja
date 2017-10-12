@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../models/mapping.php");
+require_once("../../models/collectionitem.php");
 
 define("TM_ANCIAO", 0);
 define("TM_DIACONO", 1);
@@ -24,7 +24,7 @@ define("TA_CONSELHO_FISCAL", 7);
 define("TA_AUX_SECRETARIA", 8);
 define("TA_AUX_LIVRO", 9);
 
-class Atendente extends Mapping
+class Atendente extends CollectionItem
 {
     public $Codigo;
     public $Nome;

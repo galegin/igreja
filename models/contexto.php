@@ -2,11 +2,10 @@
 
 require_once("conexao.php");
 require_once("comando.php");
-
-define("DATABASE", "igreja");
-define("USERNAME", "root");
-define("PASSWORD", "");
-define("HOSTNAME", "localhost");
+require_once("parametro.php");
+require_once("collection.php");
+require_once("collectionitem.php");
+require_once("objeto.php");
 
 class Contexto
 {
@@ -15,38 +14,32 @@ class Contexto
     public static function Instance()
     {
         if (!isset(self::$instance))
-            self::$instance = new Contexto(DATABASE, USERNAME, PASSWORD, HOSTNAME);
+            self::$instance = new Contexto(Parametro::Instance());
         return self::$instance;
     }
+    
+    //--
 
-    public $Database;
-    public $Username;
-    public $Password;
-    public $Hostname;
-    public $Conexao;
-
-    function __construct($database, $username, $password, $hostname)
+    function __construct($parametro)
     {
-        $this->Database = $database; 
-        $this->Username = $username; 
-        $this->Password = $password; 
-        $this->Hostname = $hostname;
-        $this->Conexao = new ConexaoMySql($database, $username, $password, $hostname);
+        $this->Parametro = $parametro;
+        $this->Conexao = new ConexaoMySql($parametro);
     }
     
+    public $Parametro;
+    public $Conexao;
+
     //-- lista
     
     public function GetLista($class, $where = "")
     {
-        $lista = new ArrayObject();
+        $collection = new Collection($class);
         $sql = Comando::GetSelect($class, $where);
         $query = $this->Conexao->GetConsulta($sql);
         foreach ($query as $row)
         {
-            $obj = new $class();
-            $lista->append($obj);
-            foreach ($obj as $name => $value) 
-                $obj->{$name} = $row[$name];
+            $obj = $collection->Add();
+            Objeto::SetValues($obj, $row);
         }
         return $lista;
     }
@@ -54,48 +47,43 @@ class Contexto
     public function SetLista($lista)
     {
         foreach ($lista as $obj) 
-        {
-            $sql = Comando::GetSelectObj($obj);
-            $query = $this->Conexao->GetConsulta($sql);
-            $row = $query->fetch();
-            $cmd = "";
-            if ($row["Codigo"] > 0)
-                $cmd = Comando::GetUpdate($obj);
-            else
-                $cmd = Comando::GetInsert($obj);
-            $this->Conexao->ExecComando($cmd);
-        }
+            $this->SetObjeto($obj);
     }
     
     public function RemLista($lista)
     {
-        foreach ($lista as $obj) 
-        {
-            $cmd = Comando::GetDelete($obj);
-            $this->Conexao->ExecComando($cmd);
-        }
+        foreach ($lista as $obj)
+            $this->RemObjeto($obj);
     }
     
     //-- objeto
     
     public function GetObjeto($class, $where = "")
     {
-        $lista = $this->GetLista($class, $where);
-        return $lista[0];
+        $sql = Comando::GetSelect($class, $where);
+        $query = $this->Conexao->GetConsulta($sql);
+        $row = $query->fetch();
+        $obj = new $class();
+        Objeto::SetValues($obj, $row);
     }
 
     public function SetObjeto($obj)
     {
-        $lista = new ArrayObject();
-        $lista->append($obj);
-        $this->SetLista($lista);
+        $sql = Comando::GetSelectObj($obj);
+        $query = $this->Conexao->GetConsulta($sql);
+        $row = $query->fetch();
+        $cmd = "";
+        if ($row["Codigo"] > 0)
+            $cmd = Comando::GetUpdate($obj);
+        else
+            $cmd = Comando::GetInsert($obj);
+        $this->Conexao->ExecComando($cmd);
     }
 
     public function RemObjeto($obj)
     {
-        $lista = new ArrayObject();
-        $lista->append($obj);
-        $this->RemLista($lista);
+        $cmd = Comando::GetDelete($obj);
+        $this->Conexao->ExecComando($cmd);
     }
 }
 ?>

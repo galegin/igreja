@@ -1,8 +1,8 @@
 <?php
 
-require_once("../../models/mapping.php");
+require_once("../../models/collectionitem.php");
 
-class Reuniao extends Mapping
+class Reuniao extends CollectionItem
 {
     public $Codigo;
     public $Descricao;

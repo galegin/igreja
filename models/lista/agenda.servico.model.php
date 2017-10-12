@@ -1,8 +1,8 @@
 <?php
 
-require_once("../../models/mapping.php");
+require_once("../../models/collectionitem.php");
 
-class AgendaServico extends Mapping
+class AgendaServico extends CollectionItem
 {
     public $Codigo;
     public $Codigo_Tipo_Servico;
