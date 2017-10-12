@@ -36,45 +36,45 @@ class Contexto
     
     //-- lista
     
-	public function GetLista($class, $where = "")
-	{
-		$lista = new ArrayObject();
-		$sql = Comando::GetSelect($class, $where);
-		$query = $this->Conexao->GetConsulta($sql);
-		foreach ($query as $row)
-		{
-			$obj = new $class();
-			$lista->append($obj);
-			foreach ($obj as $name => $value) 
-				$obj->{$name} = $row[$name];
-		}
+    public function GetLista($class, $where = "")
+    {
+        $lista = new ArrayObject();
+        $sql = Comando::GetSelect($class, $where);
+        $query = $this->Conexao->GetConsulta($sql);
+        foreach ($query as $row)
+        {
+            $obj = new $class();
+            $lista->append($obj);
+            foreach ($obj as $name => $value) 
+                $obj->{$name} = $row[$name];
+        }
         return $lista;
-	}
+    }
 
-	public function SetLista($lista)
-	{
-		foreach ($lista as $obj) 
-		{
-			$sql = Comando::GetSelectObj($obj);
-			$query = $this->Conexao->GetConsulta($sql);
-			$row = $query->fetch();
-			$cmd = "";
-			if ($row["Codigo"] > 0)
-				$cmd = Comando::GetUpdate($obj);
-			else
-				$cmd = Comando::GetInsert($obj);
-			$this->Conexao->ExecComando($cmd);
-		}
-	}
-	
-	public function RemLista($lista)
-	{
-		foreach ($lista as $obj) 
-		{
-			$cmd = Comando::GetDelete($obj);
-			$this->Conexao->ExecComando($cmd);
-		}
-	}
+    public function SetLista($lista)
+    {
+        foreach ($lista as $obj) 
+        {
+            $sql = Comando::GetSelectObj($obj);
+            $query = $this->Conexao->GetConsulta($sql);
+            $row = $query->fetch();
+            $cmd = "";
+            if ($row["Codigo"] > 0)
+                $cmd = Comando::GetUpdate($obj);
+            else
+                $cmd = Comando::GetInsert($obj);
+            $this->Conexao->ExecComando($cmd);
+        }
+    }
+    
+    public function RemLista($lista)
+    {
+        foreach ($lista as $obj) 
+        {
+            $cmd = Comando::GetDelete($obj);
+            $this->Conexao->ExecComando($cmd);
+        }
+    }
     
     //-- objeto
     
@@ -86,14 +86,14 @@ class Contexto
 
     public function SetObjeto($obj)
     {
-		$lista = new ArrayObject();
+        $lista = new ArrayObject();
         $lista->append($obj);
         $this->SetLista($lista);
     }
 
     public function RemObjeto($obj)
     {
-		$lista = new ArrayObject();
+        $lista = new ArrayObject();
         $lista->append($obj);
         $this->RemLista($lista);
     }

@@ -9,11 +9,6 @@ class Comando
         return $class; // $obj->GetTabela();
     }
     
-    public static function GetTabelaObj($obj)
-    {
-        return get_class($obj); // $obj->GetTabela();
-    }
-
     public static function GetCampo($obj, $atr)
     {
         return $atr; // $obj->GetCampo($atr);
@@ -35,14 +30,14 @@ class Comando
     
     //-- select
     
-	public static function GetSelect($class, $where = "")
-	{
+    public static function GetSelect($class, $where = "")
+    {
         $METHOD = "Comando.GetSelect";
         Logger::Instance()->Info($METHOD, "class: " . $class);
 
-		$tabela = self::GetTabela($class);
-		$fieldsAtr = "";
-		$fields = "";
+        $tabela = self::GetTabela($class);
+        $fieldsAtr = "";
+        $fields = "";
         
         $obj = new $class;
         foreach ($obj as $name => $value)
@@ -54,37 +49,37 @@ class Comando
         $sql = 
             "select " . $fieldsAtr . 
             " from (select " . $fields . " from " . $tabela . ") a " .
-			($where != "" ? " where " . $where : "");
+            ($where != "" ? " where " . $where : "");
 
         Logger::Instance()->Info($METHOD, "sql: " . $sql);
 
-		return $sql;
-	}
+        return $sql;
+    }
 
-	public static function GetSelectObj($obj)
-	{
+    public static function GetSelectObj($obj)
+    {
         $METHOD = "Comando.GetSelectObj";
         Logger::Instance()->Info($METHOD, "class: " . get_class($obj));
 
-		$where = "";
+        $where = "";
         
         foreach ($obj as $name => $value)
             if ($name == "Codigo")
                 self::AddString($where, $name . " = " . self::GetValueStr($value), ", ");
 
-		return self::GetSelect(get_class($obj), $where);
-	}
+        return self::GetSelect(get_class($obj), $where);
+    }
     
     //-- insert / update / delete
 
-	public static function GetInsert($obj)	
-	{
+    public static function GetInsert($obj)    
+    {
         $METHOD = "Comando.GetInsert";
         Logger::Instance()->Info($METHOD, "class: " . get_class($obj));
 
-		$tabela = self::GetTabelaObj($obj);
-		$fields = "";
-		$values = "";
+        $tabela = self::GetTabela(get_class($obj));
+        $fields = "";
+        $values = "";
         
         foreach ($obj as $name => $value)
         {
@@ -92,7 +87,7 @@ class Comando
             self::AddString($values, self::GetValueStr($value), ", ");
         }
 
-		$cmd = 
+        $cmd = 
             "insert into " . $tabela . 
             " (" . $fields . 
             ") values (" . $values . ")";
@@ -100,16 +95,16 @@ class Comando
         Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
 
         return $cmd;
-	}
-	
-	public static function GetUpdate($obj)	
-	{
+    }
+    
+    public static function GetUpdate($obj)    
+    {
         $METHOD = "Comando.GetUpdate";
         Logger::Instance()->Info($METHOD, "class: " . get_class($obj));
 
-		$tabela = self::GetTabelaObj($obj);
-		$sets = "";
-		$where = "";
+        $tabela = self::GetTabela(get_class($obj));
+        $sets = "";
+        $where = "";
         
         foreach ($obj as $name => $value)
             if ($name != "Codigo")
@@ -117,7 +112,7 @@ class Comando
             else
                 self::AddString($where, self::GetCampo($obj, $name) . " = " . self::GetValueStr($value), " and ");
 
-		$cmd = 
+        $cmd = 
             "update " . $tabela . 
             " sets " . $sets . 
             " where " . $where;
@@ -125,27 +120,27 @@ class Comando
         Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
 
         return $cmd;
-	}
+    }
 
-	public static function GetDelete($obj)	
-	{
+    public static function GetDelete($obj)    
+    {
         $METHOD = "Comando.GetDelete";
         Logger::Instance()->Info($METHOD, "class: " . get_class($obj));
 
-		$tabela = self::GetTabelaObj($obj);
-		$where = "";
+        $tabela = self::GetTabela(get_class($obj));
+        $where = "";
         
         foreach ($obj as $name => $value)
             if ($name == "Codigo")
                 self::AddString($where, self::GetCampo($obj, $name) . " = " . self::GetValueStr($value), " and ");
 
-		$cmd = 
+        $cmd = 
             "delete from " . $tabela . 
             " where " . $where;
 
         Logger::Instance()->Info($METHOD, "cmd: " . $cmd);
 
         return $cmd;
-	}	
+    }    
 }
 ?>
