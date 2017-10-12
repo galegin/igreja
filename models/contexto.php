@@ -65,6 +65,7 @@ class Contexto
         $row = $query->fetch();
         $obj = new $class();
         Objeto::SetValues($obj, $row);
+        return $obj;
     }
 
     public function SetObjeto($obj)
