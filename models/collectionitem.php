@@ -1,6 +1,6 @@
 <?php
 
-class Collection
+class CollectionItem
 {
     public function GetTabela()
     {

@@ -33,6 +33,7 @@ class Contexto
     
     public function GetLista($class, $where = "")
     {
+        $lista = new ArrayObject();
         $collection = new Collection($class);
         $sql = Comando::GetSelect($class, $where);
         $query = $this->Conexao->GetConsulta($sql);
@@ -40,6 +41,7 @@ class Contexto
         {
             $obj = $collection->Add();
             Objeto::SetValues($obj, $row);
+            $lista->append($obj);
         }
         return $lista;
     }

@@ -16,7 +16,7 @@ class ConexaoMySql
 
     private function SetConexao()
     {
-        $this->Conexao = new PDO("mysql:host=$this->Parametro->Hostname;dbname=$this->Parametro->Database", $this->Parametro->Username, $this->Parametro->Password);
+        $this->Conexao = new PDO("mysql:host=" . $this->Parametro->Hostname . ";dbname=" . $this->Parametro->Database, $this->Parametro->Username, $this->Parametro->Password);
         $this->Conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
         if (!$this->Conexao)
             throw new Exception("Erro ao connectar", 1);

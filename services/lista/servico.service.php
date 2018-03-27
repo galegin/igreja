@@ -35,7 +35,7 @@ class ServicoService
 	{
         $where =
             "Codigo_Reuniao = " . $reuniao->Codigo;
-		return Contexto::Instance()->GetLista("ServicoConsulta");
+		return Contexto::Instance()->GetLista("ServicoConsulta", $where);
 	}
 
 	//--
